@@ -89,7 +89,7 @@ export default function GpaCalculator() {
       <button
         type="button"
         onClick={add}
-        className="mt-4 min-h-11 rounded-xl bg-brand-700 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-800"
+        className="mt-4 min-h-11 rounded-full bg-white/80 px-5 py-2.5 text-sm font-semibold text-brand-900 shadow-sm ring-1 ring-white/80 backdrop-blur transition hover:bg-white"
       >
         Add a course
       </button>

@@ -46,8 +46,10 @@ export default function FileDrop({ accept, multiple = false, onFiles, label, hin
         setDragging(false);
         handleFiles(event.dataTransfer.files);
       }}
-      className={`cursor-pointer rounded-xl border-2 border-dashed px-6 py-10 text-center transition-colors ${
-        dragging ? "border-brand-500 bg-brand-50" : "border-gray-300 bg-gray-50 hover:border-brand-400 hover:bg-brand-50"
+      className={`min-h-44 cursor-pointer rounded-[2rem] border-2 border-dashed px-6 py-10 text-center backdrop-blur transition duration-200 focus-visible:ring-4 focus-visible:ring-brand-500/20 focus-visible:outline-none ${
+        dragging
+          ? "scale-[1.01] border-brand-400 bg-brand-50/70 shadow-[0_22px_44px_-18px_rgb(112_56_224/0.35)]"
+          : "border-white/80 bg-white/40 shadow-[inset_0_1px_0_rgb(255_255_255/0.8),0_16px_32px_-20px_rgb(68_33_127/0.25)] hover:border-brand-300 hover:bg-white/60"
       }`}
     >
       <input
@@ -61,8 +63,23 @@ export default function FileDrop({ accept, multiple = false, onFiles, label, hin
           event.target.value = "";
         }}
       />
-      <p className="text-base font-semibold text-gray-800">{label}</p>
-      <p className="mt-1 text-sm text-gray-500">{hint ?? "Drop files here or click to browse. Files never leave your device."}</p>
+      <span
+        className="glass-chip mx-auto flex h-14 w-14 items-center justify-center rounded-full text-brand-700"
+        aria-hidden="true"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-7 w-7">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="17 8 12 3 7 8" />
+          <line x1="12" x2="12" y1="3" y2="15" />
+        </svg>
+      </span>
+      <p className="mt-4 text-base font-semibold text-gray-900">{label}</p>
+      <p className="mx-auto mt-1.5 max-w-md text-sm leading-relaxed text-gray-500">
+        {hint ?? "Drop files here or click to browse. Files never leave your device."}
+      </p>
+      <p className="mt-5 inline-flex min-h-11 items-center rounded-full bg-gradient-to-b from-white to-brand-50 px-6 py-2.5 text-sm font-semibold text-brand-950 shadow-[0_12px_24px_-10px_rgb(68_33_127/0.35),inset_0_1px_0_rgb(255_255_255/0.9)] ring-1 ring-white/80">
+        Choose a file
+      </p>
     </div>
   );
 }

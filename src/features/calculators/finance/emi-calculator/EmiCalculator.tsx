@@ -78,7 +78,7 @@ export default function EmiCalculator() {
           <button
             type="button"
             onClick={() => setShowSchedule((v) => !v)}
-            className="mt-5 rounded-xl bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-700"
+            className="mt-5 min-h-11 rounded-full bg-white/80 px-5 py-2.5 text-sm font-semibold text-brand-900 shadow-sm ring-1 ring-white/80 backdrop-blur transition hover:bg-white"
           >
             {showSchedule ? "Hide amortisation schedule" : "Show amortisation schedule"}
           </button>

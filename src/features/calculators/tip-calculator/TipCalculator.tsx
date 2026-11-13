@@ -56,10 +56,10 @@ export default function TipCalculator() {
               setCustom("");
             }}
             aria-pressed={custom === "" && tipPct === p}
-            className={`min-h-11 rounded-xl px-4 py-2 text-sm font-semibold transition ${
+            className={`min-h-11 rounded-full px-4 py-2 text-sm font-semibold backdrop-blur transition ${
               custom === "" && tipPct === p
-                ? "bg-brand-700 text-white shadow-sm"
-                : "bg-gray-100 text-gray-700 hover:bg-brand-50 hover:text-brand-800"
+                ? "bg-brand-950/85 text-white shadow-sm"
+                : "bg-white/60 text-gray-700 ring-1 ring-white/70 hover:bg-white/90 hover:text-brand-800"
             }`}
           >
             {p}%

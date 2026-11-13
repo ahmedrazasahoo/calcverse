@@ -82,7 +82,7 @@ export default function SplitPdf() {
         type="button"
         disabled={!file || pageCount === null || status === "working"}
         onClick={run}
-        className="rounded-lg bg-brand-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-50"
+        className="min-h-12 rounded-full bg-gradient-to-b from-white to-brand-50 px-7 py-3 font-semibold text-brand-950 shadow-[0_14px_30px_-12px_rgb(68_33_127/0.35)] ring-1 ring-white/80 backdrop-blur transition duration-200 hover:-translate-y-0.5 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-50"
       >
         {status === "working" ? "Splitting..." : "Split PDF"}
       </button>
