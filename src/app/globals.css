@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+  /* Primary brand: deep indigo violet */
+  --color-brand-50: #f2f0fe;
+  --color-brand-100: #ece8fd;
+  --color-brand-200: #dcd4fc;
+  --color-brand-300: #bdaef9;
+  --color-brand-400: #9d84f4;
+  --color-brand-500: #8159ec;
+  --color-brand-600: #7038e0;
+  --color-brand-700: #6129c3;
+  --color-brand-800: #51239e;
+  --color-brand-900: #44217f;
+  --color-brand-950: #170b33;
+  /* Warm accent is Tailwind's amber, used directly (amber-400/500). */
+  --font-sans: ui-sans-system, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #ffffff;
+  color: #1f2937;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
