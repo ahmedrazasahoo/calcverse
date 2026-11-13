@@ -70,10 +70,10 @@ export default function TipCalculator() {
 
       {result ? (
         <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4" aria-live="polite">
-          <ResultCard label="Tip amount" value={fmt(result.tipAmount, 2)} />
-          <ResultCard label="Total bill" value={fmt(result.total, 2)} />
+          <ResultCard label="Tip amount" sub="The tip worked out from the percentage you picked." value={fmt(result.tipAmount, 2)} />
+          <ResultCard label="Total bill" sub="The bill plus the tip, before any split." value={fmt(result.total, 2)} />
           <ResultCard label="Each person pays" value={fmt(result.perPerson, 2)} sub="Bill plus tip, split evenly" />
-          <ResultCard label="Tip per person" value={fmt(result.tipPerPerson, 2)} />
+          <ResultCard label="Tip per person" sub="Each person's share of the tip alone." value={fmt(result.tipPerPerson, 2)} />
         </div>
       ) : (
         <p className="mt-6 text-sm text-gray-500">Enter a bill amount and at least one person to see the split.</p>

@@ -97,12 +97,12 @@ export default function ZakatCalculator() {
               sub={result.zakatDue ? "2.5% of your net zakatable wealth" : "Your wealth is below the nisab, so no zakat is due"}
             />
             <ResultCard label="Net zakatable wealth" value={money(result.netZakatableWealth)} sub={`Total assets ${money(result.totalAssets)}`} />
-            <ResultCard label={`Nisab threshold (${result.nisabBasis})`} value={money(result.nisabValue)} />
+            <ResultCard label={`Nisab threshold (${result.nisabBasis})`} sub="The minimum wealth at which zakat becomes due, on the basis you picked." value={money(result.nisabValue)} />
           </div>
           {(result.goldValue > 0 || result.silverValue > 0) && (
             <div className="mt-4 grid gap-4 sm:grid-cols-2">
-              {result.goldValue > 0 && <ResultCard label="Value of your gold" value={money(result.goldValue)} />}
-              {result.silverValue > 0 && <ResultCard label="Value of your silver" value={money(result.silverValue)} />}
+              {result.goldValue > 0 && <ResultCard label="Value of your gold" sub="Your gold weight multiplied by the price per gram you entered." value={money(result.goldValue)} />}
+              {result.silverValue > 0 && <ResultCard label="Value of your silver" sub="Your silver weight multiplied by the price per gram you entered." value={money(result.silverValue)} />}
             </div>
           )}
         </>

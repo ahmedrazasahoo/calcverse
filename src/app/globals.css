@@ -80,6 +80,20 @@
   }
 }
 
+/* Animatable angle for the gradient border below. Browsers without
+   @property support simply keep the static gradient (the fallback). */
+@property --cv-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes cv-border-flow {
+  to {
+    --cv-angle: 360deg;
+  }
+}
+
 @layer components {
   /* Frosted glass surface, the core of the current theme: translucent
      white, strong backdrop blur, bright white border, soft diffused
@@ -93,6 +107,46 @@
       inset 0 1px 0 rgb(255 255 255 / 0.85),
       0 24px 48px -20px rgb(68 33 127 / 0.22),
       0 6px 16px -8px rgb(68 33 127 / 0.1);
+  }
+
+  /* Animated gradient border: a conic gradient ring drawn by a masked
+     pseudo element that follows the element's own border radius. The
+     gradient rotates by animating the registered --cv-angle property;
+     without @property support it stays as a calm static gradient border.
+     Only transform-free, compositor friendly properties are animated, so
+     it stays smooth. Pair with .glass and a large radius. */
+  .anim-border {
+    position: relative;
+  }
+  .anim-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: conic-gradient(
+      from var(--cv-angle, 0deg),
+      rgb(129 89 236 / 0.65),
+      rgb(56 189 248 / 0.55),
+      rgb(245 158 11 / 0.5),
+      rgb(244 114 182 / 0.4),
+      rgb(129 89 236 / 0.65)
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    animation: cv-border-flow 7s linear infinite;
+    pointer-events: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .anim-border::before {
+      animation: none;
+    }
   }
 
   /* Lighter glass for small chips and pills. */

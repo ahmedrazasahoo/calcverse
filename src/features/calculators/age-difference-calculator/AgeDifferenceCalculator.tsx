@@ -29,7 +29,7 @@ export default function AgeDifferenceCalculator() {
             </p>
           ) : (
             <div className="grid gap-4 sm:grid-cols-3">
-              <ResultCard label="Age difference" value={ymdText(result.diff)} />
+              <ResultCard label="Age difference" sub="The exact gap between the two dates, in years, months and days." value={ymdText(result.diff)} />
               <ResultCard label="Difference in days" value={fmt(result.totalDays)} sub="Total days between the two dates" />
               <ResultCard
                 label="Born first"

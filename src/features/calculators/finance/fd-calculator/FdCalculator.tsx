@@ -58,8 +58,8 @@ export default function FdCalculator() {
 
       {result ? (
         <div className="mt-6 grid gap-4 sm:grid-cols-3">
-          <ResultCard label="Maturity value" value={money(result.maturityValue)} />
-          <ResultCard label="Total interest earned" value={money(result.totalInterest)} />
+          <ResultCard label="Maturity value" sub="What you get back at the end: your deposit plus all the interest." value={money(result.maturityValue)} />
+          <ResultCard label="Total interest earned" sub="The extra money your deposit earned over the full term." value={money(result.totalInterest)} />
           <ResultCard label="Effective yearly rate" value={`${result.effectiveAnnualRatePercent}%`} sub="After compounding" />
         </div>
       ) : (

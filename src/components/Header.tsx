@@ -1,4 +1,5 @@
 import Link from "next/link";
+import LogoMark from "@/components/LogoMark";
 import { GROUP_LABELS, GROUP_PATHS, type ToolGroup } from "@/lib/tools";
 
 const navGroups: ToolGroup[] = ["calculators", "tools", "converters", "generators"];
@@ -15,9 +16,7 @@ export default function Header() {
           className={`group flex min-h-11 shrink-0 items-center gap-2.5 rounded-full pr-3 ${linkFocus}`}
           aria-label="CalcVerse home"
         >
-          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-brand-600 to-brand-800 text-lg font-bold text-white shadow-md shadow-brand-600/30 ring-1 ring-white/50 transition duration-200 group-hover:shadow-lg">
-            C
-          </span>
+          <LogoMark className="h-10 w-10 shadow-md shadow-brand-600/30 ring-1 ring-white/50 transition duration-200 group-hover:shadow-lg" />
           <span className="text-xl font-bold tracking-tight whitespace-nowrap text-gray-900">
             Calc<span className="text-brand-700">Verse</span>
           </span>

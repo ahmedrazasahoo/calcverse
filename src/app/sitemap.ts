@@ -4,7 +4,7 @@ import { GROUP_PATHS, toolPath, tools, type ToolGroup } from "@/lib/tools";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const staticPages = ["", "/about", "/privacy", "/contact"];
+  const staticPages = ["", "/about", "/privacy", "/contact", "/terms", "/disclaimer"];
   const hubs = (Object.keys(GROUP_PATHS) as ToolGroup[]).map((g) => GROUP_PATHS[g]);
 
   return [

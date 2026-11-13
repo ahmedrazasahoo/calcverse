@@ -76,7 +76,7 @@ export default function ToolPage({ tool, content, children }: ToolPageProps) {
 
       <section
         aria-label={tool.name}
-        className={`glass relative overflow-hidden rounded-[2.5rem] p-6 sm:p-9 ${theme.glow}`}
+        className={`glass anim-border relative overflow-hidden rounded-[2.5rem] p-6 sm:p-9 ${theme.glow}`}
       >
         <span className={`absolute inset-x-10 top-0 h-1 rounded-full ${theme.bar} opacity-70`} aria-hidden="true" />
         {children}

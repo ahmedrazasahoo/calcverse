@@ -25,16 +25,17 @@ export default function HomePage() {
   const live = liveTools();
   return (
     <main>
-      <section className="relative overflow-hidden px-4 pt-14 pb-12 sm:px-6 sm:pt-20 lg:px-8">
-        <span
-          className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-brand-400/20 blur-3xl"
-          aria-hidden="true"
-        />
-        <span
-          className="pointer-events-none absolute -bottom-32 -left-16 h-80 w-80 rounded-full bg-cyan-300/20 blur-3xl"
-          aria-hidden="true"
-        />
-        <div className="relative mx-auto max-w-6xl text-center">
+      <section className="px-4 pt-10 sm:px-6 sm:pt-14 lg:px-8">
+        <div className="glass anim-border relative mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] px-6 py-12 text-center shadow-[0_30px_60px_-24px_rgb(68_33_127/0.3)] sm:px-12 sm:py-16">
+          <span
+            className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-brand-400/20 blur-3xl"
+            aria-hidden="true"
+          />
+          <span
+            className="pointer-events-none absolute -bottom-32 -left-16 h-80 w-80 rounded-full bg-cyan-300/20 blur-3xl"
+            aria-hidden="true"
+          />
+          <div className="relative">
           <p className="glass-chip inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold tracking-widest text-brand-800 uppercase">
             Free forever, no signup
           </p>
@@ -54,6 +55,7 @@ export default function HomePage() {
             </li>
             <li className="glass-chip flex min-h-11 items-center rounded-full px-4 py-2">No watermarks</li>
           </ul>
+          </div>
         </div>
       </section>
 

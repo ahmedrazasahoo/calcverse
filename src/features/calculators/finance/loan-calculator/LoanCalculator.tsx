@@ -67,14 +67,14 @@ export default function LoanCalculator() {
         <>
           <div className="mt-6 grid gap-4 sm:grid-cols-3">
             <ResultCard label="Monthly payment" value={money(result.monthlyPayment)} sub={`${fmt(result.termInMonths)} month term`} />
-            <ResultCard label="Total interest" value={money(result.standard.totalInterest)} />
-            <ResultCard label="Total cost of the loan" value={money(result.standard.totalPayment)} />
+            <ResultCard label="Total interest" sub="The full cost of borrowing, on top of the amount you borrowed." value={money(result.standard.totalInterest)} />
+            <ResultCard label="Total cost of the loan" sub="Everything you repay in total: the loan amount plus all the interest." value={money(result.standard.totalPayment)} />
           </div>
           {result.monthsSaved > 0 && (
             <div className="mt-4 grid gap-4 sm:grid-cols-3">
               <ResultCard label="Debt free sooner by" value={`${fmt(result.monthsSaved)} months`} sub={`Loan ends in ${fmt(result.withExtra.months)} months`} />
-              <ResultCard label="Interest saved" value={money(result.interestSaved)} />
-              <ResultCard label="Interest with extra payments" value={money(result.withExtra.totalInterest)} />
+              <ResultCard label="Interest saved" sub="How much interest your extra payments wipe out compared with paying normally." value={money(result.interestSaved)} />
+              <ResultCard label="Interest with extra payments" sub="The interest left to pay once your extra payments are counted." value={money(result.withExtra.totalInterest)} />
             </div>
           )}
         </>

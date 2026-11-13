@@ -54,11 +54,11 @@ export default function PakistanSalaryTaxCalculator() {
         <>
           <div className="mt-6 grid gap-4 sm:grid-cols-3">
             <ResultCard label="Tax per month" value={money(result.monthlyTax)} sub="Deducted by your employer under section 149" />
-            <ResultCard label="Take home per month" value={money(result.netMonthlyIncome)} />
+            <ResultCard label="Take home per month" sub="What actually reaches you each month after tax is taken out." value={money(result.netMonthlyIncome)} />
             <ResultCard label="Tax per year" value={money(result.totalTax)} sub={`Effective rate ${result.effectiveRatePercent}%`} />
           </div>
           <div className="mt-4 grid gap-4 sm:grid-cols-3">
-            <ResultCard label="Gross salary per year" value={money(result.annualTaxableIncome)} />
+            <ResultCard label="Gross salary per year" sub="Your full yearly pay before any tax is taken out." value={money(result.annualTaxableIncome)} />
             <ResultCard label="Your top slab rate" value={`${result.marginalRatePercent}%`} sub="Charged only on income inside that slab" />
             <ResultCard
               label="Surcharge (section 4AB)"

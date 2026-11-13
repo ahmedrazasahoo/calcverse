@@ -82,11 +82,11 @@ export default function MortgageCalculator() {
           <div className="mt-6 grid gap-4 sm:grid-cols-3">
             <ResultCard label="Total monthly payment" value={money(result.totalMonthlyPayment)} sub={result.monthlyPmi > 0 ? "Including PMI for now" : "Principal, interest, tax and insurance"} />
             <ResultCard label="Principal and interest" value={money(result.monthlyPrincipalAndInterest)} sub={`Loan of ${money(result.loanAmount)}`} />
-            <ResultCard label="Total interest over the loan" value={money(result.totalInterest)} />
+            <ResultCard label="Total interest over the loan" sub="All the interest added up across every monthly payment." value={money(result.totalInterest)} />
           </div>
           <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <ResultCard label="Property tax (monthly)" value={money(result.monthlyPropertyTax)} />
-            <ResultCard label="Insurance (monthly)" value={money(result.monthlyHomeInsurance)} />
+            <ResultCard label="Property tax (monthly)" sub="Your yearly property tax divided into a monthly amount." value={money(result.monthlyPropertyTax)} />
+            <ResultCard label="Insurance (monthly)" sub="Your yearly home insurance divided into a monthly amount." value={money(result.monthlyHomeInsurance)} />
             <ResultCard label="Down payment" value={`${result.downPaymentPercent}%`} sub={money(parseNum(downPayment) ?? 0)} />
             {result.monthlyPmi > 0 ? (
               <ResultCard label="PMI (monthly)" value={money(result.monthlyPmi)} sub={`Drops off after month ${fmt(result.pmiMonths)}, payment becomes ${money(result.totalMonthlyAfterPmi)}`} />

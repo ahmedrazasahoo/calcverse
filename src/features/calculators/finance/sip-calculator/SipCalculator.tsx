@@ -50,8 +50,8 @@ export default function SipCalculator() {
       {result ? (
         <>
           <div className="mt-6 grid gap-4 sm:grid-cols-3">
-            <ResultCard label="Invested amount" value={money(result.investedAmount)} />
-            <ResultCard label="Estimated gains" value={money(result.estimatedGain)} />
+            <ResultCard label="Invested amount" sub="The total you paid in from your own pocket over the full period." value={money(result.investedAmount)} />
+            <ResultCard label="Estimated gains" sub="The growth on top of what you paid in, at the return rate you set." value={money(result.estimatedGain)} />
             <ResultCard label="Maturity value" value={money(result.maturityValue)} sub="Projection, not a guarantee" />
           </div>
           {result.yearlyBreakdown.length > 0 && (

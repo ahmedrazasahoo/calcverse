@@ -56,11 +56,11 @@ export default function GstCalculator() {
           <ResultCard label="GST amount" value={money(result.gstAmount)} sub={interstate ? "Charged fully as IGST" : "Split equally into CGST and SGST"} />
           <ResultCard label="Total amount" value={money(result.totalAmount)} sub="Price including GST" />
           {interstate ? (
-            <ResultCard label="IGST" value={money(result.igstAmount)} />
+            <ResultCard label="IGST" sub="The whole tax charged as IGST when the sale crosses a state border." value={money(result.igstAmount)} />
           ) : (
             <>
-              <ResultCard label="CGST" value={money(result.cgstAmount)} />
-              <ResultCard label="SGST" value={money(result.sgstAmount)} />
+              <ResultCard label="CGST" sub="The central government half of the tax when the sale stays inside one state." value={money(result.cgstAmount)} />
+              <ResultCard label="SGST" sub="The state government half of the tax when the sale stays inside one state." value={money(result.sgstAmount)} />
             </>
           )}
         </div>

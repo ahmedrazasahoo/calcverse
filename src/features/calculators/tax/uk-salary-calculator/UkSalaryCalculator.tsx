@@ -50,9 +50,9 @@ export default function UkSalaryCalculator() {
       {result ? (
         <>
           <div className="mt-6 grid gap-4 sm:grid-cols-3">
-            <ResultCard label="Take home per year" value={money(result.netAnnual)} />
-            <ResultCard label="Take home per month" value={money(result.netMonthly)} />
-            <ResultCard label="Take home per week" value={money(result.netWeekly)} />
+            <ResultCard label="Take home per year" sub="Your yearly pay after income tax and National Insurance." value={money(result.netAnnual)} />
+            <ResultCard label="Take home per month" sub="Your yearly take home divided into twelve monthly amounts." value={money(result.netMonthly)} />
+            <ResultCard label="Take home per week" sub="Your yearly take home divided into 52 weekly amounts." value={money(result.netWeekly)} />
           </div>
           <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <ResultCard label="Income tax" value={money(result.incomeTax)} sub={`${result.marginalTaxBand}, allowance £${result.personalAllowance.toLocaleString("en-GB")}`} />

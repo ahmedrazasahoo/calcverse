@@ -71,7 +71,7 @@ export default function EmiCalculator() {
       {result ? (
         <>
           <div className="mt-6 grid gap-4 sm:grid-cols-3">
-            <ResultCard label="Monthly EMI" value={money(result.emi)} />
+            <ResultCard label="Monthly EMI" sub="The fixed amount you pay the bank every month until the loan ends." value={money(result.emi)} />
             <ResultCard label="Total interest" value={money(result.totalInterest)} sub={`over ${fmt(result.schedule.length)} months`} />
             <ResultCard label="Total repayment" value={money(result.totalPayment)} sub="Principal plus interest" />
           </div>

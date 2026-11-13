@@ -71,8 +71,8 @@ export default function CompoundInterestCalculator() {
       {result ? (
         <>
           <div className="mt-6 grid gap-4 sm:grid-cols-3">
-            <ResultCard label="Final balance" value={money(result.finalBalance)} />
-            <ResultCard label="You put in" value={money(result.totalContributions)} />
+            <ResultCard label="Final balance" sub="Your starting money plus all the interest it earned." value={money(result.finalBalance)} />
+            <ResultCard label="You put in" sub="The total of your starting amount and every regular deposit you added." value={money(result.totalContributions)} />
             <ResultCard label="Interest earned" value={money(result.totalInterest)} sub="Growth on your money" />
           </div>
           {result.yearlyBreakdown.length > 0 && (

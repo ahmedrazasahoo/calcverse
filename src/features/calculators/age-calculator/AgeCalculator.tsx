@@ -38,7 +38,7 @@ export default function AgeCalculator() {
       )}
       {outcome?.ok && (
         <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4" aria-live="polite">
-          <ResultCard label="Exact age" value={ymdText(outcome.result.age)} />
+          <ResultCard label="Exact age" sub="Your age in years, months and days, counted from your birth date." value={ymdText(outcome.result.age)} />
           <ResultCard label="Total days lived" value={fmt(outcome.result.totalDays)} sub="Days from birth to the chosen date" />
           <ResultCard
             label="Total weeks"

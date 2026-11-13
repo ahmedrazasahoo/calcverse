@@ -47,6 +47,19 @@ export default function PrivacyPage() {
           </p>
         </section>
         <section>
+          <h2 className="text-xl font-bold text-gray-900">Cookies</h2>
+          <p className="mt-2">
+            CalcVerse itself works without accounts and does not set tracking cookies of its own. Two kinds of
+            cookies can still appear in your browser. First, our hosting and analytics may use strictly
+            necessary or anonymous measurement cookies to count visits and keep the site secure; these do not
+            identify you personally. Second, if advertising is shown on the site, Google and its partners may
+            use cookies to serve ads based on your earlier visits to this and other websites, and to measure how
+            those ads perform. You can switch off personalised advertising at any time in Google Ads Settings,
+            and you can block or clear cookies in your browser settings; every tool on CalcVerse keeps working
+            with cookies blocked, because the tools run locally in the page.
+          </p>
+        </section>
+        <section>
           <h2 className="text-xl font-bold text-gray-900">Questions</h2>
           <p className="mt-2">
             If anything in this policy is unclear, please get in touch through the contact page and we will be
