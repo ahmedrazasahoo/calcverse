@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 
 export { fmt, fmtMoney, parseNum } from "@/lib/format";
+export { Select } from "./Select";
+export type { SelectProps } from "./Select";
 
 export function Field({
   label,

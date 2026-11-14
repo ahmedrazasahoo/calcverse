@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmtMoney, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmtMoney, inputClass, parseNum, Select } from "@/components/ui";
 import { calculateFd, type CompoundingFrequency } from "./fd";
 
 const CURRENCIES = ["₹", "$", "£", "Rs", "€"];
@@ -40,19 +40,19 @@ export default function FdCalculator() {
           <input id="fd-years" className={inputClass} inputMode="decimal" value={years} onChange={(e) => setYears(e.target.value)} />
         </Field>
         <Field label="Compounding" htmlFor="fd-compounding" hint="Indian banks compound quarterly by default.">
-          <select id="fd-compounding" className={selectClass} value={compounding} onChange={(e) => setCompounding(e.target.value as CompoundingFrequency)}>
+          <Select id="fd-compounding" value={compounding} onChange={(e) => setCompounding(e.target.value as CompoundingFrequency)}>
             <option value="quarterly">Quarterly</option>
             <option value="monthly">Monthly</option>
             <option value="half-yearly">Half yearly</option>
             <option value="yearly">Yearly</option>
-          </select>
+          </Select>
         </Field>
         <Field label="Currency" htmlFor="fd-currency">
-          <select id="fd-currency" className={selectClass} value={currency} onChange={(e) => setCurrency(e.target.value)}>
+          <Select id="fd-currency" value={currency} onChange={(e) => setCurrency(e.target.value)}>
             {CURRENCIES.map((c) => (
               <option key={c} value={c}>{c}</option>
             ))}
-          </select>
+          </Select>
         </Field>
       </div>
 

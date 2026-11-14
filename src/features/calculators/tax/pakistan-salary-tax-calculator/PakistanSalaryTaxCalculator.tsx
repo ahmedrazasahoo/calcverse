@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmtMoney, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmtMoney, inputClass, parseNum, Select } from "@/components/ui";
 import {
   calculatePakistanSalaryTax,
   PAKISTAN_TAX_YEARS,
@@ -34,19 +34,19 @@ export default function PakistanSalaryTaxCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-3">
         <Field label="Salary period" htmlFor="pk-period">
-          <select id="pk-period" className={selectClass} value={period} onChange={(e) => setPeriod(e.target.value as "monthly" | "yearly")}>
+          <Select id="pk-period" value={period} onChange={(e) => setPeriod(e.target.value as "monthly" | "yearly")}>
             <option value="monthly">Monthly salary</option>
             <option value="yearly">Yearly salary</option>
-          </select>
+          </Select>
         </Field>
         <Field label={period === "monthly" ? "Monthly salary (Rs)" : "Yearly salary (Rs)"} htmlFor="pk-salary">
           <input id="pk-salary" className={inputClass} inputMode="decimal" value={salary} onChange={(e) => setSalary(e.target.value)} />
         </Field>
         <Field label="Tax year" htmlFor="pk-year" hint={`${yearInfo.financeAct}, salaried slabs`}>
-          <select id="pk-year" className={selectClass} value={taxYear} onChange={(e) => setTaxYear(e.target.value as PakistanTaxYearId)}>
+          <Select id="pk-year" value={taxYear} onChange={(e) => setTaxYear(e.target.value as PakistanTaxYearId)}>
             <option value="2026-27">Tax Year 2026-27</option>
             <option value="2025-26">Tax Year 2025-26</option>
-          </select>
+          </Select>
         </Field>
       </div>
 

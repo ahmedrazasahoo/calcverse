@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmt, fmtMoney, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmt, fmtMoney, inputClass, parseNum, Select } from "@/components/ui";
 import { calculateMortgage } from "./mortgage";
 
 const TERMS = [30, 20, 15, 10];
@@ -57,11 +57,11 @@ export default function MortgageCalculator() {
           <input id="mtg-rate" className={inputClass} inputMode="decimal" value={rate} onChange={(e) => setRate(e.target.value)} />
         </Field>
         <Field label="Loan term" htmlFor="mtg-term">
-          <select id="mtg-term" className={selectClass} value={termYears} onChange={(e) => setTermYears(e.target.value)}>
+          <Select id="mtg-term" value={termYears} onChange={(e) => setTermYears(e.target.value)}>
             {TERMS.map((t) => (
               <option key={t} value={t}>{t} years</option>
             ))}
-          </select>
+          </Select>
         </Field>
         <Field label="Property tax ($ per year)" htmlFor="mtg-tax">
           <input id="mtg-tax" className={inputClass} inputMode="decimal" value={tax} onChange={(e) => setTax(e.target.value)} />

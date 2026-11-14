@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmt, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmt, inputClass, parseNum, Select } from "@/components/ui";
 import { formatTime12h, shiftClockTime, workShift } from "./hoursCalculator";
 
 export default function HoursCalculator() {
@@ -43,10 +43,10 @@ export default function HoursCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="What do you want to do?" htmlFor="hc-mode">
-          <select id="hc-mode" className={selectClass} value={mode} onChange={(e) => setMode(e.target.value)}>
+          <Select id="hc-mode" value={mode} onChange={(e) => setMode(e.target.value)}>
             <option value="shift">Work hours between start and end</option>
             <option value="add">Add or subtract time from a clock time</option>
-          </select>
+          </Select>
         </Field>
       </div>
 
@@ -82,10 +82,10 @@ export default function HoursCalculator() {
               <input id="hc-base" type="time" className={inputClass} value={baseTime} onChange={(e) => setBaseTime(e.target.value)} />
             </Field>
             <Field label="Direction" htmlFor="hc-direction">
-              <select id="hc-direction" className={selectClass} value={direction} onChange={(e) => setDirection(e.target.value)}>
+              <Select id="hc-direction" value={direction} onChange={(e) => setDirection(e.target.value)}>
                 <option value="1">Add</option>
                 <option value="-1">Subtract</option>
-              </select>
+              </Select>
             </Field>
             <Field label="Hours" htmlFor="hc-hours">
               <input id="hc-hours" type="number" min="0" className={inputClass} value={shiftHours} onChange={(e) => setShiftHours(e.target.value)} />

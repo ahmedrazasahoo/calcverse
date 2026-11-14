@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, inputClass, parseNum, Select } from "@/components/ui";
 import { addToDate, dateDifference } from "./dateCalculator";
 
 function formatIso(iso: string): string {
@@ -54,10 +54,10 @@ export default function DateCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="What do you want to do?" htmlFor="dc-mode">
-          <select id="dc-mode" className={selectClass} value={mode} onChange={(e) => setMode(e.target.value)}>
+          <Select id="dc-mode" value={mode} onChange={(e) => setMode(e.target.value)}>
             <option value="between">Count days between two dates</option>
             <option value="add">Add or subtract days from a date</option>
-          </select>
+          </Select>
         </Field>
       </div>
 
@@ -98,10 +98,10 @@ export default function DateCalculator() {
               <input id="dc-base" type="date" className={inputClass} value={base} onChange={(e) => setBase(e.target.value)} />
             </Field>
             <Field label="Direction" htmlFor="dc-direction">
-              <select id="dc-direction" className={selectClass} value={direction} onChange={(e) => setDirection(e.target.value)}>
+              <Select id="dc-direction" value={direction} onChange={(e) => setDirection(e.target.value)}>
                 <option value="1">Add (move forward)</option>
                 <option value="-1">Subtract (move backward)</option>
-              </select>
+              </Select>
             </Field>
             <Field label="Years" htmlFor="dc-years">
               <input id="dc-years" type="number" min="0" className={inputClass} value={years} onChange={(e) => setYears(e.target.value)} />

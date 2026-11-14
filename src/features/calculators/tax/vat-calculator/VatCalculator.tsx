@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmtMoney, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmtMoney, inputClass, parseNum, Select } from "@/components/ui";
 import { calculateVat, VAT_PRESETS, type VatMode } from "./vat";
 
 const CURRENCIES = [
@@ -52,28 +52,28 @@ export default function VatCalculator() {
           <input id="vat-amount" className={inputClass} inputMode="decimal" value={amount} onChange={(e) => setAmount(e.target.value)} />
         </Field>
         <Field label="Country preset" htmlFor="vat-country">
-          <select id="vat-country" className={selectClass} value={preset} onChange={(e) => handlePreset(e.target.value)}>
+          <Select id="vat-country" value={preset} onChange={(e) => handlePreset(e.target.value)}>
             {VAT_PRESETS.map((p) => (
               <option key={p.country} value={p.country}>{p.country} ({p.rate}%)</option>
             ))}
             <option value={CUSTOM_VALUE}>Custom</option>
-          </select>
+          </Select>
         </Field>
         <Field label="VAT rate (%)" htmlFor="vat-rate">
           <input id="vat-rate" className={inputClass} inputMode="decimal" value={rate} onChange={(e) => { setRate(e.target.value); setPreset(CUSTOM_VALUE); }} />
         </Field>
         <Field label="Calculation type" htmlFor="vat-mode">
-          <select id="vat-mode" className={selectClass} value={mode} onChange={(e) => setMode(e.target.value as VatMode)}>
+          <Select id="vat-mode" value={mode} onChange={(e) => setMode(e.target.value as VatMode)}>
             <option value="add">Add VAT</option>
             <option value="remove">Remove VAT</option>
-          </select>
+          </Select>
         </Field>
         <Field label="Currency" htmlFor="vat-currency">
-          <select id="vat-currency" className={selectClass} value={currency} onChange={(e) => setCurrency(e.target.value)}>
+          <Select id="vat-currency" value={currency} onChange={(e) => setCurrency(e.target.value)}>
             {CURRENCIES.map((c) => (
               <option key={c.symbol} value={c.symbol}>{c.label}</option>
             ))}
-          </select>
+          </Select>
         </Field>
       </div>
 

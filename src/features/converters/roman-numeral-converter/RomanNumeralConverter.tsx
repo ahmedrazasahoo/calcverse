@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, inputClass, parseNum, Select } from "@/components/ui";
 import { fromRoman, romanDate, toRoman } from "./roman";
 
 export default function RomanNumeralConverter() {
@@ -28,11 +28,11 @@ export default function RomanNumeralConverter() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Conversion" htmlFor="rn-mode">
-          <select id="rn-mode" className={selectClass} value={mode} onChange={(e) => setMode(e.target.value)}>
+          <Select id="rn-mode" value={mode} onChange={(e) => setMode(e.target.value)}>
             <option value="toRoman">Number to Roman numeral</option>
             <option value="fromRoman">Roman numeral to number</option>
             <option value="date">Date to Roman numerals</option>
-          </select>
+          </Select>
         </Field>
         {mode === "toRoman" && (
           <Field label="Number (1 to 3999)" htmlFor="rn-number">

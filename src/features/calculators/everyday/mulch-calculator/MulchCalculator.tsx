@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { EmptyState, Field, ResultCard, fmt, inputClass, parseNum, selectClass } from "@/components/ui";
+import { EmptyState, Field, ResultCard, fmt, inputClass, parseNum, Select } from "@/components/ui";
 import { calculateMulch } from "./mulch";
 
 export default function MulchCalculator() {
@@ -27,10 +27,10 @@ export default function MulchCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <Field label="Area entry" htmlFor="mu-entry">
-          <select id="mu-entry" className={selectClass} value={entry} onChange={(e) => setEntry(e.target.value as "area" | "dims")}>
+          <Select id="mu-entry" value={entry} onChange={(e) => setEntry(e.target.value as "area" | "dims")}>
             <option value="area">I know the area</option>
             <option value="dims">Length and width</option>
-          </select>
+          </Select>
         </Field>
         {entry === "area" ? (
           <Field label="Area (sq ft)" htmlFor="mu-area"><input id="mu-area" type="number" min="0" step="any" className={inputClass} value={area} onChange={(e) => setArea(e.target.value)} /></Field>

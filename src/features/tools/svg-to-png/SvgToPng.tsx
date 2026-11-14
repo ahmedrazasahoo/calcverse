@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Field, ResultCard, inputClass, parseNum, primaryButtonClass, selectClass } from "@/components/ui";
+import { Field, ResultCard, inputClass, parseNum, primaryButtonClass, Select } from "@/components/ui";
 import FileDrop from "../_shared/FileDrop";
 import { downloadBlob, formatBytes } from "../_shared/file-utils";
 import type { ConvertedImage } from "../png-to-jpg/engine";
@@ -162,9 +162,8 @@ export default function SvgToPng() {
             />
           </Field>
           <Field label="Scale" htmlFor="sp-scale" hint="Used when no exact width or height is set.">
-            <select
+            <Select
               id="sp-scale"
-              className={selectClass}
               value={scale}
               onChange={(e) => setScale(Number(e.target.value))}
             >
@@ -173,19 +172,18 @@ export default function SvgToPng() {
                   {option}x
                 </option>
               ))}
-            </select>
+            </Select>
           </Field>
           <Field label="Background" htmlFor="sp-bg" hint="Transparent keeps the see-through areas of the SVG.">
             <div className="flex gap-2">
-              <select
+              <Select
                 id="sp-bg"
-                className={selectClass}
                 value={bgMode}
                 onChange={(e) => setBgMode(e.target.value as "transparent" | "color")}
               >
                 <option value="transparent">Transparent</option>
                 <option value="color">Colour</option>
-              </select>
+              </Select>
               <input
                 id="sp-bg-color"
                 type="color"

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { EmptyState, ErrorNote, Field, ResultCard, fmtMoney, inputClass, parseNum, selectClass } from "@/components/ui";
+import { EmptyState, ErrorNote, Field, ResultCard, fmtMoney, inputClass, parseNum, Select } from "@/components/ui";
 import { calculateNoTaxOnTips, type TipsFilingStatus } from "./noTaxOnTips";
 
 const money = (n: number) => `$${fmtMoney(n)}`;
@@ -28,12 +28,12 @@ export default function NoTaxOnTipsCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <Field label="Filing status" htmlFor="ntt-status">
-          <select id="ntt-status" className={selectClass} value={filingStatus} onChange={(e) => setFilingStatus(e.target.value as TipsFilingStatus)}>
+          <Select id="ntt-status" value={filingStatus} onChange={(e) => setFilingStatus(e.target.value as TipsFilingStatus)}>
             <option value="single">Single</option>
             <option value="headOfHousehold">Head of household</option>
             <option value="marriedFilingJointly">Married filing jointly</option>
             <option value="marriedFilingSeparately">Married filing separately</option>
-          </select>
+          </Select>
         </Field>
         <Field label="Annual qualified tips ($)" htmlFor="ntt-tips" hint="Voluntary tips in cash or cash equivalents, reported on a W-2, 1099 or Form 4137. Service charges do not count.">
           <input id="ntt-tips" className={inputClass} inputMode="decimal" value={tips} onChange={(e) => setTips(e.target.value)} />
@@ -42,15 +42,15 @@ export default function NoTaxOnTipsCalculator() {
           <input id="ntt-magi" className={inputClass} inputMode="decimal" value={magi} onChange={(e) => setMagi(e.target.value)} />
         </Field>
         <Field label="Marginal federal tax rate" htmlFor="ntt-marginal" hint="Your top tax bracket, used only to estimate the saving from the deduction.">
-          <select id="ntt-marginal" className={selectClass} value={marginalRate} onChange={(e) => setMarginalRate(e.target.value)}>
+          <Select id="ntt-marginal" value={marginalRate} onChange={(e) => setMarginalRate(e.target.value)}>
             {RATES.map((r) => (<option key={r} value={r}>{r}%</option>))}
-          </select>
+          </Select>
         </Field>
         <Field label="Are you self employed in the tipped work?" htmlFor="ntt-self">
-          <select id="ntt-self" className={selectClass} value={selfEmployed ? "yes" : "no"} onChange={(e) => setSelfEmployed(e.target.value === "yes")}>
+          <Select id="ntt-self" value={selfEmployed ? "yes" : "no"} onChange={(e) => setSelfEmployed(e.target.value === "yes")}>
             <option value="no">No, I am an employee</option>
             <option value="yes">Yes, self employed</option>
-          </select>
+          </Select>
         </Field>
         {selfEmployed && (
           <Field label="Net income from that business ($)" htmlFor="ntt-net" hint="For the self employed, the deduction cannot exceed net income from the tipped business.">

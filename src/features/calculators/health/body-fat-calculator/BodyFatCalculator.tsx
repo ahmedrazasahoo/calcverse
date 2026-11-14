@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmt, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmt, inputClass, parseNum, Select } from "@/components/ui";
 import { CM_PER_INCH, bodyComposition, bodyFatPercent, classifyBodyFat, type Sex } from "./bodyFat";
 
 export default function BodyFatCalculator() {
@@ -41,16 +41,16 @@ export default function BodyFatCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <Field label="Sex" htmlFor="bf-sex">
-          <select id="bf-sex" className={selectClass} value={sex} onChange={(e) => setSex(e.target.value as Sex)}>
+          <Select id="bf-sex" value={sex} onChange={(e) => setSex(e.target.value as Sex)}>
             <option value="male">Male</option>
             <option value="female">Female</option>
-          </select>
+          </Select>
         </Field>
         <Field label="Units" htmlFor="bf-units">
-          <select id="bf-units" className={selectClass} value={units} onChange={(e) => setUnits(e.target.value)}>
+          <Select id="bf-units" value={units} onChange={(e) => setUnits(e.target.value)}>
             <option value="metric">Metric (cm, kg)</option>
             <option value="imperial">Imperial (inches, lb)</option>
-          </select>
+          </Select>
         </Field>
         <Field label={`Height (${unitLabel})`} htmlFor="bf-height">
           <input id="bf-height" type="number" min="1" className={inputClass} value={height} onChange={(e) => setHeight(e.target.value)} />

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { EmptyState, Field, ResultCard, fmt, inputClass, parseNum, selectClass } from "@/components/ui";
+import { EmptyState, Field, ResultCard, fmt, inputClass, parseNum, Select } from "@/components/ui";
 import { calculateTile, cmToIn } from "./tile";
 
 export default function TileCalculator() {
@@ -37,10 +37,10 @@ export default function TileCalculator() {
         <Field label="Room length (ft)" htmlFor="ti-rl"><input id="ti-rl" type="number" min="0" step="any" className={inputClass} value={roomL} onChange={(e) => setRoomL(e.target.value)} /></Field>
         <Field label="Room width (ft)" htmlFor="ti-rw"><input id="ti-rw" type="number" min="0" step="any" className={inputClass} value={roomW} onChange={(e) => setRoomW(e.target.value)} /></Field>
         <Field label="Tile size unit" htmlFor="ti-unit">
-          <select id="ti-unit" className={selectClass} value={tileUnit} onChange={(e) => setTileUnit(e.target.value as "in" | "cm")}>
+          <Select id="ti-unit" value={tileUnit} onChange={(e) => setTileUnit(e.target.value as "in" | "cm")}>
             <option value="in">Inches</option>
             <option value="cm">Centimetres</option>
-          </select>
+          </Select>
         </Field>
         <Field label={`Tile length (${tileUnit})`} htmlFor="ti-tl"><input id="ti-tl" type="number" min="0" step="any" className={inputClass} value={tileL} onChange={(e) => setTileL(e.target.value)} /></Field>
         <Field label={`Tile width (${tileUnit})`} htmlFor="ti-tw"><input id="ti-tw" type="number" min="0" step="any" className={inputClass} value={tileW} onChange={(e) => setTileW(e.target.value)} /></Field>

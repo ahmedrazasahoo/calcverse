@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmt, fmtMoney, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmt, fmtMoney, inputClass, parseNum, Select } from "@/components/ui";
 import { calculateSip } from "./sip";
 
 const CURRENCIES = ["₹", "$", "£", "Rs", "€"];
@@ -39,11 +39,11 @@ export default function SipCalculator() {
           <input id="sip-years" className={inputClass} inputMode="decimal" value={years} onChange={(e) => setYears(e.target.value)} />
         </Field>
         <Field label="Currency" htmlFor="sip-currency">
-          <select id="sip-currency" className={selectClass} value={currency} onChange={(e) => setCurrency(e.target.value)}>
+          <Select id="sip-currency" value={currency} onChange={(e) => setCurrency(e.target.value)}>
             {CURRENCIES.map((c) => (
               <option key={c} value={c}>{c}</option>
             ))}
-          </select>
+          </Select>
         </Field>
       </div>
 

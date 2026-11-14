@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Field, ResultCard, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, inputClass, parseNum, Select } from "@/components/ui";
 import { buildChart, describe12, describe24, type AmPm } from "./military";
 
 function two(n: number): string {
@@ -99,10 +99,10 @@ export default function MilitaryTimeConverter() {
               <input id="mt-m12" type="number" step="1" min="0" max="59" className={inputClass} value={minute12} onChange={(e) => setMinute12(e.target.value)} />
             </Field>
             <Field label="AM or PM" htmlFor="mt-ampm">
-              <select id="mt-ampm" className={selectClass} value={ampm} onChange={(e) => setAmpm(e.target.value as AmPm)}>
+              <Select id="mt-ampm" value={ampm} onChange={(e) => setAmpm(e.target.value as AmPm)}>
                 <option value="AM">AM</option>
                 <option value="PM">PM</option>
-              </select>
+              </Select>
             </Field>
           </div>
           {from12 ? (

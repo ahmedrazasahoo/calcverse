@@ -105,11 +105,44 @@
   }
 }
 
+@keyframes cv-select-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes cv-select-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @layer components {
   /* Header mega menu panel entrance. Short and compositor friendly; the
      global reduced-motion rule in the base layer shortens it to nothing. */
   .mega-panel {
     animation: cv-mega-in 0.18s ease-out;
+  }
+
+  /* Custom select popup entrance (see components/Select.tsx): a soft fade
+     with a small slide, flipping direction when the popup opens upward. */
+  .select-pop {
+    animation: cv-select-in 0.16s ease-out;
+    transform-origin: top center;
+  }
+  .select-pop-up {
+    animation-name: cv-select-in-up;
+    transform-origin: bottom center;
   }
 
   /* Frosted glass surface, the core of the current theme: translucent
@@ -200,4 +233,35 @@ input[type="number"]::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
   appearance: textfield;
+}
+
+/* Gentle float loops for the inline SVG artwork (hero composition).
+   Transform only, so they stay on the compositor and cost no layout or
+   paint work. The reduced motion rule in the base layer stills them. */
+@keyframes cv-float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+@keyframes cv-float-y-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+.cv-float-a {
+  animation: cv-float-y 7s ease-in-out infinite;
+}
+.cv-float-b {
+  animation: cv-float-y-soft 9s ease-in-out infinite;
+}
+.cv-float-c {
+  animation: cv-float-y 5.5s ease-in-out infinite;
 }

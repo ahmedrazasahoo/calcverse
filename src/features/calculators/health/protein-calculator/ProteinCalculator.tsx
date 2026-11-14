@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { EmptyState, Field, ResultCard, fmt, inputClass, parseNum, selectClass } from "@/components/ui";
+import { EmptyState, Field, ResultCard, fmt, inputClass, parseNum, Select } from "@/components/ui";
 import { calculateProtein, KG_PER_LB, PROTEIN_FACTORS } from "./protein";
 
 export default function ProteinCalculator() {
@@ -21,18 +21,18 @@ export default function ProteinCalculator() {
         <Field label={`Body weight (${unit})`} htmlFor="protein-weight">
           <div className="flex gap-2">
             <input id="protein-weight" type="number" className={inputClass} value={weight} onChange={(e) => setWeight(e.target.value)} />
-            <select aria-label="Weight unit" className={selectClass} value={unit} onChange={(e) => setUnit(e.target.value as "kg" | "lb")}>
+            <Select aria-label="Weight unit" value={unit} onChange={(e) => setUnit(e.target.value as "kg" | "lb")}>
               <option value="kg">kg</option>
               <option value="lb">lb</option>
-            </select>
+            </Select>
           </div>
         </Field>
         <Field label="Activity and goal" htmlFor="protein-factor">
-          <select id="protein-factor" className={selectClass} value={factorKey} onChange={(e) => setFactorKey(e.target.value)}>
+          <Select id="protein-factor" value={factorKey} onChange={(e) => setFactorKey(e.target.value)}>
             {PROTEIN_FACTORS.map((f) => (
               <option key={f.key} value={f.key}>{f.label} ({fmt(f.gramsPerKg, 1)} g per kg)</option>
             ))}
-          </select>
+          </Select>
         </Field>
       </div>
 

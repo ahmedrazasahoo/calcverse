@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { EmptyState, ErrorNote, Field, fmtMoney, inputClass, parseNum, primaryButtonClass, secondaryButtonClass, selectClass } from "@/components/ui";
+import { EmptyState, ErrorNote, Field, fmtMoney, inputClass, parseNum, primaryButtonClass, secondaryButtonClass, Select } from "@/components/ui";
 import { MONTH_NAMES, compareStrategies, totalFirstMinimums, type CardInput, type StrategyResult } from "./payoff";
 
 interface CardRow {
@@ -121,13 +121,13 @@ export default function CreditCardPayoffCalculator() {
           <input id="ccp-budget" type="number" step="1" min="0" className={inputClass} value={budget} onChange={(e) => setBudget(e.target.value)} />
         </Field>
         <Field label="Start month" htmlFor="ccp-start-month">
-          <select id="ccp-start-month" className={selectClass} value={startMonth} onChange={(e) => setStartMonth(e.target.value)}>
+          <Select id="ccp-start-month" value={startMonth} onChange={(e) => setStartMonth(e.target.value)}>
             {MONTH_NAMES.map((name, i) => (
               <option key={name} value={String(i)}>
                 {name}
               </option>
             ))}
-          </select>
+          </Select>
         </Field>
         <Field label="Start year" htmlFor="ccp-start-year">
           <input id="ccp-start-year" type="number" step="1" className={inputClass} value={startYear} onChange={(e) => setStartYear(e.target.value)} />

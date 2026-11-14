@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmtMoney, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmtMoney, inputClass, parseNum, Select } from "@/components/ui";
 import { calculateZakat, type NisabBasis } from "./zakat";
 
 const CURRENCIES = ["Rs", "₹", "$", "£", "€", "AED", "SAR"];
@@ -47,11 +47,11 @@ export default function ZakatCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <Field label="Currency" htmlFor="zk-currency">
-          <select id="zk-currency" className={selectClass} value={currency} onChange={(e) => setCurrency(e.target.value)}>
+          <Select id="zk-currency" value={currency} onChange={(e) => setCurrency(e.target.value)}>
             {CURRENCIES.map((c) => (
               <option key={c} value={c}>{c}</option>
             ))}
-          </select>
+          </Select>
         </Field>
         <Field label="Gold price per gram" htmlFor="zk-gold-price" hint="Use today's market or jeweller rate.">
           <input id="zk-gold-price" className={inputClass} inputMode="decimal" value={goldPrice} onChange={(e) => setGoldPrice(e.target.value)} />
@@ -81,10 +81,10 @@ export default function ZakatCalculator() {
           <input id="zk-liabilities" className={inputClass} inputMode="decimal" value={liabilities} onChange={(e) => setLiabilities(e.target.value)} />
         </Field>
         <Field label="Nisab basis" htmlFor="zk-basis" hint="Silver is the lower threshold and the common recommendation for cash wealth.">
-          <select id="zk-basis" className={selectClass} value={basis} onChange={(e) => setBasis(e.target.value as NisabBasis)}>
+          <Select id="zk-basis" value={basis} onChange={(e) => setBasis(e.target.value as NisabBasis)}>
             <option value="silver">Silver (612.36 grams)</option>
             <option value="gold">Gold (87.48 grams)</option>
-          </select>
+          </Select>
         </Field>
       </div>
 

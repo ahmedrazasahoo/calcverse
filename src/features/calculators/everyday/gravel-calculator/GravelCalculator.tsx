@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { EmptyState, Field, ResultCard, fmt, inputClass, parseNum, selectClass } from "@/components/ui";
+import { EmptyState, Field, ResultCard, fmt, inputClass, parseNum, Select } from "@/components/ui";
 import { MATERIALS, calculateGravel } from "./gravel";
 
 export default function GravelCalculator() {
@@ -31,10 +31,10 @@ export default function GravelCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <Field label="Area entry" htmlFor="gr-entry">
-          <select id="gr-entry" className={selectClass} value={entry} onChange={(e) => setEntry(e.target.value as "area" | "dims")}>
+          <Select id="gr-entry" value={entry} onChange={(e) => setEntry(e.target.value as "area" | "dims")}>
             <option value="area">I know the area</option>
             <option value="dims">Length and width</option>
-          </select>
+          </Select>
         </Field>
         {entry === "area" ? (
           <Field label="Area (sq ft)" htmlFor="gr-area"><input id="gr-area" type="number" min="0" step="any" className={inputClass} value={area} onChange={(e) => setArea(e.target.value)} /></Field>
@@ -48,12 +48,12 @@ export default function GravelCalculator() {
           <input id="gr-depth" type="number" min="0" step="any" className={inputClass} value={depth} onChange={(e) => setDepth(e.target.value)} />
         </Field>
         <Field label="Material" htmlFor="gr-material">
-          <select id="gr-material" className={selectClass} value={material} onChange={(e) => setMaterial(e.target.value)}>
+          <Select id="gr-material" value={material} onChange={(e) => setMaterial(e.target.value)}>
             {Object.entries(MATERIALS).map(([key, m]) => (
               <option key={key} value={key}>{m.label} ({fmt(m.densityTonsPerCuYd, 2)} tons per cu yd)</option>
             ))}
             <option value="custom">Custom density</option>
-          </select>
+          </Select>
         </Field>
         {material === "custom" && (
           <Field label="Density (tons per cu yd)" htmlFor="gr-density"><input id="gr-density" type="number" min="0" step="any" className={inputClass} value={customDensity} onChange={(e) => setCustomDensity(e.target.value)} /></Field>

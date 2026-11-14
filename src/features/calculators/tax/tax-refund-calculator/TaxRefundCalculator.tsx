@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { EmptyState, ErrorNote, Field, ResultCard, fmtMoney, inputClass, parseNum, selectClass } from "@/components/ui";
+import { EmptyState, ErrorNote, Field, ResultCard, fmtMoney, inputClass, parseNum, Select } from "@/components/ui";
 import { calculateTaxRefund, type FilingStatus } from "./tax-refund";
 
 const money = (n: number) => `$ ${fmtMoney(n)}`;
@@ -69,16 +69,15 @@ export default function TaxRefundCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <Field label="Filing status" htmlFor="refund-status">
-          <select
+          <Select
             id="refund-status"
-            className={selectClass}
             value={filingStatus}
             onChange={(e) => setFilingStatus(e.target.value as FilingStatus)}
           >
             <option value="single">Single</option>
             <option value="mfj">Married filing jointly</option>
             <option value="hoh">Head of household</option>
-          </select>
+          </Select>
         </Field>
         <Field label="Wages and salary ($)" htmlFor="refund-wages" hint="Your pay before tax, for example box 1 of a W-2. This counts as earned income for the EITC.">
           <input id="refund-wages" className={inputClass} inputMode="decimal" value={wages} onChange={(e) => setWages(e.target.value)} />
@@ -99,12 +98,12 @@ export default function TaxRefundCalculator() {
           <input id="refund-deps" className={inputClass} inputMode="numeric" value={dependents} onChange={(e) => setDependents(e.target.value)} />
         </Field>
         <Field label="EITC qualifying children" htmlFor="refund-eitc">
-          <select id="refund-eitc" className={selectClass} value={eitcChildren} onChange={(e) => setEitcChildren(e.target.value)}>
+          <Select id="refund-eitc" value={eitcChildren} onChange={(e) => setEitcChildren(e.target.value)}>
             <option value="0">None</option>
             <option value="1">1 child</option>
             <option value="2">2 children</option>
             <option value="3">3 or more children</option>
-          </select>
+          </Select>
         </Field>
       </div>
 

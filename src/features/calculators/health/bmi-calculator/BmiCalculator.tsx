@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmt, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmt, inputClass, parseNum, Select } from "@/components/ui";
 import {
   calculateBmi,
   classifyBmi,
@@ -63,10 +63,10 @@ export default function BmiCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <Field label="Units" htmlFor="bmi-units">
-          <select id="bmi-units" className={selectClass} value={units} onChange={(e) => setUnits(e.target.value)}>
+          <Select id="bmi-units" value={units} onChange={(e) => setUnits(e.target.value)}>
             <option value="metric">Metric (kg, cm)</option>
             <option value="imperial">Imperial (lb, ft/in)</option>
-          </select>
+          </Select>
         </Field>
         <Field label={units === "metric" ? "Weight (kg)" : "Weight (lb)"} htmlFor="bmi-weight">
           <input id="bmi-weight" type="number" min="1" className={inputClass} value={weight} onChange={(e) => setWeight(e.target.value)} />

@@ -1,4 +1,5 @@
 import ToolCard from "@/components/ToolCard";
+import CategoryEmblem, { toolCategoryMotif } from "@/components/visuals/CategoryEmblem";
 import { categoryTheme } from "@/lib/theme";
 import { toolsInGroup, type ToolGroup } from "@/lib/tools";
 
@@ -38,6 +39,7 @@ export default function HubPage({ group, title, intro, categoryOrder }: HubPageP
           <section key={cat} aria-label={cat} className="mt-14 scroll-mt-24 first:mt-12">
             <div className="flex items-center gap-3">
               <span className={`h-9 w-1.5 shrink-0 rounded-full ${theme.bar}`} aria-hidden="true" />
+              <CategoryEmblem name={toolCategoryMotif(cat, group)} className="h-10 w-10 rounded-xl p-2" />
               <h2 className="text-xl font-bold tracking-tight text-gray-900 sm:text-2xl">{cat}</h2>
               <span className={`shrink-0 rounded-full px-2.5 py-1 text-xs font-semibold ${theme.badge}`}>
                 {catTools.length} tool{catTools.length === 1 ? "" : "s"}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, inputClass, selectClass } from "@/components/ui";
+import { Field, ResultCard, inputClass, Select } from "@/components/ui";
 import { formatParts, parseDateInput, toInputValue, todayParts } from "@/lib/dates";
 import { calculateConception, type ConceptionMode } from "./conception";
 
@@ -37,16 +37,15 @@ export default function ConceptionCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="I know the" htmlFor="conc-mode">
-          <select
+          <Select
             id="conc-mode"
-            className={selectClass}
             value={mode}
             onChange={(e) => setMode(e.target.value as ConceptionMode)}
           >
             <option value="due-date">Due date</option>
             <option value="birth-date">Birth date</option>
             <option value="lmp">First day of last period</option>
-          </select>
+          </Select>
         </Field>
         <Field label={MODE_LABELS[mode]} htmlFor="conc-date" hint={MODE_HINTS[mode]}>
           <input

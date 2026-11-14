@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { EmptyState, ErrorNote, Field, ResultCard, fmt, inputClass, parseNum, selectClass } from "@/components/ui";
+import { EmptyState, ErrorNote, Field, ResultCard, fmt, inputClass, parseNum, Select } from "@/components/ui";
 import { calculateConcrete, type ConcreteMode, type ConcreteUnit } from "./concrete";
 
 export default function ConcreteCalculator() {
@@ -40,17 +40,17 @@ export default function ConcreteCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <Field label="Shape" htmlFor="cc-mode">
-          <select id="cc-mode" className={selectClass} value={mode} onChange={(e) => setMode(e.target.value as ConcreteMode)}>
+          <Select id="cc-mode" value={mode} onChange={(e) => setMode(e.target.value as ConcreteMode)}>
             <option value="slab">Slab</option>
             <option value="footing">Footing</option>
             <option value="column">Round column</option>
-          </select>
+          </Select>
         </Field>
         <Field label="Units" htmlFor="cc-unit">
-          <select id="cc-unit" className={selectClass} value={unit} onChange={(e) => setUnit(e.target.value as ConcreteUnit)}>
+          <Select id="cc-unit" value={unit} onChange={(e) => setUnit(e.target.value as ConcreteUnit)}>
             <option value="imperial">Feet and inches</option>
             <option value="metric">Metres</option>
-          </select>
+          </Select>
         </Field>
         <Field label="Waste allowance (percent)" htmlFor="cc-waste" hint="Extra for spillage, uneven ground and over excavation. 10 percent is typical.">
           <input id="cc-waste" type="number" min="0" step="1" className={inputClass} value={waste} onChange={(e) => setWaste(e.target.value)} />

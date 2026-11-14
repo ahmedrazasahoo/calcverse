@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmt, fmtMoney, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmt, fmtMoney, inputClass, parseNum, Select } from "@/components/ui";
 import { calculateLoan } from "./loan";
 
 const CURRENCIES = ["$", "₹", "£", "Rs", "€"];
@@ -46,11 +46,11 @@ export default function LoanCalculator() {
           <input id="loan-rate" className={inputClass} inputMode="decimal" value={rate} onChange={(e) => setRate(e.target.value)} />
         </Field>
         <Field label="Currency" htmlFor="loan-currency">
-          <select id="loan-currency" className={selectClass} value={currency} onChange={(e) => setCurrency(e.target.value)}>
+          <Select id="loan-currency" value={currency} onChange={(e) => setCurrency(e.target.value)}>
             {CURRENCIES.map((c) => (
               <option key={c} value={c}>{c}</option>
             ))}
-          </select>
+          </Select>
         </Field>
         <Field label="Term (years)" htmlFor="loan-years">
           <input id="loan-years" className={inputClass} inputMode="numeric" value={termYears} onChange={(e) => setTermYears(e.target.value)} />

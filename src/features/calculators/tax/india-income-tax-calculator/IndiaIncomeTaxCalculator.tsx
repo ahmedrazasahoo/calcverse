@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmtMoney, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmtMoney, inputClass, parseNum, Select } from "@/components/ui";
 import { calculateIndiaIncomeTax, type IndiaAgeGroup, type IndiaRegimeResult } from "./india-income-tax";
 
 function RegimeCard({ result, winner }: { result: IndiaRegimeResult; winner: boolean }) {
@@ -65,11 +65,11 @@ export default function IndiaIncomeTaxCalculator() {
           <input id="in-deductions" className={inputClass} inputMode="decimal" value={deductions} onChange={(e) => setDeductions(e.target.value)} />
         </Field>
         <Field label="Age group" htmlFor="in-age" hint="Changes the old regime basic exemption.">
-          <select id="in-age" className={selectClass} value={ageGroup} onChange={(e) => setAgeGroup(e.target.value as IndiaAgeGroup)}>
+          <Select id="in-age" value={ageGroup} onChange={(e) => setAgeGroup(e.target.value as IndiaAgeGroup)}>
             <option value="below60">Below 60 years</option>
             <option value="60to80">60 to 80 years (senior citizen)</option>
             <option value="above80">Above 80 years (super senior)</option>
-          </select>
+          </Select>
         </Field>
       </div>
 

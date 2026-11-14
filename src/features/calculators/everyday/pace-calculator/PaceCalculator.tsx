@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmt, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmt, inputClass, parseNum, Select } from "@/components/ui";
 import {
   RACE_PRESETS,
   convertDistance,
@@ -52,9 +52,8 @@ export default function PaceCalculator() {
       </div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         <Field label="Distance unit" htmlFor="pa-unit">
-          <select
+          <Select
             id="pa-unit"
-            className={selectClass}
             value={unit}
             onChange={(e) => {
               const next = e.target.value as DistanceUnit;
@@ -65,7 +64,7 @@ export default function PaceCalculator() {
           >
             <option value="km">Kilometres</option>
             <option value="mi">Miles</option>
-          </select>
+          </Select>
         </Field>
         <Field label={`Distance (${unit})`} htmlFor="pa-distance" hint="Fill in any two of the three boxes.">
           <input id="pa-distance" type="number" min="0" step="0.01" className={inputClass} value={distance} onChange={(e) => setDistance(e.target.value)} />

@@ -2,17 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import {
-  EmptyState,
-  ErrorNote,
-  Field,
-  ResultCard,
-  fmt,
-  fmtMoney,
-  inputClass,
-  parseNum,
-  selectClass,
-} from "@/components/ui";
+import { EmptyState, ErrorNote, Field, ResultCard, fmt, fmtMoney, inputClass, parseNum, Select } from "@/components/ui";
 import { addTax, removeTax } from "./salestax";
 import { states, getStateBySlug } from "./states";
 
@@ -74,15 +64,14 @@ export default function SalesTaxCalculator({
           />
         </Field>
         <Field label="What do you want to do?" htmlFor="st-mode">
-          <select id="st-mode" className={selectClass} value={mode} onChange={(e) => setMode(e.target.value as Mode)}>
+          <Select id="st-mode" value={mode} onChange={(e) => setMode(e.target.value as Mode)}>
             <option value="add">Add tax to a price</option>
             <option value="remove">Find the pre-tax price</option>
-          </select>
+          </Select>
         </Field>
         <Field label="State" htmlFor="st-state">
-          <select
+          <Select
             id="st-state"
-            className={selectClass}
             value={stateSlug}
             onChange={(e) => setStateSlug(e.target.value)}
           >
@@ -91,19 +80,18 @@ export default function SalesTaxCalculator({
                 {s.name} ({s.abbr})
               </option>
             ))}
-          </select>
+          </Select>
         </Field>
         <Field label="Which rate?" htmlFor="st-rate-source">
-          <select
+          <Select
             id="st-rate-source"
-            className={selectClass}
             value={rateSource}
             onChange={(e) => setRateSource(e.target.value as RateSource)}
           >
             <option value="combined">Average combined rate: {rateLabel(selected.avgCombined)}%</option>
             <option value="base">State base rate: {rateLabel(selected.baseRate)}%</option>
             <option value="custom">Custom rate</option>
-          </select>
+          </Select>
         </Field>
       </div>
 

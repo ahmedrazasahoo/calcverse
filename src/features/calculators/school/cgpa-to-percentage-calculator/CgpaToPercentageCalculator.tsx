@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmt, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmt, inputClass, parseNum, Select } from "@/components/ui";
 import { convertGrade, sgpaToCgpa, type GradeSystem } from "./cgpa";
 
 const SYSTEM_OPTIONS: { value: GradeSystem; label: string; max: number }[] = [
@@ -52,9 +52,8 @@ export default function CgpaToPercentageCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-3">
         <Field label="Convert from" htmlFor="cg-from">
-          <select
+          <Select
             id="cg-from"
-            className={selectClass}
             value={from}
             onChange={(e) => {
               const next = e.target.value as GradeSystem;
@@ -67,19 +66,19 @@ export default function CgpaToPercentageCalculator() {
                 {o.label}
               </option>
             ))}
-          </select>
+          </Select>
         </Field>
         <Field label={`Your grade (out of ${fromOption?.max})`} htmlFor="cg-value">
           <input id="cg-value" type="number" min="0" step="0.01" className={inputClass} value={value} onChange={(e) => setValue(e.target.value)} />
         </Field>
         <Field label="Convert to" htmlFor="cg-to">
-          <select id="cg-to" className={selectClass} value={to} onChange={(e) => setTo(e.target.value as GradeSystem)}>
+          <Select id="cg-to" value={to} onChange={(e) => setTo(e.target.value as GradeSystem)}>
             {SYSTEM_OPTIONS.map((o) => (
               <option key={o.value} value={o.value}>
                 {o.label}
               </option>
             ))}
-          </select>
+          </Select>
         </Field>
       </div>
 

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import GuideCard from "@/components/GuideCard";
+import GuideBanner from "@/components/visuals/GuideBanner";
 import { primaryButtonClass } from "@/components/ui";
 import {
   guidePath,
@@ -219,6 +220,10 @@ export default function GuideArticle({ post }: { post: GuidePost }) {
             <RichText text={para} />
           </p>
         ))}
+      </div>
+
+      <div className="mt-8 overflow-hidden rounded-[2rem] shadow-[0_22px_44px_-18px_rgb(68_33_127/0.3)] ring-1 ring-white/60">
+        <GuideBanner category={post.category} variant="article" className="block aspect-[800/250] w-full" />
       </div>
 
       <div className="mt-10 grid gap-12 lg:grid-cols-3 lg:gap-10">

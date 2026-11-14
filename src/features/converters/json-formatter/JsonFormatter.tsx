@@ -1,13 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import {
-  ErrorNote,
-  Field,
-  primaryButtonClass,
-  secondaryButtonClass,
-  selectClass,
-} from "@/components/ui";
+import { ErrorNote, Field, primaryButtonClass, secondaryButtonClass, Select, selectClass } from "@/components/ui";
 import { formatJson, jsonToCsv, jsonToXml, minifyJson, validateJson, type JsonIndent } from "./json";
 
 const textareaClass =
@@ -87,9 +81,8 @@ export default function JsonFormatter() {
 
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Indent for formatting" htmlFor="json-indent">
-          <select
+          <Select
             id="json-indent"
-            className={selectClass}
             value={indent === "tab" ? "tab" : String(indent)}
             onChange={(e) => {
               const v = e.target.value;
@@ -99,7 +92,7 @@ export default function JsonFormatter() {
             <option value="2">2 spaces</option>
             <option value="4">4 spaces</option>
             <option value="tab">Tab</option>
-          </select>
+          </Select>
         </Field>
         <Field label="XML root element name" htmlFor="json-xml-root" hint="Used only by JSON to XML. Attributes are not supported, every value becomes an element.">
           <input

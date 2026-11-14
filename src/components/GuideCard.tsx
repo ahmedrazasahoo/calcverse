@@ -1,18 +1,21 @@
 import Link from "next/link";
 import type { GuidePost } from "@/lib/guides";
 import { guidePath, guideReadingTime } from "@/lib/guides";
+import GuideBanner from "@/components/visuals/GuideBanner";
 
 /** Card for a guide post, used on the /guides hub and in related reading. */
 export default function GuideCard({ post }: { post: GuidePost }) {
   return (
     <Link
       href={guidePath(post)}
-      className="glass group relative flex h-full min-h-11 flex-col overflow-hidden rounded-[2rem] p-6 transition duration-300 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:outline-none active:translate-y-0 sm:p-7"
+      className="glass group relative flex h-full min-h-11 flex-col overflow-hidden rounded-[2rem] transition duration-300 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:outline-none active:translate-y-0"
     >
       <span
-        className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-gradient-to-r from-brand-500 to-amber-400 transition-transform duration-300 group-hover:scale-x-100"
+        className="absolute inset-x-0 top-0 z-10 h-1 origin-left scale-x-0 bg-gradient-to-r from-brand-500 to-amber-400 transition-transform duration-300 group-hover:scale-x-100"
         aria-hidden="true"
       />
+      <GuideBanner category={post.category} variant="card" className="block aspect-[800/120] w-full shrink-0" />
+      <span className="flex flex-1 flex-col p-6 sm:p-7 sm:pt-5">
       <div className="flex items-center justify-between gap-3">
         <span className="glass-chip rounded-full px-3 py-1 text-[11px] font-semibold tracking-wide text-gray-700 uppercase">
           {post.category}
@@ -38,6 +41,7 @@ export default function GuideCard({ post }: { post: GuidePost }) {
           <path d="M5 12h14" />
           <path d="m12 5 7 7-7 7" />
         </svg>
+      </span>
       </span>
     </Link>
   );

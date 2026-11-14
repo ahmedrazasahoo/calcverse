@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmt, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmt, inputClass, parseNum, Select } from "@/components/ui";
 import {
   calculateFraction,
   formatImproper,
@@ -115,9 +115,8 @@ export default function FractionCalculator() {
           onChange={update(setA)}
         />
         <Field label="Operation" htmlFor="frac-op">
-          <select
+          <Select
             id="frac-op"
-            className={selectClass}
             value={operation}
             onChange={(e) => setOperation(e.target.value as FractionOperation)}
           >
@@ -125,7 +124,7 @@ export default function FractionCalculator() {
             <option value="subtract">Subtract (-)</option>
             <option value="multiply">Multiply (x)</option>
             <option value="divide">Divide (/)</option>
-          </select>
+          </Select>
         </Field>
         <FractionFields
           prefix="frac-b"

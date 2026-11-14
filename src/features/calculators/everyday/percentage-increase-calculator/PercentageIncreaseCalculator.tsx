@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmt, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmt, inputClass, parseNum, Select } from "@/components/ui";
 import { applyIncrease, increaseBetween } from "./percentage-increase";
 
 type Mode = "between" | "apply";
@@ -41,10 +41,10 @@ export default function PercentageIncreaseCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="What do you want to do?" htmlFor="pi-mode">
-          <select id="pi-mode" className={selectClass} value={mode} onChange={(e) => setMode(e.target.value as Mode)}>
+          <Select id="pi-mode" value={mode} onChange={(e) => setMode(e.target.value as Mode)}>
             <option value="between">Increase between two numbers</option>
             <option value="apply">Increase a number by a percent</option>
-          </select>
+          </Select>
         </Field>
       </div>
 

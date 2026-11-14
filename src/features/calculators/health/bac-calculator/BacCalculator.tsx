@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { EmptyState, Field, ResultCard, fmt, inputClass, parseNum, secondaryButtonClass } from "@/components/ui";
+import { EmptyState, Field, ResultCard, fmt, inputClass, parseNum, secondaryButtonClass, Select } from "@/components/ui";
 import { alcoholGrams, calculateBac, DRINK_PRESETS, KG_PER_LB, type BacSex } from "./bac";
 
 interface CustomDrink { volume: string; abv: string; count: string; }
@@ -40,18 +40,18 @@ export default function BacCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         <Field label="Sex" htmlFor="bac-sex" hint="Sets the body water factor: 0.68 male, 0.55 female. These are population averages.">
-          <select id="bac-sex" className={inputClass} value={sex} onChange={(e) => setSex(e.target.value as BacSex)}>
+          <Select id="bac-sex" value={sex} onChange={(e) => setSex(e.target.value as BacSex)}>
             <option value="male">Male</option>
             <option value="female">Female</option>
-          </select>
+          </Select>
         </Field>
         <Field label={`Body weight (${unit})`} htmlFor="bac-weight">
           <div className="flex gap-2">
             <input id="bac-weight" type="number" className={inputClass} value={weight} onChange={(e) => setWeight(e.target.value)} />
-            <select aria-label="Weight unit" className={inputClass} value={unit} onChange={(e) => setUnit(e.target.value as "kg" | "lb")}>
+            <Select aria-label="Weight unit" value={unit} onChange={(e) => setUnit(e.target.value as "kg" | "lb")}>
               <option value="kg">kg</option>
               <option value="lb">lb</option>
-            </select>
+            </Select>
           </div>
         </Field>
         <Field label="Hours since drinking started" htmlFor="bac-hours">

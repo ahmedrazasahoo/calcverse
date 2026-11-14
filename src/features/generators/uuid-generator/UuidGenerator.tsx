@@ -1,13 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import {
-  Field,
-  inputClass,
-  primaryButtonClass,
-  secondaryButtonClass,
-  selectClass,
-} from "@/components/ui";
+import { Field, inputClass, primaryButtonClass, secondaryButtonClass, Select } from "@/components/ui";
 import { uuidV4, uuidV7 } from "./uuid";
 
 type Version = "v4" | "v7";
@@ -69,15 +63,14 @@ export default function UuidGenerator() {
     <div className="space-y-5">
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Version" htmlFor="uuid-version" hint="v4 is fully random. v7 starts with the current time, so IDs sort in creation order.">
-          <select
+          <Select
             id="uuid-version"
-            className={selectClass}
             value={version}
             onChange={(e) => setVersion(e.target.value as Version)}
           >
             <option value="v4">Version 4 (random)</option>
             <option value="v7">Version 7 (time ordered)</option>
-          </select>
+          </Select>
         </Field>
         <Field label="How many (1 to 100)" htmlFor="uuid-qty">
           <input

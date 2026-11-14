@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Field, ResultCard, inputClass, primaryButtonClass, selectClass } from "@/components/ui";
+import { Field, ResultCard, inputClass, primaryButtonClass, Select } from "@/components/ui";
 import FileDrop from "../_shared/FileDrop";
 import { downloadBlob, formatBytes, reductionPercent } from "../_shared/file-utils";
 import { loadImage, type ConvertedImage } from "./engine";
@@ -103,16 +103,15 @@ export default function PngToJpg() {
             htmlFor="pj-bg"
             hint="JPG has no transparency, so see-through areas are filled with this colour."
           >
-            <select
+            <Select
               id="pj-bg"
-              className={selectClass}
               value={bgChoice}
               onChange={(e) => setBgChoice(e.target.value as BgChoice)}
             >
               <option value="white">White</option>
               <option value="black">Black</option>
               <option value="custom">Custom colour</option>
-            </select>
+            </Select>
           </Field>
           <Field label="Custom colour" htmlFor="pj-custom-bg" hint="Used only when the background is set to custom.">
             <input

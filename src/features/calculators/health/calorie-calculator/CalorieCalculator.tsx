@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmt, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmt, inputClass, parseNum, Select } from "@/components/ui";
 import { ACTIVITY_LEVELS, caloriePlan, feetInchesToCm, poundsToKg, type Sex } from "./calorie";
 
 function weeklyText(kg: number): string {
@@ -43,16 +43,16 @@ export default function CalorieCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <Field label="Sex" htmlFor="cal-sex">
-          <select id="cal-sex" className={selectClass} value={sex} onChange={(e) => setSex(e.target.value as Sex)}>
+          <Select id="cal-sex" value={sex} onChange={(e) => setSex(e.target.value as Sex)}>
             <option value="male">Male</option>
             <option value="female">Female</option>
-          </select>
+          </Select>
         </Field>
         <Field label="Units" htmlFor="cal-units">
-          <select id="cal-units" className={selectClass} value={units} onChange={(e) => setUnits(e.target.value)}>
+          <Select id="cal-units" value={units} onChange={(e) => setUnits(e.target.value)}>
             <option value="metric">Metric (kg, cm)</option>
             <option value="imperial">Imperial (lb, ft/in)</option>
-          </select>
+          </Select>
         </Field>
         <Field label="Age (years)" htmlFor="cal-age">
           <input id="cal-age" type="number" min="1" max="120" className={inputClass} value={age} onChange={(e) => setAge(e.target.value)} />
@@ -75,13 +75,13 @@ export default function CalorieCalculator() {
           </div>
         )}
         <Field label="Activity level" htmlFor="cal-activity">
-          <select id="cal-activity" className={selectClass} value={activity} onChange={(e) => setActivity(Number(e.target.value))}>
+          <Select id="cal-activity" value={activity} onChange={(e) => setActivity(Number(e.target.value))}>
             {ACTIVITY_LEVELS.map((a) => (
               <option key={a.value} value={a.value}>
                 {a.label}
               </option>
             ))}
-          </select>
+          </Select>
         </Field>
       </div>
 

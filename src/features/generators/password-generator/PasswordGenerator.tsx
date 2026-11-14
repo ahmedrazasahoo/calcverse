@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { estimateStrength, generatePassword, MAX_LENGTH, MIN_LENGTH, type PasswordOptions } from "./password";
 
 const labelClass = "mb-1.5 block text-sm font-medium text-gray-700";
@@ -8,10 +8,17 @@ const labelClass = "mb-1.5 block text-sm font-medium text-gray-700";
 export default function PasswordGenerator() {
   const [length, setLength] = useState(16);
   const [families, setFamilies] = useState({ lowercase: true, uppercase: true, digits: true, symbols: false });
-  const [password, setPassword] = useState(() =>
-    generatePassword({ length: 16, lowercase: true, uppercase: true, digits: true, symbols: false })
-  );
+  // The first password is generated in an effect, never during render: a
+  // random value rendered on the server can never match the one the client
+  // would generate, which fails hydration. null means "not generated yet".
+  const [password, setPassword] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    setPassword(
+      generatePassword({ length: 16, lowercase: true, uppercase: true, digits: true, symbols: false })
+    );
+  }, []);
 
   const regenerate = useCallback(
     (nextLength: number, nextFamilies: typeof families) => {
@@ -33,7 +40,7 @@ export default function PasswordGenerator() {
     regenerate(length, next);
   };
 
-  const strength = estimateStrength(password);
+  const strength = estimateStrength(password ?? "");
   const strengthWidth = Math.min(100, strength.bits);
   const strengthColor =
     strength.label === "Weak"
@@ -45,6 +52,7 @@ export default function PasswordGenerator() {
           : "bg-emerald-600";
 
   const copy = async () => {
+    if (!password) return;
     try {
       await navigator.clipboard.writeText(password);
       setCopied(true);
@@ -65,7 +73,7 @@ export default function PasswordGenerator() {
       <div className="rounded-xl bg-brand-50 px-5 py-4">
         <p className="text-xs font-semibold tracking-wide text-brand-800 uppercase">Your password</p>
         <p className="mt-1 font-mono text-xl font-bold break-all text-gray-900 sm:text-2xl">
-          {password || "Turn on at least one character type"}
+          {password === null ? "Generating a password for you…" : password || "Turn on at least one character type"}
         </p>
         {password && (
           <>
@@ -124,7 +132,7 @@ export default function PasswordGenerator() {
         <button
           type="button"
           onClick={copy}
-          disabled={password === ""}
+          disabled={!password}
           className="rounded-lg border border-gray-300 px-6 py-3 font-semibold text-gray-700 transition-colors hover:border-brand-400 disabled:opacity-50"
         >
           {copied ? "Copied" : "Copy password"}

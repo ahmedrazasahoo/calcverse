@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { EmptyState, Field, ResultCard, fmt, inputClass, parseNum, secondaryButtonClass, selectClass } from "@/components/ui";
+import { EmptyState, Field, ResultCard, fmt, inputClass, parseNum, secondaryButtonClass, Select } from "@/components/ui";
 import { gradePoints, letterGrade, pointsPercent, weightedAverage } from "./grades";
 
 interface WRow { id: number; name: string; score: string; weight: string }
@@ -39,10 +39,10 @@ export default function GradeCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Grading method" htmlFor="grade-mode">
-          <select id="grade-mode" className={selectClass} value={mode} onChange={(e) => setMode(e.target.value as "weighted" | "points")}>
+          <Select id="grade-mode" value={mode} onChange={(e) => setMode(e.target.value as "weighted" | "points")}>
             <option value="weighted">Weighted categories (score and weight)</option>
             <option value="points">Points based (earned out of possible)</option>
-          </select>
+          </Select>
         </Field>
       </div>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { EmptyState, Field, ResultCard, fmt, inputClass, parseNum, selectClass } from "@/components/ui";
+import { EmptyState, Field, ResultCard, fmt, inputClass, parseNum, Select } from "@/components/ui";
 import { calculatePaint, flooringBoxes, shapeArea, type ShapeKind } from "./squareFootage";
 
 type Mode = ShapeKind | "flooring" | "paint";
@@ -49,13 +49,13 @@ export default function SquareFootageCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <Field label="What are you measuring?" htmlFor="sf-mode">
-          <select id="sf-mode" className={selectClass} value={mode} onChange={(e) => setMode(e.target.value as Mode)}>
+          <Select id="sf-mode" value={mode} onChange={(e) => setMode(e.target.value as Mode)}>
             <option value="rectangle">Rectangle area</option>
             <option value="circle">Circle area</option>
             <option value="triangle">Triangle area</option>
             <option value="flooring">Flooring boxes</option>
             <option value="paint">Paint for a room</option>
-          </select>
+          </Select>
         </Field>
         {mode !== "paint" && (
           <>

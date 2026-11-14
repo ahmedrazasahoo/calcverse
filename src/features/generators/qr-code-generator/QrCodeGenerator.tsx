@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Select } from "@/components/ui";
 import { buildLinkPayload, buildVCardPayload, buildWifiPayload, renderQrDataUrl, type WifiEncryption } from "./qr-code";
 
 type Tab = "link" | "wifi" | "contact";
@@ -117,16 +118,15 @@ export default function QrCodeGenerator() {
             <label htmlFor="qr-enc" className={labelClass}>
               Security type
             </label>
-            <select
+            <Select
               id="qr-enc"
               value={encryption}
               onChange={(e) => setEncryption(e.target.value as WifiEncryption)}
-              className={inputClass}
             >
               <option value="WPA">WPA or WPA2 (most networks)</option>
               <option value="WEP">WEP (old networks)</option>
               <option value="nopass">No password</option>
-            </select>
+            </Select>
           </div>
           <label className="flex items-center gap-2 self-end text-sm text-gray-700">
             <input type="checkbox" checked={hidden} onChange={(e) => setHidden(e.target.checked)} className="h-4 w-4" />

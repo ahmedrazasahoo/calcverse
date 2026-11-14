@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmt, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmt, inputClass, parseNum, Select } from "@/components/ui";
 import {
   calculateBmr,
   feetInchesToCm,
@@ -62,16 +62,16 @@ export default function BmrCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <Field label="Sex" htmlFor="bmr-sex">
-          <select id="bmr-sex" className={selectClass} value={sex} onChange={(e) => setSex(e.target.value as Sex)}>
+          <Select id="bmr-sex" value={sex} onChange={(e) => setSex(e.target.value as Sex)}>
             <option value="male">Male</option>
             <option value="female">Female</option>
-          </select>
+          </Select>
         </Field>
         <Field label="Units" htmlFor="bmr-units">
-          <select id="bmr-units" className={selectClass} value={units} onChange={(e) => setUnits(e.target.value)}>
+          <Select id="bmr-units" value={units} onChange={(e) => setUnits(e.target.value)}>
             <option value="metric">Metric (kg, cm)</option>
             <option value="imperial">Imperial (lb, ft/in)</option>
-          </select>
+          </Select>
         </Field>
         <Field label="Age (years)" htmlFor="bmr-age">
           <input id="bmr-age" type="number" min="1" max="120" className={inputClass} value={age} onChange={(e) => setAge(e.target.value)} />
@@ -94,13 +94,13 @@ export default function BmrCalculator() {
           </div>
         )}
         <Field label="Formula" htmlFor="bmr-formula">
-          <select id="bmr-formula" className={selectClass} value={formula} onChange={(e) => setFormula(e.target.value as BmrFormula)}>
+          <Select id="bmr-formula" value={formula} onChange={(e) => setFormula(e.target.value as BmrFormula)}>
             {FORMULA_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>
             ))}
-          </select>
+          </Select>
         </Field>
         <Field label="Body fat percent (optional)" htmlFor="bmr-bodyfat" hint="Fill this in to also see the Katch McArdle result, which is based on lean body mass.">
           <input id="bmr-bodyfat" type="number" min="2" max="70" className={inputClass} value={bodyFat} onChange={(e) => setBodyFat(e.target.value)} placeholder="e.g. 20" />

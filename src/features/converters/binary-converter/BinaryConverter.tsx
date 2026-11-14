@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, inputClass, selectClass } from "@/components/ui";
+import { Field, ResultCard, inputClass, Select } from "@/components/ui";
 import { binaryToText, convertInteger, textToBinary, type NumberBase } from "./binary";
 
 const textareaClass =
@@ -23,19 +23,19 @@ export default function BinaryConverter() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Converter" htmlFor="bn-mode">
-          <select id="bn-mode" className={selectClass} value={mode} onChange={(e) => setMode(e.target.value)}>
+          <Select id="bn-mode" value={mode} onChange={(e) => setMode(e.target.value)}>
             <option value="numbers">Number bases (binary, decimal, hex, octal)</option>
             <option value="text">Text to binary and back</option>
-          </select>
+          </Select>
         </Field>
         {mode === "numbers" && (
           <Field label="The number is written in" htmlFor="bn-base">
-            <select id="bn-base" className={selectClass} value={fromBase} onChange={(e) => setFromBase(Number(e.target.value) as NumberBase)}>
+            <Select id="bn-base" value={fromBase} onChange={(e) => setFromBase(Number(e.target.value) as NumberBase)}>
               <option value={2}>Binary (base 2)</option>
               <option value={10}>Decimal (base 10)</option>
               <option value={16}>Hexadecimal (base 16)</option>
               <option value={8}>Octal (base 8)</option>
-            </select>
+            </Select>
           </Field>
         )}
       </div>

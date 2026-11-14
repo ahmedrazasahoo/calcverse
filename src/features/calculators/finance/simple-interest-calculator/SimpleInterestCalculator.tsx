@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmtMoney, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmtMoney, inputClass, parseNum, Select } from "@/components/ui";
 import { calculateSimpleInterest, type TimeUnit } from "./simple-interest";
 
 const CURRENCIES = ["$", "₹", "£", "Rs", "€"];
@@ -45,18 +45,18 @@ export default function SimpleInterestCalculator() {
           <input id="si-time" className={inputClass} inputMode="decimal" value={timeValue} onChange={(e) => setTimeValue(e.target.value)} />
         </Field>
         <Field label="Time unit" htmlFor="si-unit">
-          <select id="si-unit" className={selectClass} value={timeUnit} onChange={(e) => setTimeUnit(e.target.value as TimeUnit)}>
+          <Select id="si-unit" value={timeUnit} onChange={(e) => setTimeUnit(e.target.value as TimeUnit)}>
             <option value="years">Years</option>
             <option value="months">Months</option>
             <option value="days">Days</option>
-          </select>
+          </Select>
         </Field>
         <Field label="Currency" htmlFor="si-currency">
-          <select id="si-currency" className={selectClass} value={currency} onChange={(e) => setCurrency(e.target.value)}>
+          <Select id="si-currency" value={currency} onChange={(e) => setCurrency(e.target.value)}>
             {CURRENCIES.map((c) => (
               <option key={c} value={c}>{c}</option>
             ))}
-          </select>
+          </Select>
         </Field>
       </div>
 

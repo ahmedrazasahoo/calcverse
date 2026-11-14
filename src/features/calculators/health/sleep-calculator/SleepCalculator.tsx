@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, inputClass, selectClass } from "@/components/ui";
+import { Field, ResultCard, inputClass, Select } from "@/components/ui";
 import { bedtimesForWakeUp, formatTime12h, wakeTimesForBedtime, type SleepTimeOption } from "./sleep";
 
 function nowTimeString(): string {
@@ -43,9 +43,8 @@ export default function SleepCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="I want to" htmlFor="sl-mode">
-          <select
+          <Select
             id="sl-mode"
-            className={selectClass}
             value={mode}
             onChange={(e) => {
               setMode(e.target.value);
@@ -55,7 +54,7 @@ export default function SleepCalculator() {
             <option value="wake">Wake up at a set time</option>
             <option value="bed">Go to bed at a set time</option>
             <option value="now">Go to sleep right now</option>
-          </select>
+          </Select>
         </Field>
         {mode !== "now" ? (
           <Field label={mode === "wake" ? "Wake up time" : "Bedtime"} htmlFor="sl-time">

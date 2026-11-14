@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { EmptyState, ErrorNote, Field, ResultCard, fmtMoney, inputClass, parseNum, selectClass } from "@/components/ui";
+import { EmptyState, ErrorNote, Field, ResultCard, fmtMoney, inputClass, parseNum, Select } from "@/components/ui";
 import { calculateCapitalGains, type FilingStatus } from "./capital-gains";
 
 const money = (n: number) => `$ ${fmtMoney(n)}`;
@@ -73,9 +73,8 @@ export default function CapitalGainsCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <Field label="Filing status" htmlFor="cg-status">
-          <select
+          <Select
             id="cg-status"
-            className={selectClass}
             value={filingStatus}
             onChange={(e) => setFilingStatus(e.target.value as FilingStatus)}
           >
@@ -83,7 +82,7 @@ export default function CapitalGainsCalculator() {
             <option value="mfj">Married filing jointly</option>
             <option value="hoh">Head of household</option>
             <option value="mfs">Married filing separately</option>
-          </select>
+          </Select>
         </Field>
         <Field
           label="Other taxable income ($)"

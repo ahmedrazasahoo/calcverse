@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, inputClass, selectClass } from "@/components/ui";
+import { Field, ResultCard, inputClass, Select } from "@/components/ui";
 import { dueDateFromConception, dueDateFromLmp, gestationalAge } from "./dueDate";
 
 function formatIso(iso: string): string {
@@ -50,10 +50,10 @@ export default function DueDateCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Calculate from" htmlFor="dd-mode">
-          <select id="dd-mode" className={selectClass} value={mode} onChange={(e) => setMode(e.target.value)}>
+          <Select id="dd-mode" value={mode} onChange={(e) => setMode(e.target.value)}>
             <option value="lmp">First day of last period</option>
             <option value="conception">Conception date</option>
-          </select>
+          </Select>
         </Field>
         <Field label={mode === "lmp" ? "First day of your last period" : "Conception date"} htmlFor="dd-date">
           <input id="dd-date" type="date" className={inputClass} value={date} onChange={(e) => setDate(e.target.value)} />

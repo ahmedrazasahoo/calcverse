@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmt, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmt, inputClass, parseNum, Select } from "@/components/ui";
 import { CLIMATE_OPTIONS, dailyWaterIntake, poundsToKg, type ClimateKey } from "./waterIntake";
 
 export default function WaterIntakeCalculator() {
@@ -22,10 +22,10 @@ export default function WaterIntakeCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <Field label="Units" htmlFor="wi-units">
-          <select id="wi-units" className={selectClass} value={units} onChange={(e) => setUnits(e.target.value)}>
+          <Select id="wi-units" value={units} onChange={(e) => setUnits(e.target.value)}>
             <option value="metric">Metric (kg)</option>
             <option value="imperial">Imperial (lb)</option>
-          </select>
+          </Select>
         </Field>
         <Field label={units === "metric" ? "Body weight (kg)" : "Body weight (lb)"} htmlFor="wi-weight">
           <input id="wi-weight" type="number" min="1" className={inputClass} value={weight} onChange={(e) => setWeight(e.target.value)} />
@@ -34,13 +34,13 @@ export default function WaterIntakeCalculator() {
           <input id="wi-exercise" type="number" min="0" max="1440" className={inputClass} value={exercise} onChange={(e) => setExercise(e.target.value)} />
         </Field>
         <Field label="Climate" htmlFor="wi-climate">
-          <select id="wi-climate" className={selectClass} value={climate} onChange={(e) => setClimate(e.target.value as ClimateKey)}>
+          <Select id="wi-climate" value={climate} onChange={(e) => setClimate(e.target.value as ClimateKey)}>
             {CLIMATE_OPTIONS.map((option) => (
               <option key={option.key} value={option.key}>
                 {option.label}
               </option>
             ))}
-          </select>
+          </Select>
         </Field>
       </div>
 

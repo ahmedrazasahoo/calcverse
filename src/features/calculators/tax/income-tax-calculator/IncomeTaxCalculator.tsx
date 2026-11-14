@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmt, fmtMoney, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmt, fmtMoney, inputClass, parseNum, Select } from "@/components/ui";
 import { estimateIncomeTax, type IncomeTaxCountry } from "./income-tax";
 
 const COUNTRY_META: Record<IncomeTaxCountry, { label: string; symbol: string; grossLabel: string }> = {
@@ -44,11 +44,11 @@ export default function IncomeTaxCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <Field label="Country" htmlFor="it-country" hint="Each country uses the figures from its detailed calculator on this site.">
-          <select id="it-country" className={selectClass} value={country} onChange={(e) => changeCountry(e.target.value as IncomeTaxCountry)}>
+          <Select id="it-country" value={country} onChange={(e) => changeCountry(e.target.value as IncomeTaxCountry)}>
             <option value="india">India</option>
             <option value="us">United States</option>
             <option value="uk">United Kingdom</option>
-          </select>
+          </Select>
         </Field>
         <Field label={meta.grossLabel} htmlFor="it-gross">
           <input id="it-gross" className={inputClass} inputMode="decimal" value={gross} onChange={(e) => setGross(e.target.value)} />

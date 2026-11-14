@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { EmptyState, Field, ResultCard, fmt, inputClass, parseNum, selectClass } from "@/components/ui";
+import { EmptyState, Field, ResultCard, fmt, inputClass, parseNum, Select } from "@/components/ui";
 import { estimateOneRepMax, KG_PER_LB, percentageTable } from "./oneRepMax";
 
 export default function OneRepMaxCalculator() {
@@ -27,10 +27,10 @@ export default function OneRepMaxCalculator() {
         <Field label={`Weight lifted (${unit})`} htmlFor="orm-weight">
           <div className="flex gap-2">
             <input id="orm-weight" type="number" className={inputClass} value={weight} onChange={(e) => setWeight(e.target.value)} />
-            <select aria-label="Weight unit" className={selectClass} value={unit} onChange={(e) => setUnit(e.target.value as "kg" | "lb")}>
+            <Select aria-label="Weight unit" value={unit} onChange={(e) => setUnit(e.target.value as "kg" | "lb")}>
               <option value="kg">kg</option>
               <option value="lb">lb</option>
-            </select>
+            </Select>
           </div>
         </Field>
         <Field label="Reps completed" htmlFor="orm-reps" hint="Between 1 and 15. Estimates get less reliable above 10 reps.">

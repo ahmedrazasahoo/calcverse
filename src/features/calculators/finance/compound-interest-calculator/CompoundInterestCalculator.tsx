@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmt, fmtMoney, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmt, fmtMoney, inputClass, parseNum, Select } from "@/components/ui";
 import { calculateCompoundInterest, type CompoundingFrequency } from "./compound-interest";
 
 const CURRENCIES = ["$", "₹", "£", "Rs", "€"];
@@ -48,23 +48,23 @@ export default function CompoundInterestCalculator() {
           <input id="ci-years" className={inputClass} inputMode="decimal" value={years} onChange={(e) => setYears(e.target.value)} />
         </Field>
         <Field label="Compound frequency" htmlFor="ci-compounding">
-          <select id="ci-compounding" className={selectClass} value={compounding} onChange={(e) => setCompounding(e.target.value as CompoundingFrequency)}>
+          <Select id="ci-compounding" value={compounding} onChange={(e) => setCompounding(e.target.value as CompoundingFrequency)}>
             <option value="yearly">Yearly</option>
             <option value="half-yearly">Half yearly</option>
             <option value="quarterly">Quarterly</option>
             <option value="monthly">Monthly</option>
             <option value="daily">Daily</option>
-          </select>
+          </Select>
         </Field>
         <Field label="Monthly contribution (optional)" htmlFor="ci-contribution">
           <input id="ci-contribution" className={inputClass} inputMode="decimal" value={contribution} onChange={(e) => setContribution(e.target.value)} />
         </Field>
         <Field label="Currency" htmlFor="ci-currency">
-          <select id="ci-currency" className={selectClass} value={currency} onChange={(e) => setCurrency(e.target.value)}>
+          <Select id="ci-currency" value={currency} onChange={(e) => setCurrency(e.target.value)}>
             {CURRENCIES.map((c) => (
               <option key={c} value={c}>{c}</option>
             ))}
-          </select>
+          </Select>
         </Field>
       </div>
 

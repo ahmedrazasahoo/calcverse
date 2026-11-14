@@ -1,7 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { Field, inputClass, primaryButtonClass, selectClass } from "@/components/ui";
+import { useEffect, useMemo, useState } from "react";
+import { Field, inputClass, primaryButtonClass, Select } from "@/components/ui";
 import {
   generateUsernames,
   separatorAllowed,
@@ -38,10 +38,12 @@ export default function UsernameGenerator() {
 
   // Regenerate only when the button is pressed or the options change, so a
   // list stays still while the user reads and copies from it. The round
-  // counter is the deliberate refresh trigger.
-  const names = useMemo(() => {
-    void round;
-    return generateUsernames(options);
+  // counter is the deliberate refresh trigger. Generation happens in an
+  // effect, never during render: random names rendered on the server can
+  // never match the ones the client would generate, which fails hydration.
+  const [names, setNames] = useState<string[]>([]);
+  useEffect(() => {
+    setNames(generateUsernames(options));
   }, [options, round]);
 
   const copy = async (name: string) => {
@@ -65,18 +67,17 @@ export default function UsernameGenerator() {
     <div className="space-y-5">
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Style" htmlFor="username-style">
-          <select
+          <Select
             id="username-style"
             value={style}
             onChange={(e) => setStyle(e.target.value as UsernameStyle)}
-            className={selectClass}
           >
             {STYLE_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>
             ))}
-          </select>
+          </Select>
         </Field>
         <Field label="Theme word (optional)" htmlFor="username-theme" hint="One word that matters to you: a hobby, a pet, your band. It replaces the second word in about half the suggestions.">
           <input
@@ -90,30 +91,28 @@ export default function UsernameGenerator() {
           />
         </Field>
         <Field label="Separator" htmlFor="username-separator" hint={style === "professional" ? "Dash is hidden for the professional style, where it reads too casual." : undefined}>
-          <select
+          <Select
             id="username-separator"
             value={separatorAllowed(style, separator) ? separator : "underscore"}
             onChange={(e) => setSeparator(e.target.value as Separator)}
-            className={selectClass}
           >
             {separatorOptions.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>
             ))}
-          </select>
+          </Select>
         </Field>
         <Field label="Capitalisation" htmlFor="username-capitalisation" hint="camelCase joins the words, so the separator is not used with it.">
-          <select
+          <Select
             id="username-capitalisation"
             value={capitalisation}
             onChange={(e) => setCapitalisation(e.target.value as Capitalisation)}
-            className={selectClass}
           >
             <option value="lower">all lowercase</option>
             <option value="capitalised">Capitalised Words</option>
             <option value="camel">camelCase</option>
-          </select>
+          </Select>
         </Field>
       </div>
 
@@ -129,15 +128,14 @@ export default function UsernameGenerator() {
         </label>
         {includeNumbers && (
           <Field label="Number style" htmlFor="username-number-style">
-            <select
+            <Select
               id="username-number-style"
               value={numberStyle}
               onChange={(e) => setNumberStyle(e.target.value as NumberStyle)}
-              className={selectClass}
             >
               <option value="year">Short year (90 to 26)</option>
               <option value="two-digit">Random two digits</option>
-            </select>
+            </Select>
           </Field>
         )}
       </div>

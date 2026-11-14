@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import ToolCard from "@/components/ToolCard";
-import ToolIcon from "@/components/icons";
+import CategoryEmblem, { toolCategoryMotif } from "@/components/visuals/CategoryEmblem";
 import type { ToolContent } from "@/lib/content";
 import { categoryTheme } from "@/lib/theme";
 import { GROUP_LABELS, GROUP_PATHS, getRelated, type Tool } from "@/lib/tools";
@@ -52,11 +52,10 @@ export default function ToolPage({ tool, content, children }: ToolPageProps) {
       </nav>
 
       <div className="flex items-start gap-4 pt-2 pb-6 sm:gap-5">
-        <span
-          className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-[1.25rem] shadow-sm ring-1 ring-white/70 sm:h-16 sm:w-16 ${theme.tile}`}
-        >
-          <ToolIcon name={tool.icon} className="h-8 w-8 sm:h-9 sm:w-9" />
-        </span>
+        <CategoryEmblem
+          name={toolCategoryMotif(tool.category, tool.group)}
+          className="h-14 w-14 rounded-[1.25rem] p-3 shadow-md sm:h-16 sm:w-16 sm:p-3.5"
+        />
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-2">
             <span className={`rounded-full px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ${theme.badge}`}>

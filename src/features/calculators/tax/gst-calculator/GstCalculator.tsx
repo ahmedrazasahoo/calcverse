@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmtMoney, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmtMoney, inputClass, parseNum, Select } from "@/components/ui";
 import { calculateGst, GST_RATES_PERCENT, type GstMode } from "./gst";
 
 export default function GstCalculator() {
@@ -30,23 +30,23 @@ export default function GstCalculator() {
           <input id="gst-amount" className={inputClass} inputMode="decimal" value={amount} onChange={(e) => setAmount(e.target.value)} />
         </Field>
         <Field label="GST rate" htmlFor="gst-rate">
-          <select id="gst-rate" className={selectClass} value={rate} onChange={(e) => setRate(e.target.value)}>
+          <Select id="gst-rate" value={rate} onChange={(e) => setRate(e.target.value)}>
             {GST_RATES_PERCENT.map((r) => (
               <option key={r} value={r}>{r}%</option>
             ))}
-          </select>
+          </Select>
         </Field>
         <Field label="Calculation type" htmlFor="gst-mode">
-          <select id="gst-mode" className={selectClass} value={mode} onChange={(e) => setMode(e.target.value as GstMode)}>
+          <Select id="gst-mode" value={mode} onChange={(e) => setMode(e.target.value as GstMode)}>
             <option value="add">Add GST to price</option>
             <option value="remove">Remove GST from price</option>
-          </select>
+          </Select>
         </Field>
         <Field label="Type of supply" htmlFor="gst-supply">
-          <select id="gst-supply" className={selectClass} value={interstate ? "inter" : "intra"} onChange={(e) => setInterstate(e.target.value === "inter")}>
+          <Select id="gst-supply" value={interstate ? "inter" : "intra"} onChange={(e) => setInterstate(e.target.value === "inter")}>
             <option value="intra">Within state (CGST + SGST)</option>
             <option value="inter">Inter state (IGST)</option>
-          </select>
+          </Select>
         </Field>
       </div>
 

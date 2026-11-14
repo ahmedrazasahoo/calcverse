@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { EmptyState, ErrorNote, Field, ResultCard, fmt, inputClass, parseNum, secondaryButtonClass, selectClass } from "@/components/ui";
+import { EmptyState, ErrorNote, Field, ResultCard, fmt, inputClass, parseNum, secondaryButtonClass, Select } from "@/components/ui";
 import { finalNeeded, type WeightMode } from "./finalGrade";
 
 export default function FinalGradeCalculator() {
@@ -28,10 +28,10 @@ export default function FinalGradeCalculator() {
           <input id="final-current" type="number" className={inputClass} value={current} onChange={(e) => setCurrent(e.target.value)} />
         </Field>
         <Field label="How will you enter the weight?" htmlFor="final-mode">
-          <select id="final-mode" className={selectClass} value={mode} onChange={(e) => setMode(e.target.value as WeightMode)}>
+          <Select id="final-mode" value={mode} onChange={(e) => setMode(e.target.value as WeightMode)}>
             <option value="final">I know the final exam weight</option>
             <option value="current">I know the weight so far</option>
-          </select>
+          </Select>
         </Field>
         <Field label={mode === "final" ? "Final exam weight %" : "Weight of work so far %"} htmlFor="final-weight">
           <input id="final-weight" type="number" className={inputClass} value={weight} onChange={(e) => setWeight(e.target.value)} />

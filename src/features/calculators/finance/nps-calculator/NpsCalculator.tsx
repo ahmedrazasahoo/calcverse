@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmtMoney, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmtMoney, inputClass, parseNum, Select } from "@/components/ui";
 import { calculateNps } from "./nps";
 
 const CURRENCIES = ["₹", "$", "£", "Rs", "€"];
@@ -55,11 +55,11 @@ export default function NpsCalculator() {
           <input id="nps-annuity-rate" className={inputClass} inputMode="decimal" value={annuityRate} onChange={(e) => setAnnuityRate(e.target.value)} />
         </Field>
         <Field label="Currency" htmlFor="nps-currency">
-          <select id="nps-currency" className={selectClass} value={currency} onChange={(e) => setCurrency(e.target.value)}>
+          <Select id="nps-currency" value={currency} onChange={(e) => setCurrency(e.target.value)}>
             {CURRENCIES.map((c) => (
               <option key={c} value={c}>{c}</option>
             ))}
-          </select>
+          </Select>
         </Field>
       </div>
 

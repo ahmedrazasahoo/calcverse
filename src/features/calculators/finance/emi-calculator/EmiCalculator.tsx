@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmt, fmtMoney, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmt, fmtMoney, inputClass, parseNum, Select } from "@/components/ui";
 import { calculateEmi, LOAN_PRESETS, type LoanType } from "./emi";
 
 const CURRENCIES = [
@@ -44,18 +44,18 @@ export default function EmiCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <Field label="Loan type" htmlFor="emi-type">
-          <select id="emi-type" className={selectClass} value={loanType} onChange={(e) => applyPreset(e.target.value as LoanType)}>
+          <Select id="emi-type" value={loanType} onChange={(e) => applyPreset(e.target.value as LoanType)}>
             <option value="home">Home loan</option>
             <option value="car">Car loan</option>
             <option value="personal">Personal loan</option>
-          </select>
+          </Select>
         </Field>
         <Field label="Currency" htmlFor="emi-currency">
-          <select id="emi-currency" className={selectClass} value={currency} onChange={(e) => setCurrency(e.target.value)}>
+          <Select id="emi-currency" value={currency} onChange={(e) => setCurrency(e.target.value)}>
             {CURRENCIES.map((c) => (
               <option key={c.symbol} value={c.symbol}>{c.label}</option>
             ))}
-          </select>
+          </Select>
         </Field>
         <Field label="Loan amount" htmlFor="emi-principal">
           <input id="emi-principal" className={inputClass} inputMode="decimal" value={principal} onChange={(e) => setPrincipal(e.target.value)} />

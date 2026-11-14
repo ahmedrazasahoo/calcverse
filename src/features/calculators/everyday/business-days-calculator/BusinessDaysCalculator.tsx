@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, inputClass, parseNum, Select } from "@/components/ui";
 import { addBusinessDays, businessDaysBetween, type HolidayCalendar } from "./businessDays";
 
 function formatIso(iso: string): string {
@@ -47,22 +47,21 @@ export default function BusinessDaysCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="What do you want to do?" htmlFor="bd-mode">
-          <select id="bd-mode" className={selectClass} value={mode} onChange={(e) => setMode(e.target.value)}>
+          <Select id="bd-mode" value={mode} onChange={(e) => setMode(e.target.value)}>
             <option value="between">Count business days between two dates</option>
             <option value="add">Add or subtract business days from a date</option>
-          </select>
+          </Select>
         </Field>
         <Field label="Public holidays" htmlFor="bd-calendar">
-          <select
+          <Select
             id="bd-calendar"
-            className={selectClass}
             value={calendar}
             onChange={(e) => setCalendar(e.target.value as HolidayCalendar)}
           >
             <option value="none">{CALENDAR_LABELS.none}</option>
             <option value="us">{CALENDAR_LABELS.us}</option>
             <option value="uk">{CALENDAR_LABELS.uk}</option>
-          </select>
+          </Select>
         </Field>
       </div>
 
@@ -113,10 +112,10 @@ export default function BusinessDaysCalculator() {
               <input id="bd-base" type="date" className={inputClass} value={base} onChange={(e) => setBase(e.target.value)} />
             </Field>
             <Field label="Direction" htmlFor="bd-direction">
-              <select id="bd-direction" className={selectClass} value={direction} onChange={(e) => setDirection(e.target.value)}>
+              <Select id="bd-direction" value={direction} onChange={(e) => setDirection(e.target.value)}>
                 <option value="1">Add (move forward)</option>
                 <option value="-1">Subtract (move backward)</option>
-              </select>
+              </Select>
             </Field>
             <Field label="Business days" htmlFor="bd-count">
               <input id="bd-count" type="number" min="0" step="1" className={inputClass} value={count} onChange={(e) => setCount(e.target.value)} />

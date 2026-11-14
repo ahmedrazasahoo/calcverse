@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmt, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmt, inputClass, parseNum, Select } from "@/components/ui";
 import {
   SHOE_GROUP_LABELS,
   SHOE_TABLES,
@@ -28,9 +28,8 @@ export default function ShoeSizeConverter() {
     <div>
       <div className="grid gap-5 sm:grid-cols-3">
         <Field label="Sizes for" htmlFor="ss-group">
-          <select
+          <Select
             id="ss-group"
-            className={selectClass}
             value={group}
             onChange={(e) => {
               setGroup(e.target.value as ShoeGroup);
@@ -42,15 +41,15 @@ export default function ShoeSizeConverter() {
                 {SHOE_GROUP_LABELS[key]}
               </option>
             ))}
-          </select>
+          </Select>
         </Field>
         <Field label="I know my size in" htmlFor="ss-system">
-          <select id="ss-system" className={selectClass} value={system} onChange={(e) => setSystem(e.target.value as ShoeSystem)}>
+          <Select id="ss-system" value={system} onChange={(e) => setSystem(e.target.value as ShoeSystem)}>
             <option value="us">US size</option>
             <option value="uk">UK size</option>
             <option value="eu">EU size</option>
             <option value="cm">Foot length (cm)</option>
-          </select>
+          </Select>
         </Field>
         <Field label={system === "cm" ? "Foot length (cm)" : "Your size"} htmlFor="ss-value" hint={system === "cm" ? "Measure heel to longest toe, standing, in the evening." : "Half sizes count: 8.5 is written as 8.5."}>
           <input id="ss-value" type="number" min="0" step="0.1" className={inputClass} value={value} onChange={(e) => setValue(e.target.value)} />

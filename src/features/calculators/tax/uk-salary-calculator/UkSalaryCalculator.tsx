@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmtMoney, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmtMoney, inputClass, parseNum, Select } from "@/components/ui";
 import { calculateUkSalary, type StudentLoanPlan } from "./uk-salary";
 
 export default function UkSalaryCalculator() {
@@ -36,14 +36,14 @@ export default function UkSalaryCalculator() {
           <input id="uk-pension" className={inputClass} inputMode="decimal" value={pension} onChange={(e) => setPension(e.target.value)} />
         </Field>
         <Field label="Student loan plan" htmlFor="uk-plan">
-          <select id="uk-plan" className={selectClass} value={plan} onChange={(e) => setPlan(e.target.value as StudentLoanPlan)}>
+          <Select id="uk-plan" value={plan} onChange={(e) => setPlan(e.target.value as StudentLoanPlan)}>
             <option value="none">No student loan</option>
             <option value="plan1">Plan 1</option>
             <option value="plan2">Plan 2</option>
             <option value="plan4">Plan 4 (Scotland)</option>
             <option value="plan5">Plan 5 (England, from Aug 2023)</option>
             <option value="postgraduate">Postgraduate loan</option>
-          </select>
+          </Select>
         </Field>
       </div>
 

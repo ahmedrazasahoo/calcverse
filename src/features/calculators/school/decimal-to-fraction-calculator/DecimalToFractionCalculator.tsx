@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { EmptyState, ErrorNote, Field, ResultCard, fmt, inputClass, selectClass } from "@/components/ui";
+import { EmptyState, ErrorNote, Field, ResultCard, fmt, inputClass, Select } from "@/components/ui";
 import { convertDecimal, inchFractionTable, parseDecimalString } from "./decimalfraction";
 
 export default function DecimalToFractionCalculator() {
@@ -47,9 +47,8 @@ export default function DecimalToFractionCalculator() {
           />
         </Field>
         <Field label="Approximation limit (max denominator)" htmlFor="dtf-maxden" hint="Only used when the exact fraction needs a bigger denominator than this.">
-          <select
+          <Select
             id="dtf-maxden"
-            className={selectClass}
             value={maxDenominator}
             onChange={(e) => setMaxDenominator(e.target.value)}
           >
@@ -57,7 +56,7 @@ export default function DecimalToFractionCalculator() {
             <option value="50">50</option>
             <option value="100">100</option>
             <option value="1000">1,000</option>
-          </select>
+          </Select>
         </Field>
       </div>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { EmptyState, ErrorNote, Field, ResultCard, fmt, fmtMoney, inputClass, parseNum, selectClass } from "@/components/ui";
+import { EmptyState, ErrorNote, Field, ResultCard, fmt, fmtMoney, inputClass, parseNum, Select } from "@/components/ui";
 import { calculateCaliforniaOvertime, calculateSimpleOvertime, calculateWeeklyOvertime } from "./overtime";
 
 type Mode = "simple" | "weekly" | "california";
@@ -48,11 +48,11 @@ export default function OvertimeCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <Field label="Calculation mode" htmlFor="ot-mode">
-          <select id="ot-mode" className={selectClass} value={mode} onChange={(e) => setMode(e.target.value as Mode)}>
+          <Select id="ot-mode" value={mode} onChange={(e) => setMode(e.target.value as Mode)}>
             <option value="simple">Simple: regular plus overtime hours</option>
             <option value="weekly">Weekly FLSA: hours over 40 in a week</option>
             <option value="california">California daily overtime</option>
-          </select>
+          </Select>
         </Field>
         <Field label="Hourly rate ($)" htmlFor="ot-rate">
           <input id="ot-rate" className={inputClass} inputMode="decimal" value={rate} onChange={(e) => setRate(e.target.value)} />
@@ -66,11 +66,11 @@ export default function OvertimeCalculator() {
               <input id="ot-ot" className={inputClass} inputMode="decimal" value={overtimeHours} onChange={(e) => setOvertimeHours(e.target.value)} />
             </Field>
             <Field label="Overtime multiplier" htmlFor="ot-mult">
-              <select id="ot-mult" className={selectClass} value={multiplier} onChange={(e) => setMultiplier(e.target.value)}>
+              <Select id="ot-mult" value={multiplier} onChange={(e) => setMultiplier(e.target.value)}>
                 <option value="1.5">1.5x, time and a half</option>
                 <option value="2">2x, double time</option>
                 <option value="custom">Custom multiplier</option>
-              </select>
+              </Select>
             </Field>
             {multiplier === "custom" && (
               <Field label="Custom multiplier" htmlFor="ot-custom" hint="For example 1.75 means the overtime rate is 1.75 times your regular rate.">

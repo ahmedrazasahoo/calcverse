@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmt, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmt, inputClass, parseNum, Select } from "@/components/ui";
 import { scaleRatio, simplifyRatio, solveMissing, type ScaleMode } from "./ratio";
 
 type Mode = "simplify" | "scale" | "missing";
@@ -71,23 +71,22 @@ export default function RatioCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <Field label="What do you want to do" htmlFor="rc-mode">
-          <select id="rc-mode" className={selectClass} value={mode} onChange={(e) => setMode(e.target.value as Mode)}>
+          <Select id="rc-mode" value={mode} onChange={(e) => setMode(e.target.value as Mode)}>
             <option value="simplify">Simplify a ratio</option>
             <option value="scale">Scale up or down</option>
             <option value="missing">Find the missing value</option>
-          </select>
+          </Select>
         </Field>
         {mode !== "missing" && (
           <Field label="Number of parts" htmlFor="rc-count">
-            <select
+            <Select
               id="rc-count"
-              className={selectClass}
               value={partCount}
               onChange={(e) => setPartCount(Number(e.target.value) as 2 | 3)}
             >
               <option value={2}>Two parts</option>
               <option value={3}>Three parts</option>
-            </select>
+            </Select>
           </Field>
         )}
       </div>
@@ -103,10 +102,10 @@ export default function RatioCalculator() {
             {mode === "scale" && (
               <>
                 <Field label="Scale so that" htmlFor="rc-scale-mode">
-                  <select id="rc-scale-mode" className={selectClass} value={scaleMode} onChange={(e) => setScaleMode(e.target.value as ScaleMode)}>
+                  <Select id="rc-scale-mode" value={scaleMode} onChange={(e) => setScaleMode(e.target.value as ScaleMode)}>
                     <option value="total">The parts add up to the target</option>
                     <option value="firstPart">The first part equals the target</option>
-                  </select>
+                  </Select>
                 </Field>
                 <Field label="Target value" htmlFor="rc-target">
                   <input id="rc-target" className={inputClass} inputMode="decimal" value={target} onChange={(e) => setTarget(e.target.value)} />

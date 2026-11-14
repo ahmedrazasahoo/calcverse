@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { EmptyState, ErrorNote, Field, ResultCard, inputClass, parseNum, selectClass } from "@/components/ui";
+import { EmptyState, ErrorNote, Field, ResultCard, inputClass, parseNum, Select } from "@/components/ui";
 import { longDivide, longDivideDecimal } from "./longdivision";
 
 export default function LongDivisionCalculator() {
@@ -45,10 +45,10 @@ export default function LongDivisionCalculator() {
           <input id="ld-divisor" type="number" step="1" className={inputClass} value={divisor} onChange={(e) => setDivisor(e.target.value)} />
         </Field>
         <Field label="Answer style" htmlFor="ld-mode">
-          <select id="ld-mode" className={selectClass} value={mode} onChange={(e) => setMode(e.target.value as "integer" | "decimal")}>
+          <Select id="ld-mode" value={mode} onChange={(e) => setMode(e.target.value as "integer" | "decimal")}>
             <option value="integer">Quotient and remainder</option>
             <option value="decimal">Decimal answer</option>
-          </select>
+          </Select>
         </Field>
         <Field label="Decimal places" htmlFor="ld-places" hint="Used by the decimal answer style, from 0 to 10.">
           <input

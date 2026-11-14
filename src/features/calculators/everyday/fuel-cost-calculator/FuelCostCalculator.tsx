@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmt, fmtMoney, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmt, fmtMoney, inputClass, parseNum, Select } from "@/components/ui";
 import { calculateFuelCost, type DistanceUnit, type EfficiencyUnit, type PriceUnit } from "./fuel-cost";
 
 const CURRENCIES = ["$", "₹", "£", "Rs", "€"];
@@ -45,10 +45,10 @@ export default function FuelCostCalculator() {
           <input id="fc-distance" className={inputClass} inputMode="decimal" value={distance} onChange={(e) => setDistance(e.target.value)} />
         </Field>
         <Field label="Distance unit" htmlFor="fc-distance-unit">
-          <select id="fc-distance-unit" className={selectClass} value={distanceUnit} onChange={(e) => setDistanceUnit(e.target.value as DistanceUnit)}>
+          <Select id="fc-distance-unit" value={distanceUnit} onChange={(e) => setDistanceUnit(e.target.value as DistanceUnit)}>
             <option value="km">Kilometres</option>
             <option value="miles">Miles</option>
-          </select>
+          </Select>
         </Field>
         <Field label="Round trip" htmlFor="fc-round-trip" hint="Tick this and the distance is doubled, there and back.">
           <span className="flex min-h-12 items-center gap-2 px-1">
@@ -60,29 +60,29 @@ export default function FuelCostCalculator() {
           <input id="fc-efficiency" className={inputClass} inputMode="decimal" value={efficiency} onChange={(e) => setEfficiency(e.target.value)} />
         </Field>
         <Field label="Efficiency unit" htmlFor="fc-efficiency-unit">
-          <select id="fc-efficiency-unit" className={selectClass} value={efficiencyUnit} onChange={(e) => setEfficiencyUnit(e.target.value as EfficiencyUnit)}>
+          <Select id="fc-efficiency-unit" value={efficiencyUnit} onChange={(e) => setEfficiencyUnit(e.target.value as EfficiencyUnit)}>
             <option value="kmPerLitre">km per litre</option>
             <option value="litresPer100Km">Litres per 100 km</option>
             <option value="mpgUS">Miles per gallon (US)</option>
             <option value="mpgUK">Miles per gallon (UK)</option>
-          </select>
+          </Select>
         </Field>
         <Field label="Fuel price" htmlFor="fc-price">
           <input id="fc-price" className={inputClass} inputMode="decimal" value={price} onChange={(e) => setPrice(e.target.value)} />
         </Field>
         <Field label="Price unit" htmlFor="fc-price-unit">
-          <select id="fc-price-unit" className={selectClass} value={priceUnit} onChange={(e) => setPriceUnit(e.target.value as PriceUnit)}>
+          <Select id="fc-price-unit" value={priceUnit} onChange={(e) => setPriceUnit(e.target.value as PriceUnit)}>
             <option value="perLitre">Per litre</option>
             <option value="perGallonUS">Per gallon (US)</option>
             <option value="perGallonUK">Per gallon (UK)</option>
-          </select>
+          </Select>
         </Field>
         <Field label="Currency" htmlFor="fc-currency">
-          <select id="fc-currency" className={selectClass} value={currency} onChange={(e) => setCurrency(e.target.value)}>
+          <Select id="fc-currency" value={currency} onChange={(e) => setCurrency(e.target.value)}>
             {CURRENCIES.map((c) => (
               <option key={c} value={c}>{c}</option>
             ))}
-          </select>
+          </Select>
         </Field>
       </div>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmt, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmt, inputClass, parseNum, Select } from "@/components/ui";
 import {
   addDurations,
   durationBetweenTimes,
@@ -106,11 +106,11 @@ export default function TimeCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="What do you want to do?" htmlFor="tc-mode">
-          <select id="tc-mode" className={selectClass} value={mode} onChange={(e) => setMode(e.target.value as Mode)}>
+          <Select id="tc-mode" value={mode} onChange={(e) => setMode(e.target.value as Mode)}>
             <option value="add">Add two durations</option>
             <option value="subtract">Subtract two durations</option>
             <option value="between">Time between two clock times</option>
-          </select>
+          </Select>
         </Field>
       </div>
 

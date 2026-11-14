@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmtMoney, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmtMoney, inputClass, parseNum, Select } from "@/components/ui";
 import { convertPay, estimateTakeHome, type PayPeriod, type TakeHomeCountry } from "./salary";
 
 const CURRENCIES = [
@@ -68,23 +68,23 @@ export default function SalaryCalculator() {
           <input id="sal-amount" className={inputClass} inputMode="decimal" value={amount} onChange={(e) => setAmount(e.target.value)} />
         </Field>
         <Field label="Pay period" htmlFor="sal-period">
-          <select id="sal-period" className={selectClass} value={period} onChange={(e) => setPeriod(e.target.value as PayPeriod)}>
+          <Select id="sal-period" value={period} onChange={(e) => setPeriod(e.target.value as PayPeriod)}>
             <option value="hourly">Per hour</option>
             <option value="daily">Per day</option>
             <option value="weekly">Per week</option>
             <option value="monthly">Per month</option>
             <option value="yearly">Per year</option>
-          </select>
+          </Select>
         </Field>
         <Field label="Hours per week" htmlFor="sal-hours" hint="Used for hourly, daily and weekly conversions. Full time is usually 40.">
           <input id="sal-hours" className={inputClass} inputMode="decimal" value={hours} onChange={(e) => setHours(e.target.value)} />
         </Field>
         <Field label="Currency" htmlFor="sal-currency">
-          <select id="sal-currency" className={selectClass} value={currency} onChange={(e) => setCurrency(e.target.value)}>
+          <Select id="sal-currency" value={currency} onChange={(e) => setCurrency(e.target.value)}>
             {CURRENCIES.map((c) => (
               <option key={c.symbol} value={c.symbol}>{c.label}</option>
             ))}
-          </select>
+          </Select>
         </Field>
       </div>
 
@@ -102,11 +102,11 @@ export default function SalaryCalculator() {
           </p>
           <div className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             <Field label="Take home country" htmlFor="sal-country">
-              <select id="sal-country" className={selectClass} value={country} onChange={(e) => setCountry(e.target.value as TakeHomeCountry)}>
+              <Select id="sal-country" value={country} onChange={(e) => setCountry(e.target.value as TakeHomeCountry)}>
                 <option value="us">United States</option>
                 <option value="uk">United Kingdom</option>
                 <option value="custom">Custom flat rate</option>
-              </select>
+              </Select>
             </Field>
             {country === "us" && (
               <Field label="State tax rate (%)" htmlFor="sal-state" hint="A flat estimate on gross income. Leave at 0 for federal and payroll taxes only.">

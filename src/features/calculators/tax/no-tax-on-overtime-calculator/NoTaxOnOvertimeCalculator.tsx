@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { EmptyState, ErrorNote, Field, ResultCard, fmtMoney, inputClass, parseNum, selectClass } from "@/components/ui";
+import { EmptyState, ErrorNote, Field, ResultCard, fmtMoney, inputClass, parseNum, Select } from "@/components/ui";
 import { calculateNoTaxOnOvertime, qualifiedPremiumFromHours, type OvertimeFilingStatus } from "./noTaxOnOvertime";
 
 const money = (n: number) => `$${fmtMoney(n)}`;
@@ -34,19 +34,19 @@ export default function NoTaxOnOvertimeCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <Field label="Filing status" htmlFor="nto-status" hint="Married filers must file jointly to claim this deduction.">
-          <select id="nto-status" className={selectClass} value={filingStatus} onChange={(e) => setFilingStatus(e.target.value as OvertimeFilingStatus)}>
+          <Select id="nto-status" value={filingStatus} onChange={(e) => setFilingStatus(e.target.value as OvertimeFilingStatus)}>
             <option value="single">Single</option>
             <option value="marriedFilingJointly">Married filing jointly</option>
-          </select>
+          </Select>
         </Field>
         <Field label="Modified adjusted gross income (MAGI) ($)" htmlFor="nto-magi">
           <input id="nto-magi" className={inputClass} inputMode="decimal" value={magi} onChange={(e) => setMagi(e.target.value)} />
         </Field>
         <Field label="How do you want to enter overtime?" htmlFor="nto-mode">
-          <select id="nto-mode" className={selectClass} value={inputMode} onChange={(e) => setInputMode(e.target.value as "direct" | "hours")}>
+          <Select id="nto-mode" value={inputMode} onChange={(e) => setInputMode(e.target.value as "direct" | "hours")}>
             <option value="hours">From rate and overtime hours</option>
             <option value="direct">Enter the premium directly</option>
-          </select>
+          </Select>
         </Field>
         {inputMode === "direct" ? (
           <Field label="Annual qualified overtime premium ($)" htmlFor="nto-premium" hint="Only the premium half counts: overtime hours times half your regular rate. Not your full overtime pay.">
@@ -60,9 +60,9 @@ export default function NoTaxOnOvertimeCalculator() {
           </>
         )}
         <Field label="Marginal federal tax rate" htmlFor="nto-marginal" hint="Your top tax bracket. This turns the deduction into an estimated saving. It is an estimate only, not a promised refund.">
-          <select id="nto-marginal" className={selectClass} value={marginalRate} onChange={(e) => setMarginalRate(e.target.value)}>
+          <Select id="nto-marginal" value={marginalRate} onChange={(e) => setMarginalRate(e.target.value)}>
             {RATES.map((r) => (<option key={r} value={r}>{r}%</option>))}
-          </select>
+          </Select>
         </Field>
       </div>
 

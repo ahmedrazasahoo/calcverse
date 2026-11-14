@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmtMoney, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmtMoney, inputClass, parseNum, Select } from "@/components/ui";
 import { calculateRetirement } from "./retirement";
 
 const CURRENCIES = ["$", "₹", "£", "Rs", "€"];
@@ -64,11 +64,11 @@ export default function RetirementCalculator() {
           <input id="ret-goal" className={inputClass} inputMode="decimal" value={goal} onChange={(e) => setGoal(e.target.value)} />
         </Field>
         <Field label="Currency" htmlFor="ret-currency">
-          <select id="ret-currency" className={selectClass} value={currency} onChange={(e) => setCurrency(e.target.value)}>
+          <Select id="ret-currency" value={currency} onChange={(e) => setCurrency(e.target.value)}>
             {CURRENCIES.map((c) => (
               <option key={c} value={c}>{c}</option>
             ))}
-          </select>
+          </Select>
         </Field>
       </div>
 

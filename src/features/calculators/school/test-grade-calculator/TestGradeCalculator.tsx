@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { EmptyState, Field, ResultCard, fmt, inputClass, parseNum, selectClass } from "@/components/ui";
+import { EmptyState, Field, ResultCard, fmt, inputClass, parseNum, Select } from "@/components/ui";
 import { computeFromCorrect, computeTestGrade, testGradeTable } from "./testGrade";
 
 export default function TestGradeCalculator() {
@@ -29,10 +29,10 @@ export default function TestGradeCalculator() {
           <input id="test-total" type="number" className={inputClass} value={total} onChange={(e) => setTotal(e.target.value)} />
         </Field>
         <Field label="Count by" htmlFor="test-mode">
-          <select id="test-mode" className={selectClass} value={mode} onChange={(e) => setMode(e.target.value as "wrong" | "correct")}>
+          <Select id="test-mode" value={mode} onChange={(e) => setMode(e.target.value as "wrong" | "correct")}>
             <option value="wrong">Questions wrong</option>
             <option value="correct">Questions correct</option>
-          </select>
+          </Select>
         </Field>
         <Field label={mode === "wrong" ? "Number wrong" : "Number correct"} htmlFor="test-count">
           <input id="test-count" type="number" className={inputClass} value={count} onChange={(e) => setCount(e.target.value)} />

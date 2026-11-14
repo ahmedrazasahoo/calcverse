@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmt, fmtMoney, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmt, fmtMoney, inputClass, parseNum, Select } from "@/components/ui";
 import { applianceCost, billFromTiers, billFromUnits, type Tier, type TierBreakdownRow, type TieredBillResult } from "./electricity-bill";
 
 const CURRENCIES = ["$", "₹", "£", "Rs", "€"];
@@ -81,17 +81,17 @@ export default function ElectricityBillCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <Field label="What do you want to work out?" htmlFor="eb-mode">
-          <select id="eb-mode" className={selectClass} value={mode} onChange={(e) => setMode(e.target.value as Mode)}>
+          <Select id="eb-mode" value={mode} onChange={(e) => setMode(e.target.value as Mode)}>
             <option value="units">Bill from total units</option>
             <option value="appliance">Cost of one appliance</option>
-          </select>
+          </Select>
         </Field>
         <Field label="Currency" htmlFor="eb-currency">
-          <select id="eb-currency" className={selectClass} value={currency} onChange={(e) => setCurrency(e.target.value)}>
+          <Select id="eb-currency" value={currency} onChange={(e) => setCurrency(e.target.value)}>
             {CURRENCIES.map((c) => (
               <option key={c} value={c}>{c}</option>
             ))}
-          </select>
+          </Select>
         </Field>
       </div>
 

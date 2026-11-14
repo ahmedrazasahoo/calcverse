@@ -118,7 +118,10 @@ export default function Footer() {
             >
               <LogoMark className="h-10 w-10 shadow-lg shadow-brand-950/40 ring-1 ring-white/40 transition duration-200 group-hover:shadow-xl" />
               <span className="text-xl font-bold tracking-tight whitespace-nowrap">
-                Calc<span className="text-brand-300">Verse</span>
+                Calc
+                <span className="bg-gradient-to-r from-brand-300 to-sky-300 bg-clip-text text-transparent">
+                  Verse
+                </span>
               </span>
             </Link>
             <p className="mt-4 px-1 text-sm leading-relaxed text-white/65">

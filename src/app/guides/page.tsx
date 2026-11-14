@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import GuideCard from "@/components/GuideCard";
+import CategoryEmblem, { guideCategoryMotif } from "@/components/visuals/CategoryEmblem";
 import { pageMetadata } from "@/lib/seo";
 import { GUIDE_CATEGORIES, guides, guidesInCategory } from "@/lib/guides";
 
@@ -36,8 +37,9 @@ export default function GuidesHubPage() {
         if (posts.length === 0) return null;
         return (
           <section key={category} aria-labelledby={`guides-${category}`} className="mt-14">
-            <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <h2 id={`guides-${category}`} className="text-2xl font-bold tracking-tight text-gray-900">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <h2 id={`guides-${category}`} className="flex items-center gap-3 text-2xl font-bold tracking-tight text-gray-900">
+                <CategoryEmblem name={guideCategoryMotif(category)} className="h-10 w-10 rounded-xl p-2" />
                 {category}
               </h2>
               <span className="text-sm text-gray-500">

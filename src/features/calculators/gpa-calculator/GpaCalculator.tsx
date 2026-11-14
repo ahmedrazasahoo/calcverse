@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmt, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmt, inputClass, parseNum, Select } from "@/components/ui";
 import { GRADE_SCALE, calculateGpa, type CourseInput } from "./gpa";
 
 interface Row {
@@ -50,9 +50,8 @@ export default function GpaCalculator() {
               />
             </Field>
             <Field label="Grade" htmlFor={`gpa-grade-${row.id}`}>
-              <select
+              <Select
                 id={`gpa-grade-${row.id}`}
-                className={selectClass}
                 value={row.grade}
                 onChange={(e) => update(row.id, { grade: e.target.value })}
               >
@@ -61,7 +60,7 @@ export default function GpaCalculator() {
                     {g.label} ({g.points.toFixed(1)})
                   </option>
                 ))}
-              </select>
+              </Select>
             </Field>
             <Field label="Credits" htmlFor={`gpa-credits-${row.id}`}>
               <input

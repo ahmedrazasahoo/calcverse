@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { EmptyState, ErrorNote, Field, ResultCard, fmt, inputClass, parseNum, selectClass } from "@/components/ui";
+import { EmptyState, ErrorNote, Field, ResultCard, fmt, inputClass, parseNum, Select } from "@/components/ui";
 import { calculateStampDuty, fmtGbp } from "./stamp-duty";
 
 export default function StampDutyCalculator() {
@@ -35,15 +35,14 @@ export default function StampDutyCalculator() {
           htmlFor="sdlt-buyer"
           hint="First time buyer relief only applies when every buyer is a first time buyer and the price is £500,000 or less."
         >
-          <select
+          <Select
             id="sdlt-buyer"
-            className={selectClass}
             value={buyerType}
             onChange={(e) => setBuyerType(e.target.value as "standard" | "ftb")}
           >
             <option value="standard">Standard buyer</option>
             <option value="ftb">First time buyer (all buyers)</option>
-          </select>
+          </Select>
         </Field>
       </div>
 

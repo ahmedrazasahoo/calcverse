@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { EmptyState, ErrorNote, Field, inputClass, ResultCard, secondaryButtonClass, selectClass } from "@/components/ui";
+import { EmptyState, ErrorNote, Field, inputClass, ResultCard, secondaryButtonClass, Select } from "@/components/ui";
 import {
   buildIndex,
   findFormable,
@@ -89,19 +89,18 @@ export default function WordUnscrambler() {
           />
         </Field>
         <Field label="Minimum word length" htmlFor="unscrambler-min-length">
-          <select
+          <Select
             id="unscrambler-min-length"
             value={minLength}
             disabled={loadState !== "ready"}
             onChange={(e) => setMinLength(Number(e.target.value))}
-            className={selectClass}
           >
             {[2, 3, 4, 5].map((n) => (
               <option key={n} value={n}>
                 {n} letters or more
               </option>
             ))}
-          </select>
+          </Select>
         </Field>
       </div>
 

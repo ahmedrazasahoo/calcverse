@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmt, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmt, inputClass, parseNum, Select } from "@/components/ui";
 import { feetInchesToCm, idealWeight, kgToPounds, type Sex } from "./idealWeight";
 
 export default function IdealWeightCalculator() {
@@ -40,16 +40,16 @@ export default function IdealWeightCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <Field label="Sex" htmlFor="iw-sex">
-          <select id="iw-sex" className={selectClass} value={sex} onChange={(e) => setSex(e.target.value as Sex)}>
+          <Select id="iw-sex" value={sex} onChange={(e) => setSex(e.target.value as Sex)}>
             <option value="male">Male</option>
             <option value="female">Female</option>
-          </select>
+          </Select>
         </Field>
         <Field label="Units" htmlFor="iw-units">
-          <select id="iw-units" className={selectClass} value={units} onChange={(e) => setUnits(e.target.value)}>
+          <Select id="iw-units" value={units} onChange={(e) => setUnits(e.target.value)}>
             <option value="metric">Metric (cm)</option>
             <option value="imperial">Imperial (ft/in)</option>
-          </select>
+          </Select>
         </Field>
         {units === "metric" ? (
           <Field label="Height (cm)" htmlFor="iw-height">

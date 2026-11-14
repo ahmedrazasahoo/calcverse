@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Select } from "@/components/ui";
 import FileDrop from "../_shared/FileDrop";
 import ResultPanel from "../_shared/ResultPanel";
 import { formatBytes } from "../_shared/file-utils";
@@ -174,16 +175,15 @@ export default function ResizeImage() {
         <label htmlFor="resize-format" className="mb-1.5 block text-sm font-medium text-gray-700">
           Output format
         </label>
-        <select
+        <Select
           id="resize-format"
           value={format}
           onChange={(event) => setFormat(event.target.value as ImageFormat)}
-          className={inputClass}
         >
           <option value="jpeg">JPG, best for photos and forms</option>
           <option value="png">PNG, keeps transparency and sharp edges</option>
           <option value="webp">WebP, smallest files for websites</option>
-        </select>
+        </Select>
       </div>
 
       <button

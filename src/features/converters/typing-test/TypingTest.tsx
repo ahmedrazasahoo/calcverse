@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Field, ResultCard, fmt, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmt, Select } from "@/components/ui";
 import { PRACTICE_TEXTS } from "./content";
 import { TEST_DURATIONS_SECONDS, isComplete, scoreTyping, speedVerdict } from "./typing";
 
@@ -71,9 +71,8 @@ export default function TypingTest() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Test length" htmlFor="tt-duration">
-          <select
+          <Select
             id="tt-duration"
-            className={selectClass}
             value={duration}
             onChange={(e) => {
               setDuration(Number(e.target.value));
@@ -85,7 +84,7 @@ export default function TypingTest() {
                 {seconds === 60 ? "1 minute" : `${seconds / 60} minutes`}
               </option>
             ))}
-          </select>
+          </Select>
         </Field>
         <div className="flex items-end gap-3">
           <button

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmt, fmtMoney, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmt, fmtMoney, inputClass, parseNum, Select } from "@/components/ui";
 import { calculateGratuity, type GratuityCountry } from "./gratuity";
 
 const CURRENCIES = ["₹", "$", "£", "Rs", "€", "AED", "QAR"];
@@ -35,11 +35,11 @@ export default function GratuityCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <Field label="Country" htmlFor="grat-country">
-          <select id="grat-country" className={selectClass} value={country} onChange={(e) => setCountry(e.target.value as GratuityCountry)}>
+          <Select id="grat-country" value={country} onChange={(e) => setCountry(e.target.value as GratuityCountry)}>
             <option value="india">India</option>
             <option value="uae">UAE</option>
             <option value="qatar">Qatar</option>
-          </select>
+          </Select>
         </Field>
         <Field label="Monthly salary" htmlFor="grat-salary">
           <input id="grat-salary" className={inputClass} inputMode="decimal" value={salary} onChange={(e) => setSalary(e.target.value)} />
@@ -48,11 +48,11 @@ export default function GratuityCalculator() {
           <input id="grat-years" className={inputClass} inputMode="decimal" value={years} onChange={(e) => setYears(e.target.value)} />
         </Field>
         <Field label="Currency" htmlFor="grat-currency">
-          <select id="grat-currency" className={selectClass} value={currency} onChange={(e) => setCurrency(e.target.value)}>
+          <Select id="grat-currency" value={currency} onChange={(e) => setCurrency(e.target.value)}>
             {CURRENCIES.map((c) => (
               <option key={c} value={c}>{c}</option>
             ))}
-          </select>
+          </Select>
         </Field>
       </div>
       <p className="mt-3 text-sm text-gray-600">{SALARY_HINTS[country]}</p>

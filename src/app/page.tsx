@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import ToolCard from "@/components/ToolCard";
 import ToolSearch from "@/components/ToolSearch";
+import CategoryEmblem, { groupMotif } from "@/components/visuals/CategoryEmblem";
+import HeroArt from "@/components/visuals/HeroArt";
 import { GROUP_LABELS, GROUP_PATHS, liveTools, toolsInGroup, type ToolGroup } from "@/lib/tools";
 
 export const metadata: Metadata = {
@@ -26,7 +28,7 @@ export default function HomePage() {
   return (
     <main>
       <section className="px-4 pt-10 sm:px-6 sm:pt-14 lg:px-8">
-        <div className="glass anim-border relative mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] px-6 py-12 text-center shadow-[0_30px_60px_-24px_rgb(68_33_127/0.3)] sm:px-12 sm:py-16">
+        <div className="glass anim-border relative mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] px-6 py-12 shadow-[0_30px_60px_-24px_rgb(68_33_127/0.3)] sm:px-12 sm:py-16">
           <span
             className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-brand-400/20 blur-3xl"
             aria-hidden="true"
@@ -35,26 +37,29 @@ export default function HomePage() {
             className="pointer-events-none absolute -bottom-32 -left-16 h-80 w-80 rounded-full bg-cyan-300/20 blur-3xl"
             aria-hidden="true"
           />
-          <div className="relative">
-          <p className="glass-chip inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold tracking-widest text-brand-800 uppercase">
-            Free forever, no signup
-          </p>
-          <h1 className="mx-auto mt-6 max-w-3xl text-4xl font-bold tracking-tight text-balance text-gray-900 sm:text-5xl sm:leading-[1.1]">
-            Every calculator and file tool you need, <span className="text-brand-700">in one place</span>
-          </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-pretty text-gray-600">
-            Work out calories, tips, taxes, percentages, ages and grades, or shrink a PDF for an application
-            form. Everything runs right here in your browser, so your numbers and files never leave your
-            device.
-          </p>
-          <ul className="mt-9 flex flex-wrap items-center justify-center gap-2.5 text-sm font-medium text-gray-800">
-            <li className="glass-chip flex min-h-11 items-center rounded-full px-4 py-2">100% free, always</li>
-            <li className="glass-chip flex min-h-11 items-center rounded-full px-4 py-2">No signup or account</li>
-            <li className="glass-chip flex min-h-11 items-center rounded-full px-4 py-2">
-              Files never leave your device
-            </li>
-            <li className="glass-chip flex min-h-11 items-center rounded-full px-4 py-2">No watermarks</li>
-          </ul>
+          <div className="relative grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-6">
+            <div className="text-center lg:text-left">
+              <p className="glass-chip inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold tracking-widest text-brand-800 uppercase">
+                Free forever, no signup
+              </p>
+              <h1 className="mx-auto mt-6 max-w-3xl text-4xl font-bold tracking-tight text-balance text-gray-900 sm:text-5xl sm:leading-[1.1] lg:mx-0">
+                Every calculator and file tool you need, <span className="text-brand-700">in one place</span>
+              </h1>
+              <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-pretty text-gray-600 lg:mx-0">
+                Work out calories, tips, taxes, percentages, ages and grades, or shrink a PDF for an application
+                form. Everything runs right here in your browser, so your numbers and files never leave your
+                device.
+              </p>
+              <ul className="mt-9 flex flex-wrap items-center justify-center gap-2.5 text-sm font-medium text-gray-800 lg:justify-start">
+                <li className="glass-chip flex min-h-11 items-center rounded-full px-4 py-2">100% free, always</li>
+                <li className="glass-chip flex min-h-11 items-center rounded-full px-4 py-2">No signup or account</li>
+                <li className="glass-chip flex min-h-11 items-center rounded-full px-4 py-2">
+                  Files never leave your device
+                </li>
+                <li className="glass-chip flex min-h-11 items-center rounded-full px-4 py-2">No watermarks</li>
+              </ul>
+            </div>
+            <HeroArt className="mx-auto aspect-[560/470] w-full max-w-md lg:max-w-none" />
           </div>
         </div>
       </section>
@@ -91,6 +96,7 @@ export default function HomePage() {
                 href={GROUP_PATHS[g]}
                 className="glass group flex min-h-11 flex-col rounded-[2rem] p-7 transition duration-300 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:outline-none"
               >
+                <CategoryEmblem name={groupMotif(g)} className="mb-5 h-14 w-14 rounded-[1.1rem] p-3" />
                 <span className="flex items-start justify-between gap-2">
                   <h3 className="font-semibold text-gray-900 group-hover:text-brand-800">{GROUP_LABELS[g]}</h3>
                   <span

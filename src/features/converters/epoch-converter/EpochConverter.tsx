@@ -1,15 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import {
-  EmptyState,
-  ErrorNote,
-  Field,
-  ResultCard,
-  inputClass,
-  secondaryButtonClass,
-  selectClass,
-} from "@/components/ui";
+import { EmptyState, ErrorNote, Field, ResultCard, inputClass, secondaryButtonClass, Select } from "@/components/ui";
 import { detectUnit, fromEpochMs, toEpochMs, type EpochUnit } from "./epoch";
 
 type UnitChoice = EpochUnit | "auto";
@@ -85,9 +77,8 @@ export default function EpochConverter() {
             />
           </Field>
           <Field label="Unit" htmlFor="epoch-unit">
-            <select
+            <Select
               id="epoch-unit"
-              className={selectClass}
               value={unit}
               onChange={(e) => setUnit(e.target.value as UnitChoice)}
             >
@@ -96,7 +87,7 @@ export default function EpochConverter() {
               <option value="milliseconds">Milliseconds</option>
               <option value="microseconds">Microseconds</option>
               <option value="nanoseconds">Nanoseconds</option>
-            </select>
+            </Select>
           </Field>
         </div>
         {parsed.kind === "empty" && (

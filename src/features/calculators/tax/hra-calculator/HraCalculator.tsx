@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmtMoney, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmtMoney, inputClass, parseNum, Select } from "@/components/ui";
 import { calculateHra } from "./hra";
 
 export default function HraCalculator() {
@@ -77,10 +77,10 @@ export default function HraCalculator() {
           <input id="hra-rent" className={inputClass} inputMode="decimal" value={rentPaid} onChange={(e) => setRentPaid(e.target.value)} />
         </Field>
         <Field label="City type" htmlFor="hra-city">
-          <select id="hra-city" className={selectClass} value={metro ? "metro" : "non-metro"} onChange={(e) => setMetro(e.target.value === "metro")}>
+          <Select id="hra-city" value={metro ? "metro" : "non-metro"} onChange={(e) => setMetro(e.target.value === "metro")}>
             <option value="metro">Metro: Delhi, Mumbai, Kolkata, Chennai</option>
             <option value="non-metro">Non metro: any other city</option>
-          </select>
+          </Select>
         </Field>
       </div>
 

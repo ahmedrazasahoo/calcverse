@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { EmptyState, ErrorNote, Field, ResultCard, fmt, inputClass, parseNum, selectClass } from "@/components/ui";
+import { EmptyState, ErrorNote, Field, ResultCard, fmt, inputClass, parseNum, Select } from "@/components/ui";
 import { ACTIVITY_LEVELS, calculateMacros, CM_PER_INCH, KG_PER_LB, PRESETS, type Goal, type MacroSplit, type Sex } from "./macro";
 
 export default function MacroCalculator() {
@@ -58,10 +58,10 @@ export default function MacroCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <Field label="Sex" htmlFor="macro-sex">
-          <select id="macro-sex" className={selectClass} value={sex} onChange={(e) => setSex(e.target.value as Sex)}>
+          <Select id="macro-sex" value={sex} onChange={(e) => setSex(e.target.value as Sex)}>
             <option value="male">Male</option>
             <option value="female">Female</option>
-          </select>
+          </Select>
         </Field>
         <Field label="Age (years)" htmlFor="macro-age">
           <input id="macro-age" type="number" className={inputClass} value={age} onChange={(e) => setAge(e.target.value)} />
@@ -69,20 +69,20 @@ export default function MacroCalculator() {
         <Field label={`Weight (${weightUnit})`} htmlFor="macro-weight">
           <div className="flex gap-2">
             <input id="macro-weight" type="number" className={inputClass} value={weight} onChange={(e) => setWeight(e.target.value)} />
-            <select aria-label="Weight unit" className={selectClass} value={weightUnit} onChange={(e) => setWeightUnit(e.target.value as "kg" | "lb")}>
+            <Select aria-label="Weight unit" value={weightUnit} onChange={(e) => setWeightUnit(e.target.value as "kg" | "lb")}>
               <option value="kg">kg</option>
               <option value="lb">lb</option>
-            </select>
+            </Select>
           </div>
         </Field>
         {heightUnit === "cm" ? (
           <Field label="Height (cm)" htmlFor="macro-height">
             <div className="flex gap-2">
               <input id="macro-height" type="number" className={inputClass} value={heightCm} onChange={(e) => setHeightCm(e.target.value)} />
-              <select aria-label="Height unit" className={selectClass} value={heightUnit} onChange={(e) => setHeightUnit(e.target.value as "cm" | "ftin")}>
+              <Select aria-label="Height unit" value={heightUnit} onChange={(e) => setHeightUnit(e.target.value as "cm" | "ftin")}>
                 <option value="cm">cm</option>
                 <option value="ftin">ft/in</option>
-              </select>
+              </Select>
             </div>
           </Field>
         ) : (
@@ -90,34 +90,34 @@ export default function MacroCalculator() {
             <div className="flex gap-2">
               <input id="macro-feet" type="number" className={inputClass} value={feet} onChange={(e) => setFeet(e.target.value)} aria-label="Feet" />
               <input type="number" className={inputClass} value={inches} onChange={(e) => setInches(e.target.value)} aria-label="Inches" />
-              <select aria-label="Height unit" className={selectClass} value={heightUnit} onChange={(e) => setHeightUnit(e.target.value as "cm" | "ftin")}>
+              <Select aria-label="Height unit" value={heightUnit} onChange={(e) => setHeightUnit(e.target.value as "cm" | "ftin")}>
                 <option value="cm">cm</option>
                 <option value="ftin">ft/in</option>
-              </select>
+              </Select>
             </div>
           </Field>
         )}
         <Field label="Activity level" htmlFor="macro-activity">
-          <select id="macro-activity" className={selectClass} value={activity} onChange={(e) => setActivity(e.target.value)}>
+          <Select id="macro-activity" value={activity} onChange={(e) => setActivity(e.target.value)}>
             {ACTIVITY_LEVELS.map((a) => (
               <option key={a.value} value={a.value}>{a.label}</option>
             ))}
-          </select>
+          </Select>
         </Field>
         <Field label="Goal" htmlFor="macro-goal">
-          <select id="macro-goal" className={selectClass} value={goal} onChange={(e) => setGoal(e.target.value as Goal)}>
+          <Select id="macro-goal" value={goal} onChange={(e) => setGoal(e.target.value as Goal)}>
             <option value="lose">Lose weight (minus 500 kcal)</option>
             <option value="maintain">Maintain weight</option>
             <option value="gain">Gain weight (plus 300 kcal)</option>
-          </select>
+          </Select>
         </Field>
         <Field label="Diet style" htmlFor="macro-preset">
-          <select id="macro-preset" className={selectClass} value={preset} onChange={(e) => setPreset(e.target.value)}>
+          <Select id="macro-preset" value={preset} onChange={(e) => setPreset(e.target.value)}>
             {Object.entries(PRESETS).map(([key, p]) => (
               <option key={key} value={key}>{p.label}</option>
             ))}
             <option value="custom">Custom percentages</option>
-          </select>
+          </Select>
         </Field>
       </div>
 

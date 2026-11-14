@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Field, ResultCard, fmt, inputClass, parseNum, selectClass } from "@/components/ui";
+import { Field, ResultCard, fmt, inputClass, parseNum, Select } from "@/components/ui";
 import { applyDecrease, decreaseBetween } from "./percentage-decrease";
 
 type Mode = "between" | "apply";
@@ -41,10 +41,10 @@ export default function PercentageDecreaseCalculator() {
     <div>
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="What do you want to do?" htmlFor="pd-mode">
-          <select id="pd-mode" className={selectClass} value={mode} onChange={(e) => setMode(e.target.value as Mode)}>
+          <Select id="pd-mode" value={mode} onChange={(e) => setMode(e.target.value as Mode)}>
             <option value="between">Decrease between two numbers</option>
             <option value="apply">Decrease a number by a percent</option>
-          </select>
+          </Select>
         </Field>
       </div>
 

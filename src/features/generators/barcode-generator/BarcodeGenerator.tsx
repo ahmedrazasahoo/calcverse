@@ -1,13 +1,7 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
-import {
-  ErrorNote,
-  Field,
-  inputClass,
-  secondaryButtonClass,
-  selectClass,
-} from "@/components/ui";
+import { ErrorNote, Field, inputClass, secondaryButtonClass, Select } from "@/components/ui";
 import { encodeBarcode, type BarcodeFormat } from "./barcode";
 
 function escapeXml(text: string): string {
@@ -132,9 +126,8 @@ export default function BarcodeGenerator() {
     <div className="space-y-5">
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Barcode format" htmlFor="barcode-format">
-          <select
+          <Select
             id="barcode-format"
-            className={selectClass}
             value={format}
             onChange={(e) => setFormat(e.target.value as BarcodeFormat)}
           >
@@ -143,7 +136,7 @@ export default function BarcodeGenerator() {
                 {f.label}
               </option>
             ))}
-          </select>
+          </Select>
         </Field>
         <Field label="Value to encode" htmlFor="barcode-value" hint={active.hint}>
           <input

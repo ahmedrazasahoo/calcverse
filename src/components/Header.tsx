@@ -60,7 +60,7 @@ function CloseIcon() {
   );
 }
 
-/** Grid layout per section: category blocks spread evenly across the panel. */
+/** Grid layout per section: one headed block per registry category. */
 function panelGridClass(section: MegaSection): string {
   switch (section.id) {
     case "calculators":
@@ -68,7 +68,7 @@ function panelGridClass(section: MegaSection): string {
     case "tools":
       return "grid grid-cols-2 gap-x-8 gap-y-7";
     case "converters":
-      return "grid grid-cols-2 gap-x-8 gap-y-7 lg:grid-cols-3";
+      return "grid grid-cols-2 gap-x-8 gap-y-7";
     case "generators":
       return "grid grid-cols-2 gap-x-8 gap-y-7";
     default:
@@ -76,20 +76,23 @@ function panelGridClass(section: MegaSection): string {
   }
 }
 
-/** Long category lists (the 18 converters) flow into two visual columns. */
-function columnFlows(column: MegaColumn): boolean {
-  return column.links.length > 12;
-}
-
-function ColumnBlock({ column, flow }: { column: MegaColumn; flow?: boolean }) {
+/**
+ * One registry category as a headed block: a small muted sub-heading with a
+ * count, then that category's tools as a single list under it. Every panel
+ * uses this exact shape, so no list ever appears without its heading.
+ */
+function ColumnBlock({ column }: { column: MegaColumn }) {
   return (
-    <div className={flow ? "lg:col-span-2" : undefined}>
-      <h3 className="px-2 text-[11px] font-semibold tracking-[0.14em] text-gray-500 uppercase">
+    <div>
+      <h3 className="flex items-baseline gap-2 px-2 text-[11px] font-semibold tracking-[0.14em] text-gray-500 uppercase">
         {column.heading}
+        <span className="text-[11px] font-medium tracking-normal text-gray-400 normal-case">
+          {column.links.length} {column.links.length === 1 ? "tool" : "tools"}
+        </span>
       </h3>
-      <ul className={`mt-2 space-y-0.5 ${flow ? "sm:columns-2 sm:gap-8" : ""}`}>
+      <ul className="mt-2 space-y-0.5">
         {column.links.map((link) => (
-          <li key={link.href} className={flow ? "break-inside-avoid" : undefined}>
+          <li key={link.href}>
             <Link
               href={link.href}
               className={`block rounded-lg px-2 py-[5px] text-[13px] leading-snug text-gray-700 transition duration-150 hover:bg-white/85 hover:text-brand-800 hover:shadow-sm ${linkFocus}`}
@@ -254,7 +257,10 @@ export default function Header() {
           >
             <LogoMark className="h-10 w-10 shadow-md shadow-brand-600/30 ring-1 ring-white/50 transition duration-200 group-hover:shadow-lg" />
             <span className="text-xl font-bold tracking-tight whitespace-nowrap text-gray-900">
-              Calc<span className="text-brand-700">Verse</span>
+              Calc
+              <span className="bg-gradient-to-r from-brand-600 to-sky-600 bg-clip-text text-transparent">
+                Verse
+              </span>
             </span>
           </Link>
 
@@ -341,11 +347,7 @@ export default function Header() {
                   <>
                     <div className={panelGridClass(openSection)}>
                       {openSection.columns.map((column) => (
-                        <ColumnBlock
-                          key={column.heading}
-                          column={column}
-                          flow={openSection.id !== "calculators" && columnFlows(column)}
-                        />
+                        <ColumnBlock key={column.heading} column={column} />
                       ))}
                     </div>
                     <WideStrip section={openSection} />
