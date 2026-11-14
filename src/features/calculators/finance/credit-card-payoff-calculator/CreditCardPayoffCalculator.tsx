@@ -73,7 +73,7 @@ export default function CreditCardPayoffCalculator() {
     <div>
       <div className="space-y-6">
         {rows.map((row, i) => (
-          <fieldset key={i} className="glass rounded-[2rem] px-6 py-5">
+          <fieldset key={i} className="glass rounded-2xl px-6 py-5">
             <legend className="px-1 text-sm font-semibold text-gray-800">Card {i + 1}</legend>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
               <Field label="Card name" htmlFor={`ccp-name-${i}`}>
@@ -152,7 +152,7 @@ export default function CreditCardPayoffCalculator() {
           )}
 
           <h3 className="text-lg font-bold tracking-tight text-gray-900">Strategy comparison</h3>
-          <div className="glass mt-3 overflow-x-auto rounded-[1.75rem] p-2">
+          <div className="glass mt-3 overflow-x-auto rounded-xl p-2">
             <table className="w-full min-w-[36rem] text-left text-sm">
               <thead>
                 <tr className="text-xs tracking-widest text-brand-800 uppercase">
@@ -177,7 +177,7 @@ export default function CreditCardPayoffCalculator() {
 
           <div className="mt-6 grid gap-4 lg:grid-cols-3">
             {results.map((r) => (
-              <div key={r.strategy} className="glass rounded-[2rem] px-6 py-5">
+              <div key={r.strategy} className="glass rounded-2xl px-6 py-5">
                 <p className="text-xs font-semibold tracking-widest text-brand-800 uppercase">{r.label}</p>
                 {r.error ? (
                   <p className="mt-2 text-sm leading-relaxed text-gray-600">Fix the note above to see this plan.</p>

@@ -52,7 +52,7 @@ export default function FancyTextGenerator() {
                 <button
                   type="button"
                   onClick={() => copy(style.id, value)}
-                  className="min-h-11 shrink-0 rounded-full bg-white/70 px-5 py-2.5 text-sm font-semibold text-gray-800 shadow-sm ring-1 ring-gray-900/5 backdrop-blur transition duration-200 hover:bg-white focus:ring-4 focus:ring-brand-500/20 focus:outline-none active:scale-[0.99]"
+                  className="min-h-11 shrink-0 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-gray-800 shadow-sm ring-1 ring-gray-900/5 transition duration-200 hover:bg-white focus:ring-4 focus:ring-brand-500/20 focus:outline-none active:scale-[0.99]"
                 >
                   {copiedId === style.id ? "Copied" : "Copy"}
                 </button>

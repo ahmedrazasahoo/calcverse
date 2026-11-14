@@ -3,42 +3,15 @@ import type { ReactNode } from "react";
 export { fmt, fmtMoney, parseNum } from "@/lib/format";
 export { Select } from "./Select";
 export type { SelectProps } from "./Select";
+export { Field, inputClass, selectClass } from "./fields";
 
-export function Field({
-  label,
-  htmlFor,
-  children,
-  hint,
-}: {
-  label: string;
-  htmlFor: string;
-  children: ReactNode;
-  hint?: string;
-}) {
-  return (
-    <div className="min-w-0">
-      <label htmlFor={htmlFor} className="mb-2 block px-1 text-sm font-semibold text-gray-800">
-        {label}
-      </label>
-      {children}
-      {hint && <p className="mt-1.5 px-1 text-xs leading-relaxed text-gray-500">{hint}</p>}
-    </div>
-  );
-}
-
-export const inputClass =
-  "min-h-12 w-full min-w-0 rounded-full border border-white/80 bg-white/70 px-5 py-3 text-base text-gray-900 shadow-sm backdrop-blur outline-none transition duration-200 placeholder:text-gray-400 hover:bg-white/90 focus:border-brand-300 focus:bg-white focus:ring-4 focus:ring-brand-500/15 disabled:cursor-not-allowed disabled:bg-white/40 disabled:text-gray-500";
-
-export const selectClass =
-  "min-h-12 w-full min-w-0 rounded-full border border-white/80 bg-white/70 px-5 py-3 text-base text-gray-900 shadow-sm backdrop-blur outline-none transition duration-200 hover:bg-white/90 focus:border-brand-300 focus:bg-white focus:ring-4 focus:ring-brand-500/15 disabled:cursor-not-allowed disabled:bg-white/40 disabled:text-gray-500";
-
-/** Main call to action: a big glass pill with dark text, as in the reference card. */
+/** Main call to action: solid dark slate, white text, small radius. */
 export const primaryButtonClass =
-  "inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-b from-white to-brand-50 px-7 py-3 text-base font-semibold text-brand-950 shadow-[0_14px_30px_-12px_rgb(68_33_127/0.35),inset_0_1px_0_rgb(255_255_255/0.9)] ring-1 ring-white/80 transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_20px_36px_-12px_rgb(68_33_127/0.4),inset_0_1px_0_rgb(255_255_255/0.9)] focus:ring-4 focus:ring-brand-500/25 focus:outline-none active:translate-y-0 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60";
+  "inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-slate-900 px-6 py-2.5 text-[15px] font-medium text-white shadow-sm transition duration-150 hover:bg-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50";
 
-/** Secondary action: a plain white glass pill with a soft outline. */
+/** Secondary action: white with a hairline border. */
 export const secondaryButtonClass =
-  "inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-white/70 px-7 py-3 text-base font-semibold text-gray-800 shadow-sm ring-1 ring-gray-900/5 backdrop-blur transition duration-200 hover:bg-white hover:shadow focus:ring-4 focus:ring-brand-500/20 focus:outline-none active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60";
+  "inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-6 py-2.5 text-[15px] font-medium text-slate-700 transition duration-150 hover:border-slate-300 hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50";
 
 export function ResultCard({
   label,
@@ -53,30 +26,26 @@ export function ResultCard({
 }) {
   if (primary) {
     return (
-      <div className="glass relative overflow-hidden rounded-[2rem] px-6 py-6 shadow-[0_24px_48px_-20px_rgb(68_33_127/0.35)]">
-        <span
-          className="pointer-events-none absolute -top-16 right-0 h-36 w-36 rounded-full bg-amber-300/25 blur-3xl"
-          aria-hidden="true"
-        />
-        <p className="relative flex items-center gap-2 text-xs font-semibold tracking-widest text-brand-800 uppercase">
-          <span className="h-1.5 w-1.5 rounded-full bg-amber-500" aria-hidden="true" />
+      <div className="relative overflow-hidden rounded-xl bg-slate-900 px-5 py-5">
+        <p className="flex items-center gap-2 font-mono text-[11px] font-medium tracking-[0.16em] text-brand-300 uppercase">
+          <span className="h-1.5 w-1.5 rounded-full bg-brand-400" aria-hidden="true" />
           {label}
         </p>
-        <p className="relative mt-2 text-3xl font-bold tracking-tight break-words text-gray-900 tabular-nums sm:text-4xl">
+        <p className="mt-2 text-3xl font-bold tracking-tight break-words text-white tabular-nums sm:text-4xl">
           {value}
         </p>
-        {sub && <p className="relative mt-1.5 text-sm leading-relaxed text-gray-600">{sub}</p>}
+        {sub && <p className="mt-1.5 text-sm leading-relaxed text-slate-400">{sub}</p>}
       </div>
     );
   }
   return (
-    <div className="glass group relative overflow-hidden rounded-[2rem] px-6 py-5 transition duration-200 hover:-translate-y-0.5">
-      <span className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-brand-500 to-amber-400" aria-hidden="true" />
-      <p className="text-xs font-semibold tracking-widest text-brand-800 uppercase">{label}</p>
-      <p className="mt-1.5 text-2xl font-bold tracking-tight break-words text-gray-900 tabular-nums sm:text-3xl">
+    <div className="relative overflow-hidden rounded-xl border border-slate-200 bg-white px-5 py-4">
+      <span className="absolute inset-y-0 left-0 w-0.5 bg-brand-600" aria-hidden="true" />
+      <p className="font-mono text-[11px] font-medium tracking-[0.16em] text-slate-500 uppercase">{label}</p>
+      <p className="mt-1.5 text-2xl font-bold tracking-tight break-words text-slate-900 tabular-nums sm:text-3xl">
         {value}
       </p>
-      {sub && <p className="mt-1 text-sm leading-relaxed text-gray-600">{sub}</p>}
+      {sub && <p className="mt-1 text-sm leading-relaxed text-slate-500">{sub}</p>}
     </div>
   );
 }
@@ -84,9 +53,9 @@ export function ResultCard({
 /** Calm, clear empty state used where a tool has nothing to show yet. */
 export function EmptyState({ title, body }: { title: string; body: string }) {
   return (
-    <div className="glass rounded-[2rem] px-6 py-10 text-center">
-      <p className="text-base font-semibold text-gray-900">{title}</p>
-      <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-gray-600">{body}</p>
+    <div className="rounded-xl border border-slate-200 bg-white px-6 py-10 text-center">
+      <p className="text-base font-semibold text-slate-900">{title}</p>
+      <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-slate-500">{body}</p>
     </div>
   );
 }
@@ -96,7 +65,7 @@ export function ErrorNote({ children }: { children: ReactNode }) {
   return (
     <p
       role="alert"
-      className="rounded-3xl bg-rose-50/70 px-5 py-3.5 text-sm leading-relaxed font-medium text-rose-800 ring-1 ring-rose-200/80 backdrop-blur"
+      className="rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm leading-relaxed font-medium text-rose-800"
     >
       {children}
     </p>

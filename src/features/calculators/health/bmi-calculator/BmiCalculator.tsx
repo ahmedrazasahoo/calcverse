@@ -13,14 +13,14 @@ import {
 } from "./bmi";
 
 const CATEGORY_STYLES: Record<BmiCategoryKey, string> = {
-  "severe-thinness": "bg-sky-100 text-sky-900",
-  "moderate-thinness": "bg-sky-100 text-sky-900",
-  "mild-thinness": "bg-sky-100 text-sky-900",
-  healthy: "bg-emerald-100 text-emerald-900",
-  overweight: "bg-amber-100 text-amber-900",
-  "obese-class-1": "bg-rose-100 text-rose-900",
-  "obese-class-2": "bg-rose-100 text-rose-900",
-  "obese-class-3": "bg-rose-100 text-rose-900",
+  "severe-thinness": "bg-sky-50 text-sky-800 ring-1 ring-sky-200",
+  "moderate-thinness": "bg-sky-50 text-sky-800 ring-1 ring-sky-200",
+  "mild-thinness": "bg-sky-50 text-sky-800 ring-1 ring-sky-200",
+  healthy: "bg-emerald-50 text-emerald-800 ring-1 ring-emerald-200",
+  overweight: "bg-amber-50 text-amber-800 ring-1 ring-amber-200",
+  "obese-class-1": "bg-rose-50 text-rose-800 ring-1 ring-rose-200",
+  "obese-class-2": "bg-rose-50 text-rose-800 ring-1 ring-rose-200",
+  "obese-class-3": "bg-rose-50 text-rose-800 ring-1 ring-rose-200",
 };
 
 export default function BmiCalculator() {

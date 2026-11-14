@@ -59,7 +59,7 @@ export default function SquareRootCalculator() {
               }
             />
           </div>
-          <div className="mt-6 rounded-2xl bg-white/60 px-5 py-4 ring-1 ring-gray-200">
+          <div className="mt-6 rounded-2xl bg-white px-5 py-4 ring-1 ring-gray-200">
             <h3 className="text-sm font-semibold tracking-wide text-gray-800 uppercase">Working steps</h3>
             <ol className="mt-2 list-decimal space-y-1.5 pl-5 text-sm leading-relaxed text-gray-700">
               {result.steps.map((step) => (

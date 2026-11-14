@@ -87,7 +87,7 @@ export default function DecimalToFractionCalculator() {
           <h3 className="mt-8 text-lg font-bold tracking-tight text-gray-900">Steps</h3>
           <ol className="mt-3 space-y-2.5">
             {result.steps.map((step, i) => (
-              <li key={i} className="glass flex gap-3.5 rounded-[1.75rem] p-4">
+              <li key={i} className="glass flex gap-3.5 rounded-xl p-4">
                 <span className="glass-chip flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold text-brand-800" aria-hidden="true">
                   {i + 1}
                 </span>
@@ -102,7 +102,7 @@ export default function DecimalToFractionCalculator() {
               <p className="mt-1 text-sm text-gray-600">
                 The same length rounded the way a carpenter reads it, at the three standard tape precisions.
               </p>
-              <div className="glass mt-3 overflow-x-auto rounded-[1.75rem] p-2">
+              <div className="glass mt-3 overflow-x-auto rounded-xl p-2">
                 <table className="w-full min-w-80 text-left text-sm">
                   <thead>
                     <tr className="text-xs tracking-widest text-brand-800 uppercase">

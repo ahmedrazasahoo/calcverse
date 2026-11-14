@@ -58,7 +58,7 @@ export default function TimeZonePairConverter({ pairSlug }: { pairSlug: string }
             onChange={(e) => setInputValue(e.target.value)}
           />
         </Field>
-        <div className="rounded-[2rem] bg-white/55 px-6 py-5 ring-1 ring-white/70 backdrop-blur">
+        <div className="rounded-2xl bg-white px-6 py-5 ring-1 ring-slate-200">
           <p className="text-xs font-semibold tracking-widest text-brand-800 uppercase">The difference</p>
           <p className="mt-1.5 text-lg leading-snug font-bold text-gray-900">
             {conversion

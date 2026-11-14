@@ -90,7 +90,7 @@ export default function HraCalculator() {
             <ResultCard label="HRA exemption" value={money(result.exemption)} sub="The tax free part of your HRA. You pay no income tax on this amount." />
             <ResultCard label="Taxable HRA" value={money(result.taxableHra)} sub="The part of your HRA left after the exemption. This part is added to your taxable salary." />
           </div>
-          <div className="mt-6 rounded-2xl bg-white/70 p-5 ring-1 ring-white/80 backdrop-blur">
+          <div className="mt-6 rounded-2xl bg-white p-5 ring-1 ring-slate-200">
             <h3 className="text-sm font-semibold text-gray-900">How the exemption was picked: the three limits</h3>
             <p className="mt-1 text-sm text-gray-600">
               The rules allow the smallest of these three yearly figures as your exemption. The smallest one is marked below.
@@ -103,7 +103,7 @@ export default function HraCalculator() {
                     <div className="max-w-md">
                       <span className="text-sm font-medium text-gray-900">{item.label}</span>
                       {applies && (
-                        <span className="ml-2 rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-semibold text-emerald-800">
+                        <span className="ml-2 rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-semibold text-emerald-700 ring-1 ring-emerald-200">
                           This one applies
                         </span>
                       )}

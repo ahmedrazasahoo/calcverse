@@ -130,23 +130,23 @@ export default function WebpToJpg() {
 
       {file && natural && (
         <div className="grid gap-5 md:grid-cols-2">
-          <figure className="overflow-hidden rounded-[2rem] ring-1 ring-white/70">
+          <figure className="overflow-hidden rounded-2xl ring-1 ring-slate-200">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={previewUrl} alt="Original WebP preview" className="max-h-80 w-full bg-white/50 object-contain" />
-            <figcaption className="bg-white/60 px-5 py-3 text-sm text-gray-700 backdrop-blur">
+            <figcaption className="bg-white px-5 py-3 text-sm text-gray-700">
               Original: {formatBytes(file.size)}, {natural.width} x {natural.height} px
             </figcaption>
           </figure>
-          <figure className="overflow-hidden rounded-[2rem] ring-1 ring-white/70">
+          <figure className="overflow-hidden rounded-2xl ring-1 ring-slate-200">
             {resultUrl ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={resultUrl} alt="Converted JPG preview" className="max-h-80 w-full bg-white/50 object-contain" />
             ) : (
-              <div className="flex max-h-80 min-h-40 items-center justify-center bg-white/40 px-5 text-sm text-gray-500">
+              <div className="flex max-h-80 min-h-40 items-center justify-center bg-slate-50 px-5 text-sm text-gray-500">
                 {working ? "Converting..." : "The JPG preview will appear here."}
               </div>
             )}
-            <figcaption className="bg-white/60 px-5 py-3 text-sm text-gray-700 backdrop-blur">
+            <figcaption className="bg-white px-5 py-3 text-sm text-gray-700">
               {result
                 ? `JPG: ${formatBytes(result.blob.size)}, ${result.width} x ${result.height} px`
                 : "JPG result will appear here."}

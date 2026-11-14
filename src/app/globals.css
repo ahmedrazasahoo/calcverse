@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* Primary brand: deep indigo violet */
+  /* Primary brand: deep indigo violet, used as accent only. */
   --color-brand-50: #f2f0fe;
   --color-brand-100: #ece8fd;
   --color-brand-200: #dcd4fc;
@@ -13,8 +13,8 @@
   --color-brand-800: #51239e;
   --color-brand-900: #44217f;
   --color-brand-950: #170b33;
-  /* Warm accent is Tailwind's amber, used directly (amber-400/500). */
   --font-sans: ui-sans-system, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
 }
 
 @layer base {
@@ -24,16 +24,11 @@
   }
 
   body {
-    /* Soft light gradient wash: white into pale icy cyan with a violet
-       hint, plus two faint radial glows so frosted glass surfaces have
-       something to blur. Fixed so the wash stays continuous on scroll. */
-    background:
-      radial-gradient(52rem 34rem at 8% -6%, rgb(129 89 236 / 0.14), transparent 62%),
-      radial-gradient(46rem 32rem at 102% 14%, rgb(56 189 248 / 0.13), transparent 60%),
-      radial-gradient(40rem 30rem at 88% 108%, rgb(251 191 36 / 0.08), transparent 60%),
-      linear-gradient(180deg, #fdfdff 0%, #f3f7fc 46%, #e9f4fa 100%);
-    background-attachment: fixed;
-    color: #1f2937;
+    /* Crisp near-white product surface. No washes, no glows: the engineered
+       dot and grid backdrop lives only in hero regions (see .bg-dots,
+       .bg-grid and .particles below), content areas stay clean white. */
+    background: #fbfbfd;
+    color: #334155;
     font-family: var(--font-sans);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -45,8 +40,8 @@
   }
 
   ::selection {
-    background: #fde68a;
-    color: #44217f;
+    background: #dcd4fc;
+    color: #170b33;
   }
 
   /* Visible keyboard focus everywhere. Elements that carry their own
@@ -80,24 +75,10 @@
   }
 }
 
-/* Animatable angle for the gradient border below. Browsers without
-   @property support simply keep the static gradient (the fallback). */
-@property --cv-angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
-@keyframes cv-border-flow {
-  to {
-    --cv-angle: 360deg;
-  }
-}
-
 @keyframes cv-mega-in {
   from {
     opacity: 0;
-    transform: translateY(-6px);
+    transform: translateY(-4px);
   }
   to {
     opacity: 1;
@@ -108,7 +89,7 @@
 @keyframes cv-select-in {
   from {
     opacity: 0;
-    transform: translateY(-4px) scale(0.98);
+    transform: translateY(-3px) scale(0.99);
   }
   to {
     opacity: 1;
@@ -119,7 +100,7 @@
 @keyframes cv-select-in-up {
   from {
     opacity: 0;
-    transform: translateY(4px) scale(0.98);
+    transform: translateY(3px) scale(0.99);
   }
   to {
     opacity: 1;
@@ -127,17 +108,37 @@
   }
 }
 
+/* Slow drift for the particle dot layers. Transform only, so the layers
+   stay on the compositor; the base reduced-motion rule stills them. */
+@keyframes cv-drift-a {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(14px, -18px, 0);
+  }
+}
+
+@keyframes cv-drift-b {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-18px, 12px, 0);
+  }
+}
+
 @layer components {
   /* Header mega menu panel entrance. Short and compositor friendly; the
      global reduced-motion rule in the base layer shortens it to nothing. */
   .mega-panel {
-    animation: cv-mega-in 0.18s ease-out;
+    animation: cv-mega-in 0.16s ease-out;
   }
 
   /* Custom select popup entrance (see components/Select.tsx): a soft fade
      with a small slide, flipping direction when the popup opens upward. */
   .select-pop {
-    animation: cv-select-in 0.16s ease-out;
+    animation: cv-select-in 0.14s ease-out;
     transform-origin: top center;
   }
   .select-pop-up {
@@ -145,83 +146,106 @@
     transform-origin: bottom center;
   }
 
-  /* Frosted glass surface, the core of the current theme: translucent
-     white, strong backdrop blur, bright white border, soft diffused
-     shadow and a top highlight. Pair with a large Tailwind radius. */
+  /* Core panel surface of the design system: pure white, one hairline
+     neutral border, no shadow, no blur. Kept under the historical .glass
+     name because tool internals across the site compose it; the surface
+     it produces is the crisp developer panel, not frosted glass. */
   .glass {
-    background: linear-gradient(160deg, rgb(255 255 255 / 0.72), rgb(255 255 255 / 0.48));
-    -webkit-backdrop-filter: blur(18px) saturate(1.5);
-    backdrop-filter: blur(18px) saturate(1.5);
-    border: 1px solid rgb(255 255 255 / 0.75);
-    box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.85),
-      0 24px 48px -20px rgb(68 33 127 / 0.22),
-      0 6px 16px -8px rgb(68 33 127 / 0.1);
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
   }
 
-  /* Animated gradient border: a conic gradient ring drawn by a masked
-     pseudo element that follows the element's own border radius. The
-     gradient rotates by animating the registered --cv-angle property;
-     without @property support it stays as a calm static gradient border.
-     Only transform-free, compositor friendly properties are animated, so
-     it stays smooth. Pair with .glass and a large radius. */
+  /* Popover surface (mega menu, select popup, mobile sheet): the panel
+     surface plus the one soft elevation shadow allowed in the system. */
+  .glass-strong {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow:
+      0 16px 40px -16px rgb(15 23 42 / 0.22),
+      0 3px 10px -3px rgb(15 23 42 / 0.08);
+  }
+
+  /* Small chip and pill surface: white with a hairline border. */
+  .glass-chip {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+  }
+
+  /* Retired: the animated rainbow gradient border. The class stays so
+     existing markup composes unchanged, but it now draws nothing; the
+     panel hairline border carries the edge on its own. */
   .anim-border {
     position: relative;
   }
-  .anim-border::before {
-    content: "";
+
+  /* Engineered backdrop pieces for hero regions. Pure CSS backgrounds:
+     zero images, zero requests, a few hundred bytes of CSS total. */
+  .bg-dots {
+    background-image: radial-gradient(circle, rgb(100 116 139 / 0.17) 1px, transparent 1.5px);
+    background-size: 24px 24px;
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgb(100 116 139 / 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(100 116 139 / 0.06) 1px, transparent 1px);
+    background-size: 54px 54px;
+  }
+
+  /* Softens backdrop edges so the grid melts into the page background. */
+  .backdrop-mask {
+    -webkit-mask-image: radial-gradient(ellipse 95% 88% at 50% 0%, black 35%, transparent 78%);
+    mask-image: radial-gradient(ellipse 95% 88% at 50% 0%, black 35%, transparent 78%);
+  }
+
+  /* Sparse field of slightly larger accent dots (violet and blue, very low
+     opacity) on two oversized layers that drift slowly against each other.
+     The layers are larger than the field so drift never exposes an edge. */
+  .particles {
     position: absolute;
     inset: 0;
-    border-radius: inherit;
-    padding: 1.5px;
-    background: conic-gradient(
-      from var(--cv-angle, 0deg),
-      rgb(129 89 236 / 0.65),
-      rgb(56 189 248 / 0.55),
-      rgb(245 158 11 / 0.5),
-      rgb(244 114 182 / 0.4),
-      rgb(129 89 236 / 0.65)
-    );
-    -webkit-mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    mask-composite: exclude;
-    animation: cv-border-flow 7s linear infinite;
+    overflow: hidden;
     pointer-events: none;
   }
+  .particles::before,
+  .particles::after {
+    content: "";
+    position: absolute;
+    inset: -56px;
+    pointer-events: none;
+  }
+  .particles::before {
+    background-image:
+      radial-gradient(circle, rgb(112 56 224 / 0.16) 2.2px, transparent 3.2px),
+      radial-gradient(circle, rgb(37 99 235 / 0.13) 1.8px, transparent 2.8px),
+      radial-gradient(circle, rgb(112 56 224 / 0.1) 1.5px, transparent 2.4px);
+    background-size:
+      430px 430px,
+      560px 560px,
+      340px 340px;
+    background-position:
+      30px 60px,
+      190px 40px,
+      90px 210px;
+    animation: cv-drift-a 30s ease-in-out infinite alternate;
+  }
+  .particles::after {
+    background-image:
+      radial-gradient(circle, rgb(37 99 235 / 0.15) 2px, transparent 3px),
+      radial-gradient(circle, rgb(112 56 224 / 0.12) 1.6px, transparent 2.6px);
+    background-size:
+      640px 640px,
+      480px 480px;
+    background-position:
+      260px 120px,
+      60px 300px;
+    animation: cv-drift-b 38s ease-in-out infinite alternate;
+  }
   @media (prefers-reduced-motion: reduce) {
-    .anim-border::before {
+    .particles::before,
+    .particles::after {
       animation: none;
     }
-  }
-
-  /* Stronger glass for dropdown panels that float over busy page content:
-     same frosted language as .glass, but opaque enough to keep long link
-     lists readable against headlines and cards behind them. */
-  .glass-strong {
-    background: linear-gradient(160deg, rgb(255 255 255 / 0.98), rgb(255 255 255 / 0.96));
-    -webkit-backdrop-filter: blur(22px) saturate(1.5);
-    backdrop-filter: blur(22px) saturate(1.5);
-    border: 1px solid rgb(255 255 255 / 0.8);
-    box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.9),
-      0 24px 48px -20px rgb(68 33 127 / 0.25),
-      0 6px 16px -8px rgb(68 33 127 / 0.12);
-  }
-
-  /* Lighter glass for small chips and pills. */
-  .glass-chip {
-    background: rgb(255 255 255 / 0.62);
-    -webkit-backdrop-filter: blur(12px) saturate(1.4);
-    backdrop-filter: blur(12px) saturate(1.4);
-    border: 1px solid rgb(255 255 255 / 0.75);
-    box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.8),
-      0 6px 14px -8px rgb(68 33 127 / 0.18);
   }
 }
 
@@ -233,35 +257,4 @@ input[type="number"]::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
   appearance: textfield;
-}
-
-/* Gentle float loops for the inline SVG artwork (hero composition).
-   Transform only, so they stay on the compositor and cost no layout or
-   paint work. The reduced motion rule in the base layer stills them. */
-@keyframes cv-float-y {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-9px);
-  }
-}
-@keyframes cv-float-y-soft {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(6px);
-  }
-}
-.cv-float-a {
-  animation: cv-float-y 7s ease-in-out infinite;
-}
-.cv-float-b {
-  animation: cv-float-y-soft 9s ease-in-out infinite;
-}
-.cv-float-c {
-  animation: cv-float-y 5.5s ease-in-out infinite;
 }

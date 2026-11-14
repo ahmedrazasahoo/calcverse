@@ -193,7 +193,7 @@ export default function BarcodeGenerator() {
       ) : (
         <div
           ref={previewRef}
-          className="glass overflow-x-auto rounded-[2rem] px-6 py-6 text-center"
+          className="glass overflow-x-auto rounded-2xl px-6 py-6 text-center"
           dangerouslySetInnerHTML={{ __html: result.svg }}
         />
       )}

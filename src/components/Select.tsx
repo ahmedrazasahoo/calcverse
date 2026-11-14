@@ -13,8 +13,7 @@
  * role="combobox" and a portalled role="listbox" popup (portalled so no
  * parent overflow can clip it), full keyboard support (arrows, Home, End,
  * Enter, Space, Escape, Tab and type-ahead), click-outside close, and the
- * site's glass-strong surface with the animated gradient border language
- * on the open field.
+ * system's white popover surface with an accent focus ring on the field.
  */
 import {
   Children,
@@ -98,7 +97,7 @@ function ChevronIcon({ open }: { open: boolean }) {
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
-      className={`h-4 w-4 shrink-0 text-brand-500 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+      className={`h-4 w-4 shrink-0 text-slate-400 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
     >
       <path d="m6 9 6 6 6-6" />
     </svg>
@@ -322,11 +321,11 @@ export function Select({
   };
 
   const triggerClass = [
-    "flex min-h-12 w-full min-w-0 items-center justify-between gap-3 rounded-full border py-3 pr-4 pl-5 text-left text-base text-gray-900 shadow-sm backdrop-blur transition duration-200 outline-none",
+    "flex min-h-11 w-full min-w-0 items-center justify-between gap-3 rounded-lg border py-2.5 pr-3 pl-3.5 text-left text-[15px] text-slate-900 transition duration-150 outline-none",
     open
-      ? "anim-border border-brand-400 bg-white ring-4 ring-brand-500/15"
-      : "border-brand-200/90 bg-white/70 hover:border-brand-300 hover:bg-white/90 focus-visible:border-brand-400 focus-visible:bg-white focus-visible:ring-4 focus-visible:ring-brand-500/20",
-    disabled ? "cursor-not-allowed bg-white/40 text-gray-500 hover:border-brand-200/90 hover:bg-white/40" : "",
+      ? "border-brand-500 bg-white ring-4 ring-brand-500/15"
+      : "border-slate-200 bg-white hover:border-slate-300 focus-visible:border-brand-500 focus-visible:ring-4 focus-visible:ring-brand-500/15",
+    disabled ? "cursor-not-allowed bg-slate-50 text-slate-400 hover:border-slate-200" : "",
     className ?? "",
   ]
     .filter(Boolean)
@@ -361,7 +360,7 @@ export function Select({
             id={listboxId}
             role="listbox"
             aria-label={ariaLabel}
-            className={`glass-strong select-pop z-[60] overflow-y-auto rounded-3xl p-1.5 ${
+            className={`glass-strong select-pop z-[60] overflow-y-auto rounded-xl p-1 ${
               pos.placement === "top" ? "select-pop-up" : ""
             }`}
             style={{
@@ -386,13 +385,13 @@ export function Select({
                   aria-disabled={option.disabled || undefined}
                   onPointerEnter={() => !option.disabled && setActiveIndex(index)}
                   onClick={() => commit(option)}
-                  className={`flex cursor-pointer items-center justify-between gap-2 rounded-2xl px-4 py-2.5 text-[15px] leading-snug transition duration-150 ${
+                  className={`flex cursor-pointer items-center justify-between gap-2 rounded-lg px-3 py-2.5 text-[15px] leading-snug transition duration-100 ${
                     option.disabled
-                      ? "cursor-not-allowed text-gray-400"
+                      ? "cursor-not-allowed text-slate-400"
                       : isActive
-                        ? "bg-brand-100/80 text-brand-950"
-                        : "text-gray-800"
-                  } ${isSelected ? "font-semibold text-brand-900" : ""}`}
+                        ? "bg-slate-100 text-slate-900"
+                        : "text-slate-700"
+                  } ${isSelected ? "font-medium text-slate-900" : ""}`}
                 >
                   <span className="min-w-0 truncate">{option.label}</span>
                   {isSelected && <CheckIcon />}

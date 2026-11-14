@@ -4,116 +4,51 @@ import type { ToolGroup } from "@/lib/tools";
  * Per category color theme. All class strings are written out in full so
  * Tailwind can detect them at build time. Never build class names dynamically.
  *
- * In the glass theme, category color appears only as soft tints: the icon
- * tile, a small accent bar, a soft glow, and the text color on an otherwise
- * white glass badge pill. Surfaces themselves stay translucent white.
+ * In the current design system, surfaces are white with a hairline neutral
+ * border everywhere; a category shows up only as a restrained accent: the
+ * line icon color on a white tile, the small category label, and a thin
+ * accent rule. No tints, no glows.
  */
 export interface CategoryTheme {
-  /** Icon tile background and text color on cards. */
+  /** Icon tile: white, hairline ring, accent line icon. */
   tile: string;
-  /** White glass badge pill with the category text color. */
+  /** Neutral badge pill with hairline ring. */
   badge: string;
-  /** Ring color used on hover. */
+  /** Ring/border color used on hover. */
   hoverBorder: string;
   /** Accent text color. */
   text: string;
   /** Solid accent bar color, used for section markers and card top rules. */
   bar: string;
-  /** Soft colored glow shadow, used under hero panels and on card hover. */
+  /** Extra elevation shadow. Unused in the flat system; kept for API shape. */
   glow: string;
 }
 
-const BADGE_BASE = "bg-white/60 shadow-sm ring-1 ring-inset ring-white/70 backdrop-blur";
+const BADGE_BASE = "bg-white text-slate-600 ring-1 ring-inset ring-slate-200";
+
+function theme(accent: { tile: string; text: string; bar: string }): CategoryTheme {
+  return {
+    tile: `bg-white ring-1 ring-slate-200 ${accent.tile}`,
+    badge: BADGE_BASE,
+    hoverBorder: "hover:border-slate-300",
+    text: accent.text,
+    bar: accent.bar,
+    glow: "",
+  };
+}
 
 const THEMES: Record<string, CategoryTheme> = {
-  Finance: {
-    tile: "bg-emerald-100/80 text-emerald-700",
-    badge: `${BADGE_BASE} text-emerald-700`,
-    hoverBorder: "hover:border-emerald-200",
-    text: "text-emerald-700",
-    bar: "bg-emerald-500",
-    glow: "shadow-[0_22px_44px_-18px_rgb(16_185_129/0.35)]",
-  },
-  Health: {
-    tile: "bg-rose-100/80 text-rose-700",
-    badge: `${BADGE_BASE} text-rose-700`,
-    hoverBorder: "hover:border-rose-200",
-    text: "text-rose-700",
-    bar: "bg-rose-500",
-    glow: "shadow-[0_22px_44px_-18px_rgb(244_63_94/0.32)]",
-  },
-  School: {
-    tile: "bg-sky-100/80 text-sky-700",
-    badge: `${BADGE_BASE} text-sky-700`,
-    hoverBorder: "hover:border-sky-200",
-    text: "text-sky-700",
-    bar: "bg-sky-500",
-    glow: "shadow-[0_22px_44px_-18px_rgb(14_165_233/0.32)]",
-  },
-  Everyday: {
-    tile: "bg-amber-100/80 text-amber-700",
-    badge: `${BADGE_BASE} text-amber-700`,
-    hoverBorder: "hover:border-amber-200",
-    text: "text-amber-700",
-    bar: "bg-amber-500",
-    glow: "shadow-[0_22px_44px_-18px_rgb(245_158_11/0.35)]",
-  },
-  Tax: {
-    tile: "bg-slate-200/80 text-slate-700",
-    badge: `${BADGE_BASE} text-slate-700`,
-    hoverBorder: "hover:border-slate-300",
-    text: "text-slate-700",
-    bar: "bg-slate-500",
-    glow: "shadow-[0_22px_44px_-18px_rgb(100_116_139/0.32)]",
-  },
-  "PDF Tools": {
-    tile: "bg-violet-100/80 text-violet-700",
-    badge: `${BADGE_BASE} text-violet-700`,
-    hoverBorder: "hover:border-violet-200",
-    text: "text-violet-700",
-    bar: "bg-violet-500",
-    glow: "shadow-[0_22px_44px_-18px_rgb(139_92_246/0.35)]",
-  },
-  "Image Tools": {
-    tile: "bg-violet-100/80 text-violet-700",
-    badge: `${BADGE_BASE} text-violet-700`,
-    hoverBorder: "hover:border-violet-200",
-    text: "text-violet-700",
-    bar: "bg-violet-500",
-    glow: "shadow-[0_22px_44px_-18px_rgb(139_92_246/0.35)]",
-  },
-  "Image Converters": {
-    tile: "bg-cyan-100/80 text-cyan-700",
-    badge: `${BADGE_BASE} text-cyan-700`,
-    hoverBorder: "hover:border-cyan-200",
-    text: "text-cyan-700",
-    bar: "bg-cyan-500",
-    glow: "shadow-[0_22px_44px_-18px_rgb(6_182_212/0.32)]",
-  },
-  "Text Tools": {
-    tile: "bg-cyan-100/80 text-cyan-700",
-    badge: `${BADGE_BASE} text-cyan-700`,
-    hoverBorder: "hover:border-cyan-200",
-    text: "text-cyan-700",
-    bar: "bg-cyan-500",
-    glow: "shadow-[0_22px_44px_-18px_rgb(6_182_212/0.32)]",
-  },
-  Generators: {
-    tile: "bg-fuchsia-100/80 text-fuchsia-700",
-    badge: `${BADGE_BASE} text-fuchsia-700`,
-    hoverBorder: "hover:border-fuchsia-200",
-    text: "text-fuchsia-700",
-    bar: "bg-fuchsia-500",
-    glow: "shadow-[0_22px_44px_-18px_rgb(217_70_239/0.3)]",
-  },
-  Tests: {
-    tile: "bg-fuchsia-100/80 text-fuchsia-700",
-    badge: `${BADGE_BASE} text-fuchsia-700`,
-    hoverBorder: "hover:border-fuchsia-200",
-    text: "text-fuchsia-700",
-    bar: "bg-fuchsia-500",
-    glow: "shadow-[0_22px_44px_-18px_rgb(217_70_239/0.3)]",
-  },
+  Finance: theme({ tile: "text-emerald-600", text: "text-emerald-700", bar: "bg-emerald-500" }),
+  Health: theme({ tile: "text-rose-600", text: "text-rose-700", bar: "bg-rose-500" }),
+  School: theme({ tile: "text-sky-600", text: "text-sky-700", bar: "bg-sky-500" }),
+  Everyday: theme({ tile: "text-amber-600", text: "text-amber-700", bar: "bg-amber-500" }),
+  Tax: theme({ tile: "text-slate-600", text: "text-slate-700", bar: "bg-slate-500" }),
+  "PDF Tools": theme({ tile: "text-red-600", text: "text-red-700", bar: "bg-red-500" }),
+  "Image Tools": theme({ tile: "text-violet-600", text: "text-violet-700", bar: "bg-violet-500" }),
+  "Image Converters": theme({ tile: "text-cyan-600", text: "text-cyan-700", bar: "bg-cyan-500" }),
+  "Text Tools": theme({ tile: "text-teal-600", text: "text-teal-700", bar: "bg-teal-500" }),
+  Generators: theme({ tile: "text-fuchsia-600", text: "text-fuchsia-700", bar: "bg-fuchsia-500" }),
+  Tests: theme({ tile: "text-indigo-600", text: "text-indigo-700", bar: "bg-indigo-500" }),
 };
 
 const GROUP_FALLBACK: Record<ToolGroup, CategoryTheme> = {

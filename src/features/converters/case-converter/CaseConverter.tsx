@@ -70,7 +70,7 @@ export default function CaseConverter() {
               className={
                 active
                   ? "min-h-11 rounded-full bg-brand-700 px-4 py-2 text-sm font-semibold text-white shadow transition duration-200 hover:bg-brand-800 focus:ring-4 focus:ring-brand-500/25 focus:outline-none active:scale-[0.99]"
-                  : "min-h-11 rounded-full bg-white/70 px-4 py-2 text-sm font-semibold text-gray-800 shadow-sm ring-1 ring-gray-900/10 backdrop-blur transition duration-200 hover:bg-white hover:shadow focus:ring-4 focus:ring-brand-500/20 focus:outline-none active:scale-[0.99]"
+                  : "min-h-11 rounded-full bg-white px-4 py-2 text-sm font-semibold text-gray-800 shadow-sm ring-1 ring-gray-900/10 transition duration-200 hover:bg-white hover:shadow focus:ring-4 focus:ring-brand-500/20 focus:outline-none active:scale-[0.99]"
               }
             >
               {item.label}

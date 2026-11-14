@@ -105,7 +105,7 @@ export default function WordUnscrambler() {
       </div>
 
       {loadState === "loading" && (
-        <p className="rounded-3xl bg-brand-50/70 px-5 py-3.5 text-sm leading-relaxed font-medium text-brand-900 ring-1 ring-brand-100 backdrop-blur">
+        <p className="rounded-3xl bg-brand-50/70 px-5 py-3.5 text-sm leading-relaxed font-medium text-brand-900 ring-1 ring-brand-100">
           Loading the dictionary, about a second. It downloads once and every search after that is instant.
         </p>
       )}
@@ -155,7 +155,7 @@ export default function WordUnscrambler() {
                       type="button"
                       onClick={() => copy(word)}
                       title="Copy this word"
-                      className="min-h-11 rounded-full bg-white/70 px-4 py-2 font-mono text-base text-gray-900 shadow-sm ring-1 ring-gray-900/5 backdrop-blur transition duration-200 hover:bg-white focus:ring-4 focus:ring-brand-500/20 focus:outline-none active:scale-[0.99]"
+                      className="min-h-11 rounded-full bg-white px-4 py-2 font-mono text-base text-gray-900 shadow-sm ring-1 ring-gray-900/5 transition duration-200 hover:bg-white focus:ring-4 focus:ring-brand-500/20 focus:outline-none active:scale-[0.99]"
                     >
                       {copiedWord === word ? "Copied" : word}
                     </button>

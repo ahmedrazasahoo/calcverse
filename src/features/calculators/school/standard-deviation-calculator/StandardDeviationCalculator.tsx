@@ -26,7 +26,7 @@ export default function StandardDeviationCalculator() {
       >
         <textarea
           id="sd-data"
-          className="min-h-28 w-full min-w-0 rounded-[1.75rem] border border-white/80 bg-white/70 px-5 py-3.5 text-base text-gray-900 shadow-sm backdrop-blur outline-none transition duration-200 placeholder:text-gray-400 hover:bg-white/90 focus:border-brand-300 focus:bg-white focus:ring-4 focus:ring-brand-500/15"
+          className="min-h-28 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-5 py-3.5 text-base text-gray-900 shadow-sm outline-none transition duration-200 placeholder:text-gray-400 hover:bg-white/90 focus:border-brand-300 focus:bg-white focus:ring-4 focus:ring-brand-500/15"
           value={raw}
           onChange={(e) => setRaw(e.target.value)}
           placeholder="e.g. 2, 4, 4, 4, 5, 5, 7, 9"
@@ -56,7 +56,7 @@ export default function StandardDeviationCalculator() {
           </div>
 
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            <div className="glass rounded-[2rem] px-6 py-5">
+            <div className="glass rounded-2xl px-6 py-5">
               <p className="text-xs font-semibold tracking-widest text-brand-800 uppercase">Population</p>
               <p className="mt-1.5 text-2xl font-bold tracking-tight text-gray-900 tabular-nums sm:text-3xl">
                 SD {fmt(stats.populationSd, 4)}
@@ -66,7 +66,7 @@ export default function StandardDeviationCalculator() {
                 about, such as every student in one class.
               </p>
             </div>
-            <div className="glass rounded-[2rem] px-6 py-5">
+            <div className="glass rounded-2xl px-6 py-5">
               <p className="text-xs font-semibold tracking-widest text-brand-800 uppercase">Sample</p>
               <p className="mt-1.5 text-2xl font-bold tracking-tight text-gray-900 tabular-nums sm:text-3xl">
                 {stats.sampleSd === null ? "Not available" : `SD ${fmt(stats.sampleSd, 4)}`}
@@ -85,7 +85,7 @@ export default function StandardDeviationCalculator() {
             which is divided by {stats.count} for the population variance or by {Math.max(stats.count - 1, 1)} for the
             sample variance.
           </p>
-          <div className="glass mt-3 overflow-x-auto rounded-[1.75rem] p-2">
+          <div className="glass mt-3 overflow-x-auto rounded-xl p-2">
             <table className="w-full min-w-96 text-left text-sm">
               <thead>
                 <tr className="text-xs tracking-widest text-brand-800 uppercase">

@@ -1,15 +1,16 @@
 "use client";
 
 import { useMemo, useState, type ReactNode } from "react";
-import { Field, fmt, inputClass, parseNum } from "@/components/ui";
+import { Field, inputClass } from "@/components/fields";
+import { fmt, parseNum } from "@/lib/format";
 import { percentOf, percentageChange, whatPercent } from "./percentage";
 
 function ModeCard({ title, children, result }: { title: string; children: ReactNode; result: string | null }) {
   return (
-    <div className="rounded-2xl border border-gray-200 p-5 transition hover:shadow-md">
-      <h3 className="font-semibold text-gray-900">{title}</h3>
+    <div className="rounded-xl border border-slate-200 bg-white p-5 transition hover:border-slate-300">
+      <h3 className="text-[15px] font-semibold tracking-tight text-slate-900">{title}</h3>
       <div className="mt-4 grid gap-4 sm:grid-cols-2">{children}</div>
-      <p className="mt-4 rounded-xl bg-gradient-to-br from-brand-50 to-white px-4 py-3 text-lg font-bold text-gray-900 ring-1 ring-brand-100" aria-live="polite">
+      <p className="mt-4 rounded-lg bg-slate-900 px-4 py-3 font-mono text-[15px] font-semibold text-white tabular-nums" aria-live="polite">
         {result ?? "Enter both numbers to see the answer"}
       </p>
     </div>

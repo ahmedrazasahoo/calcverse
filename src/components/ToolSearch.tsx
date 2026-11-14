@@ -20,7 +20,7 @@ export default function ToolSearch() {
 
   return (
     <div>
-      <div className="sticky top-16 z-30 -mx-4 border-b border-white/60 bg-white/55 px-4 py-3 shadow-[0_14px_28px_-18px_rgb(68_33_127/0.35)] backdrop-blur-xl sm:mx-0 sm:border-0 sm:bg-transparent sm:px-0 sm:py-0 sm:shadow-none sm:backdrop-blur-none md:static">
+      <div className="sticky top-16 z-30 -mx-4 border-b border-slate-200 bg-white px-4 py-3 sm:mx-0 sm:border-0 sm:bg-transparent sm:px-0 sm:py-0 md:static">
         <div className="relative mx-auto max-w-2xl">
           <svg
             viewBox="0 0 24 24"
@@ -44,14 +44,14 @@ export default function ToolSearch() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search a tool, for example: tip, age, pdf, gpa..."
-            className="min-h-14 w-full min-w-0 rounded-full border border-white/80 bg-white/70 py-3.5 pr-14 pl-12 text-base shadow-[0_16px_32px_-16px_rgb(68_33_127/0.3)] backdrop-blur outline-none transition duration-200 placeholder:text-gray-400 hover:bg-white/90 focus:border-brand-300 focus:bg-white focus:ring-4 focus:ring-brand-500/15"
+            className="min-h-12 w-full min-w-0 rounded-xl border border-slate-200 bg-white py-3 pr-12 pl-11 text-[15px] shadow-[0_1px_2px_rgb(15_23_42/0.05)] outline-none transition duration-150 placeholder:text-slate-400 hover:border-slate-300 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/15"
           />
           {query && (
             <button
               type="button"
               onClick={() => setQuery("")}
               aria-label="Clear search"
-              className="absolute top-1/2 right-2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full text-gray-400 transition duration-200 hover:bg-white hover:text-gray-700 focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:outline-none"
+              className="absolute top-1/2 right-1.5 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-lg text-slate-400 transition duration-150 hover:bg-slate-100 hover:text-slate-700 focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:outline-none"
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="h-5 w-5" aria-hidden="true">
                 <path d="M18 6 6 18" />
@@ -67,7 +67,7 @@ export default function ToolSearch() {
           : `All ${tools.length} tools`}
       </p>
       {results.length === 0 ? (
-        <div className="glass mx-auto mt-6 max-w-xl rounded-[2rem] px-6 py-10 text-center">
+        <div className="mx-auto mt-6 max-w-xl rounded-2xl border border-slate-200 bg-white px-6 py-10 text-center">
           <p className="text-base font-semibold text-gray-900">Nothing matches that search yet</p>
           <p className="mt-2 text-sm leading-relaxed text-gray-600">
             Try a shorter, simpler word. One of these popular searches is a good place to start.
@@ -78,7 +78,7 @@ export default function ToolSearch() {
                 key={word}
                 type="button"
                 onClick={() => setQuery(word)}
-                className="glass-chip min-h-11 rounded-full px-4 py-2 text-sm font-semibold text-brand-800 transition duration-200 hover:bg-white focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:outline-none"
+                className="min-h-11 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition duration-150 hover:border-slate-300 hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:outline-none"
               >
                 {word}
               </button>

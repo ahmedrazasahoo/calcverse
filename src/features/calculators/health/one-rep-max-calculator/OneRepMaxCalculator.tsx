@@ -54,7 +54,7 @@ export default function OneRepMaxCalculator() {
             ))}
           </div>
           <h3 className="mt-8 text-lg font-bold tracking-tight text-gray-900">Percentage table (a guide)</h3>
-          <div className="glass mt-3 overflow-x-auto rounded-[1.75rem] p-4">
+          <div className="glass mt-3 overflow-x-auto rounded-xl p-4">
             <table className="w-full text-left text-sm">
               <thead>
                 <tr className="text-gray-500">

@@ -127,7 +127,7 @@ export default function SvgToPng() {
           rows={5}
           spellCheck={false}
           placeholder='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">...</svg>'
-          className="min-h-32 w-full rounded-3xl border border-white/80 bg-white/70 px-5 py-3 font-mono text-sm text-gray-900 shadow-sm backdrop-blur outline-none transition duration-200 placeholder:text-gray-400 hover:bg-white/90 focus:border-brand-300 focus:bg-white focus:ring-4 focus:ring-brand-500/15"
+          className="min-h-32 w-full rounded-3xl border border-slate-200 bg-white px-5 py-3 font-mono text-sm text-gray-900 shadow-sm outline-none transition duration-200 placeholder:text-gray-400 hover:bg-white/90 focus:border-brand-300 focus:bg-white focus:ring-4 focus:ring-brand-500/15"
         />
       </Field>
 
@@ -203,27 +203,27 @@ export default function SvgToPng() {
 
       {svgText.trim() && outputSize && (
         <div className="grid gap-5 md:grid-cols-2">
-          <figure className="overflow-hidden rounded-[2rem] ring-1 ring-white/70">
+          <figure className="overflow-hidden rounded-2xl ring-1 ring-slate-200">
             {previewUrl && (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={previewUrl} alt="Original SVG preview" className="max-h-80 w-full bg-white/50 object-contain" />
             )}
-            <figcaption className="bg-white/60 px-5 py-3 text-sm text-gray-700 backdrop-blur">
+            <figcaption className="bg-white px-5 py-3 text-sm text-gray-700">
               {intrinsic
                 ? `SVG artwork, intrinsic size ${Math.round(intrinsic.width)} x ${Math.round(intrinsic.height)}`
                 : "SVG artwork, no intrinsic size in the markup"}
             </figcaption>
           </figure>
-          <figure className="overflow-hidden rounded-[2rem] ring-1 ring-white/70">
+          <figure className="overflow-hidden rounded-2xl ring-1 ring-slate-200">
             {resultUrl ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={resultUrl} alt="Rendered PNG preview" className="max-h-80 w-full bg-white/50 object-contain" />
             ) : (
-              <div className="flex max-h-80 min-h-40 items-center justify-center bg-white/40 px-5 text-sm text-gray-500">
+              <div className="flex max-h-80 min-h-40 items-center justify-center bg-slate-50 px-5 text-sm text-gray-500">
                 {working ? "Rendering..." : "The PNG preview will appear here."}
               </div>
             )}
-            <figcaption className="bg-white/60 px-5 py-3 text-sm text-gray-700 backdrop-blur">
+            <figcaption className="bg-white px-5 py-3 text-sm text-gray-700">
               PNG output: {outputSize.width} x {outputSize.height} px
               {result ? `, ${formatBytes(result.blob.size)}` : ""}
             </figcaption>

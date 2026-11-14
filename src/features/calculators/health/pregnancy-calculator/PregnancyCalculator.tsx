@@ -103,7 +103,7 @@ export default function PregnancyCalculator() {
           <h3 className="mt-8 text-lg font-bold tracking-tight text-gray-900">
             Milestones by week
           </h3>
-          <ul className="mt-3 divide-y divide-gray-900/5 overflow-hidden rounded-[1.75rem] bg-white/60 ring-1 ring-white/70 backdrop-blur">
+          <ul className="mt-3 divide-y divide-gray-900/5 overflow-hidden rounded-xl bg-white ring-1 ring-slate-200">
             {result.milestones.map((m) => (
               <li
                 key={m.week}
@@ -121,7 +121,7 @@ export default function PregnancyCalculator() {
                 <span
                   className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${
                     m.done
-                      ? "bg-emerald-100 text-emerald-800"
+                      ? "bg-emerald-50 text-emerald-800 ring-1 ring-emerald-200"
                       : "bg-gray-100 text-gray-600"
                   }`}
                 >

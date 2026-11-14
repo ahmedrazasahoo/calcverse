@@ -164,7 +164,7 @@ export default function FractionCalculator() {
           <h3 className="mt-8 text-lg font-bold tracking-tight text-gray-900">Working</h3>
           <ol className="mt-3 space-y-2.5">
             {result.steps.map((step, i) => (
-              <li key={i} className="glass flex gap-3.5 rounded-[1.75rem] p-4">
+              <li key={i} className="glass flex gap-3.5 rounded-xl p-4">
                 <span
                   className="glass-chip flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold text-brand-800"
                   aria-hidden="true"

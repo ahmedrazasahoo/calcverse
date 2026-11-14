@@ -49,7 +49,7 @@ export default function TestGradeCalculator() {
           </div>
 
           {table.length > 0 && (
-            <div className="glass mt-6 overflow-hidden rounded-[2rem] px-6 py-5">
+            <div className="glass mt-6 overflow-hidden rounded-2xl px-6 py-5">
               <p className="text-sm font-semibold text-gray-900">Quick reference: 0 to 10 wrong on a {result.total} question test</p>
               <div className="mt-3 overflow-x-auto">
                 <table className="w-full text-left text-sm">

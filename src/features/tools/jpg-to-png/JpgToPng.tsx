@@ -74,7 +74,7 @@ export default function JpgToPng() {
       />
 
       {file && natural && (
-        <p className="rounded-3xl bg-white/55 px-5 py-3.5 text-sm leading-relaxed text-gray-700 ring-1 ring-white/70">
+        <p className="rounded-3xl bg-white px-5 py-3.5 text-sm leading-relaxed text-gray-700 ring-1 ring-slate-200">
           There is no quality setting on this converter, on purpose. PNG stores pixels losslessly, so the output
           holds exactly the pixels your JPG has, and there is no quality dial to turn. Expect the PNG to be larger
           than the JPG, often much larger for photos.
@@ -85,23 +85,23 @@ export default function JpgToPng() {
 
       {file && natural && (
         <div className="grid gap-5 md:grid-cols-2">
-          <figure className="overflow-hidden rounded-[2rem] ring-1 ring-white/70">
+          <figure className="overflow-hidden rounded-2xl ring-1 ring-slate-200">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={previewUrl} alt="Original JPG preview" className="max-h-80 w-full bg-white/50 object-contain" />
-            <figcaption className="bg-white/60 px-5 py-3 text-sm text-gray-700 backdrop-blur">
+            <figcaption className="bg-white px-5 py-3 text-sm text-gray-700">
               Original: {formatBytes(file.size)}, {natural.width} x {natural.height} px
             </figcaption>
           </figure>
-          <figure className="overflow-hidden rounded-[2rem] ring-1 ring-white/70">
+          <figure className="overflow-hidden rounded-2xl ring-1 ring-slate-200">
             {resultUrl ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={resultUrl} alt="Converted PNG preview" className="max-h-80 w-full bg-white/50 object-contain" />
             ) : (
-              <div className="flex max-h-80 min-h-40 items-center justify-center bg-white/40 px-5 text-sm text-gray-500">
+              <div className="flex max-h-80 min-h-40 items-center justify-center bg-slate-50 px-5 text-sm text-gray-500">
                 {working ? "Converting..." : "The PNG preview will appear here."}
               </div>
             )}
-            <figcaption className="bg-white/60 px-5 py-3 text-sm text-gray-700 backdrop-blur">
+            <figcaption className="bg-white px-5 py-3 text-sm text-gray-700">
               {result
                 ? `PNG: ${formatBytes(result.blob.size)}, ${result.width} x ${result.height} px`
                 : "PNG result will appear here."}

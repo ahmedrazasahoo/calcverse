@@ -95,7 +95,7 @@ function ColumnBlock({ column }: { column: MegaColumn }) {
           <li key={link.href}>
             <Link
               href={link.href}
-              className={`block rounded-lg px-2 py-[5px] text-[13px] leading-snug text-gray-700 transition duration-150 hover:bg-white/85 hover:text-brand-800 hover:shadow-sm ${linkFocus}`}
+              className={`block rounded-lg px-2 py-[5px] text-[13px] leading-snug text-gray-700 transition duration-150 hover:bg-slate-100 hover:text-slate-900 ${linkFocus}`}
             >
               {link.label}
             </Link>
@@ -109,7 +109,7 @@ function ColumnBlock({ column }: { column: MegaColumn }) {
 function WideStrip({ section }: { section: MegaSection }) {
   if (!section.wideSection) return null;
   return (
-    <div className="mt-7 border-t border-white/60 pt-5">
+    <div className="mt-7 border-t border-slate-200 pt-5">
       <h3 className="px-2 text-[11px] font-semibold tracking-[0.14em] text-gray-500 uppercase">
         {section.wideSection.heading}
       </h3>
@@ -118,7 +118,7 @@ function WideStrip({ section }: { section: MegaSection }) {
           <li key={link.href}>
             <Link
               href={link.href}
-              className={`block rounded-md px-1.5 py-1 text-xs whitespace-nowrap text-gray-600 transition duration-150 hover:bg-white/85 hover:text-brand-800 ${linkFocus}`}
+              className={`block rounded-md px-1.5 py-1 text-xs whitespace-nowrap text-gray-600 transition duration-150 hover:bg-slate-100 hover:text-slate-900 ${linkFocus}`}
             >
               {link.label}
             </Link>
@@ -136,9 +136,9 @@ function GuidesPanelBody({ section }: { section: MegaSection }) {
         <Link
           key={category.name}
           href={category.href}
-          className={`group rounded-2xl border border-white/60 bg-white/45 px-4 py-3.5 transition duration-150 hover:bg-white/85 hover:shadow-md ${linkFocus}`}
+          className={`group rounded-xl border border-slate-200 bg-white px-4 py-3.5 transition duration-150 hover:border-slate-300 hover:bg-slate-50 ${linkFocus}`}
         >
-          <span className="block text-sm font-semibold text-gray-900 group-hover:text-brand-800">
+          <span className="block text-sm font-semibold text-gray-900 group-hover:text-slate-900">
             {category.name}
           </span>
           <span className="mt-0.5 block text-xs text-gray-500">
@@ -147,14 +147,14 @@ function GuidesPanelBody({ section }: { section: MegaSection }) {
         </Link>
       ))}
       {section.featured && (
-        <div className="rounded-2xl border border-white/60 bg-white/45 px-4 py-3.5">
+        <div className="rounded-xl border border-slate-200 bg-white px-4 py-3.5">
           <span className="block text-sm font-semibold text-gray-900">{section.featured.heading}</span>
           <ul className="mt-1.5 space-y-1">
             {section.featured.links.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`block truncate text-[13px] text-gray-600 transition duration-150 hover:text-brand-800 ${linkFocus}`}
+                  className={`block truncate text-[13px] text-gray-600 transition duration-150 hover:text-slate-900 ${linkFocus}`}
                 >
                   {link.label}
                 </Link>
@@ -246,21 +246,18 @@ export default function Header() {
       onMouseLeave={() => setOpenId(null)}
       onKeyDown={handleHeaderKeyDown}
       onBlur={handleHeaderBlur}
-      className="sticky top-0 z-40 border-b border-white/60 bg-white/55 shadow-[0_10px_30px_-18px_rgb(68_33_127/0.35)] backdrop-blur-xl"
+      className="sticky top-0 z-40 border-b border-slate-200 bg-white"
     >
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="flex min-h-16 items-center justify-between gap-2 py-2">
           <Link
             href="/"
-            className={`group flex min-h-11 shrink-0 items-center gap-2.5 rounded-full pr-3 ${linkFocus}`}
+            className={`group flex min-h-11 shrink-0 items-center gap-2.5 rounded-lg pr-3 ${linkFocus}`}
             aria-label="CalcVerse home"
           >
-            <LogoMark className="h-10 w-10 shadow-md shadow-brand-600/30 ring-1 ring-white/50 transition duration-200 group-hover:shadow-lg" />
-            <span className="text-xl font-bold tracking-tight whitespace-nowrap text-gray-900">
-              Calc
-              <span className="bg-gradient-to-r from-brand-600 to-sky-600 bg-clip-text text-transparent">
-                Verse
-              </span>
+            <LogoMark className="h-9 w-9" />
+            <span className="text-lg font-semibold tracking-tight whitespace-nowrap text-slate-900">
+              Calc<span className="text-brand-600">Verse</span>
             </span>
           </Link>
 
@@ -276,16 +273,16 @@ export default function Header() {
                   onFocus={() => setOpenId(section.id)}
                 >
                   <div
-                    className={`flex items-center rounded-full transition duration-200 ${
-                      isOpen || active ? "bg-white/80 shadow-sm" : "hover:bg-white/60"
+                    className={`flex items-center rounded-lg transition duration-150 ${
+                      isOpen || active ? "bg-slate-100" : "hover:bg-slate-50"
                     }`}
                   >
                     <Link
                       href={section.hubPath}
                       data-nav-section={section.id}
                       aria-current={active ? "page" : undefined}
-                      className={`flex min-h-11 items-center rounded-l-full py-2 pr-1 pl-4 text-sm font-medium whitespace-nowrap transition duration-200 ${
-                        active ? "text-brand-800" : "text-gray-700 hover:text-brand-800"
+                      className={`flex min-h-11 items-center rounded-l-lg py-2 pr-1 pl-3.5 text-sm whitespace-nowrap transition duration-150 ${
+                        active ? "font-medium text-slate-900" : "text-slate-600 hover:text-slate-900"
                       } ${linkFocus}`}
                     >
                       {section.label}
@@ -302,7 +299,7 @@ export default function Header() {
                       aria-controls={`mega-panel-${section.id}`}
                       aria-label={`${section.label} menu`}
                       onClick={() => setOpenId(isOpen ? null : section.id)}
-                      className={`flex min-h-11 w-7 items-center justify-center rounded-r-full text-gray-500 transition duration-200 hover:text-brand-800 ${linkFocus}`}
+                      className={`flex min-h-11 w-7 items-center justify-center rounded-r-lg text-slate-400 transition duration-150 hover:text-slate-900 ${linkFocus}`}
                     >
                       <Chevron
                         className={`h-3.5 w-3.5 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
@@ -322,7 +319,7 @@ export default function Header() {
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu-sheet"
             onClick={() => setMobileOpen((value) => !value)}
-            className={`flex min-h-11 items-center gap-2 rounded-full px-3.5 text-sm font-semibold text-gray-800 transition duration-200 hover:bg-white/80 hover:text-brand-800 md:hidden ${linkFocus}`}
+            className={`flex min-h-11 items-center gap-2 rounded-lg px-3 text-sm font-medium text-slate-700 transition duration-150 hover:bg-slate-100 hover:text-slate-900 md:hidden ${linkFocus}`}
           >
             {mobileOpen ? <CloseIcon /> : <MenuIcon />}
             Menu
@@ -339,7 +336,7 @@ export default function Header() {
             className="mega-panel absolute inset-x-0 top-full z-40 hidden pt-2 md:block"
           >
             <div
-              className="glass-strong flex max-h-[calc(100dvh-6rem)] flex-col overflow-hidden rounded-[2rem]"
+              className="glass-strong flex max-h-[calc(100dvh-6rem)] flex-col overflow-hidden rounded-2xl"
               onClick={() => setOpenId(null)}
             >
               <div className="overflow-y-auto p-6 lg:p-7">
@@ -356,10 +353,10 @@ export default function Header() {
                   <GuidesPanelBody section={openSection} />
                 )}
               </div>
-              <div className="flex flex-wrap items-center justify-between gap-3 border-t border-white/60 bg-white/45 px-6 py-3.5 lg:px-7">
+              <div className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-200 bg-slate-50 px-6 py-3.5 lg:px-7">
                 <Link
                   href={openSection.hubPath}
-                  className={`rounded-full bg-white/70 px-4 py-2 text-sm font-semibold text-brand-800 shadow-sm transition duration-200 hover:bg-white hover:shadow ${linkFocus}`}
+                  className={`rounded-lg bg-slate-900 px-3.5 py-2 text-sm font-medium text-white transition duration-150 hover:bg-slate-700 ${linkFocus}`}
                 >
                   {openSection.hubLabel} {"\u2192"}
                 </Link>
@@ -376,11 +373,11 @@ export default function Header() {
         {/* Mobile menu sheet */}
         {mobileOpen && (
           <div id="mobile-menu-sheet" className="mega-panel absolute inset-x-0 top-full z-40 pt-2 md:hidden">
-            <div className="glass-strong max-h-[calc(100dvh-5rem)] overflow-y-auto rounded-[1.75rem] p-3">
+            <div className="glass-strong max-h-[calc(100dvh-5rem)] overflow-y-auto rounded-2xl p-3">
               {sections.map((section) => {
                 const expanded = expandedId === section.id;
                 return (
-                  <div key={section.id} className="border-b border-white/50 last:border-b-0">
+                  <div key={section.id} className="border-b border-slate-100 last:border-b-0">
                     <div className="flex items-center">
                       <Link
                         href={section.hubPath}
@@ -394,7 +391,7 @@ export default function Header() {
                         aria-expanded={expanded}
                         aria-label={`Show ${section.label} items`}
                         onClick={() => setExpandedId(expanded ? null : section.id)}
-                        className={`flex min-h-11 w-11 items-center justify-center rounded-full text-gray-500 transition hover:bg-white/70 hover:text-brand-800 ${linkFocus}`}
+                        className={`flex min-h-11 w-11 items-center justify-center rounded-lg text-slate-400 transition hover:bg-slate-100 hover:text-slate-900 ${linkFocus}`}
                       >
                         <Chevron
                           className={`h-4 w-4 transition-transform duration-200 ${expanded ? "rotate-180" : ""}`}
@@ -413,7 +410,7 @@ export default function Header() {
                                 <li key={link.href}>
                                   <Link
                                     href={link.href}
-                                    className={`flex min-h-11 items-center py-1 text-sm text-gray-700 transition hover:text-brand-800 ${linkFocus}`}
+                                    className={`flex min-h-11 items-center py-1 text-sm text-gray-700 transition hover:text-slate-900 ${linkFocus}`}
                                   >
                                     {link.label}
                                   </Link>
@@ -432,7 +429,7 @@ export default function Header() {
                                 <li key={link.href}>
                                   <Link
                                     href={link.href}
-                                    className={`flex min-h-11 items-center py-1 text-sm text-gray-700 transition hover:text-brand-800 ${linkFocus}`}
+                                    className={`flex min-h-11 items-center py-1 text-sm text-gray-700 transition hover:text-slate-900 ${linkFocus}`}
                                   >
                                     {link.label}
                                   </Link>
@@ -447,7 +444,7 @@ export default function Header() {
                               <li key={category.name}>
                                 <Link
                                   href={category.href}
-                                  className={`flex min-h-11 items-center justify-between py-1 text-sm text-gray-700 transition hover:text-brand-800 ${linkFocus}`}
+                                  className={`flex min-h-11 items-center justify-between py-1 text-sm text-gray-700 transition hover:text-slate-900 ${linkFocus}`}
                                 >
                                   <span>{category.name}</span>
                                   <span className="text-xs text-gray-500">
@@ -468,7 +465,7 @@ export default function Header() {
                                 <li key={link.href}>
                                   <Link
                                     href={link.href}
-                                    className={`flex min-h-11 items-center py-1 text-sm text-gray-700 transition hover:text-brand-800 ${linkFocus}`}
+                                    className={`flex min-h-11 items-center py-1 text-sm text-gray-700 transition hover:text-slate-900 ${linkFocus}`}
                                   >
                                     {link.label}
                                   </Link>

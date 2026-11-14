@@ -51,7 +51,7 @@ export default function MilitaryTimeConverter() {
 
   return (
     <div>
-      <div className="glass mb-7 rounded-[2rem] px-6 py-5" aria-live="off">
+      <div className="glass mb-7 rounded-2xl px-6 py-5" aria-live="off">
         <p className="text-xs font-semibold tracking-widest text-brand-800 uppercase">Right now</p>
         {now && liveLocal && liveZulu ? (
           <p className="mt-1.5 text-base leading-relaxed text-gray-700">
@@ -121,7 +121,7 @@ export default function MilitaryTimeConverter() {
         Every hour on the hour. Midnight is 0000, noon is 1200, and the count simply keeps going through the
         afternoon and evening.
       </p>
-      <div className="glass mt-3 overflow-x-auto rounded-[1.75rem] p-2">
+      <div className="glass mt-3 overflow-x-auto rounded-xl p-2">
         <table className="w-full min-w-[34rem] text-left text-sm">
           <thead>
             <tr className="text-xs tracking-widest text-brand-800 uppercase">

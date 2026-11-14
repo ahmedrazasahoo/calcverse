@@ -54,14 +54,14 @@ export default function ToolPage({ tool, content, children }: ToolPageProps) {
       <div className="flex items-start gap-4 pt-2 pb-6 sm:gap-5">
         <CategoryEmblem
           name={toolCategoryMotif(tool.category, tool.group)}
-          className="h-14 w-14 rounded-[1.25rem] p-3 shadow-md sm:h-16 sm:w-16 sm:p-3.5"
+          className="h-13 w-13 rounded-xl p-3 sm:h-14 sm:w-14"
         />
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-2">
-            <span className={`rounded-full px-3 py-1 text-[11px] font-semibold tracking-wide uppercase ${theme.badge}`}>
+            <span className={`rounded-full px-2.5 py-1 font-mono text-[11px] font-medium tracking-[0.12em] uppercase ${theme.badge}`}>
               {tool.category}
             </span>
-            <span className="glass-chip flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-semibold text-gray-700">
+            <span className="flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-medium text-slate-600">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden="true" />
               Free, no signup
             </span>
@@ -75,9 +75,9 @@ export default function ToolPage({ tool, content, children }: ToolPageProps) {
 
       <section
         aria-label={tool.name}
-        className={`glass anim-border relative overflow-hidden rounded-[2.5rem] p-6 sm:p-9 ${theme.glow}`}
+        className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 sm:p-8"
       >
-        <span className={`absolute inset-x-10 top-0 h-1 rounded-full ${theme.bar} opacity-70`} aria-hidden="true" />
+        <span className={`absolute inset-x-0 top-0 h-0.5 ${theme.bar}`} aria-hidden="true" />
         {children}
       </section>
 
@@ -89,14 +89,14 @@ export default function ToolPage({ tool, content, children }: ToolPageProps) {
             </h2>
             <ol className="mt-5 space-y-3">
               {content.howTo.map((step, i) => (
-                <li key={i} className="glass flex gap-3.5 rounded-[1.75rem] p-4.5">
+                <li key={i} className="flex gap-3.5 rounded-xl border border-slate-200 bg-white p-4">
                   <span
-                    className="glass-chip flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold text-brand-800"
+                    className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-slate-900 font-mono text-[13px] font-semibold text-white"
                     aria-hidden="true"
                   >
                     {i + 1}
                   </span>
-                  <span className="pt-1 leading-relaxed text-gray-700">{step}</span>
+                  <span className="pt-0.5 leading-relaxed text-slate-600">{step}</span>
                 </li>
               ))}
             </ol>
@@ -117,10 +117,10 @@ export default function ToolPage({ tool, content, children }: ToolPageProps) {
             <h2 id="faq" className="text-2xl font-bold tracking-tight text-gray-900">
               Frequently asked questions
             </h2>
-            <div className="glass mt-5 divide-y divide-white/60 overflow-hidden rounded-[2rem]">
+            <div className="mt-5 divide-y divide-slate-200 overflow-hidden rounded-2xl border border-slate-200 bg-white">
               {content.faqs.map((faq, i) => (
                 <details key={i} className="group">
-                  <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 px-6 py-4 font-semibold text-gray-900 transition duration-200 marker:hidden hover:bg-white/50 focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-inset focus-visible:outline-none">
+                  <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 px-5 py-4 font-medium text-slate-900 transition duration-150 marker:hidden hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-inset focus-visible:outline-none">
                     <span>{faq.q}</span>
                     <svg
                       viewBox="0 0 24 24"
@@ -135,7 +135,7 @@ export default function ToolPage({ tool, content, children }: ToolPageProps) {
                       <path d="m6 9 6 6 6-6" />
                     </svg>
                   </summary>
-                  <p className="px-6 pb-5 leading-relaxed text-gray-600">{faq.a}</p>
+                  <p className="px-5 pb-5 leading-relaxed text-slate-600">{faq.a}</p>
                 </details>
               ))}
             </div>

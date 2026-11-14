@@ -83,10 +83,10 @@ export default function StampDutyCalculator() {
           )}
 
           <h3 className="mt-8 text-lg font-bold tracking-tight text-gray-900">Band by band breakdown</h3>
-          <div className="mt-3 overflow-hidden rounded-[1.75rem] ring-1 ring-gray-900/5">
+          <div className="mt-3 overflow-hidden rounded-xl ring-1 ring-gray-900/5">
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-white/70 text-left">
+                <tr className="bg-white text-left">
                   <th className="px-5 py-3 font-semibold text-gray-800">Band</th>
                   <th className="px-5 py-3 text-right font-semibold text-gray-800">Rate</th>
                   <th className="px-5 py-3 text-right font-semibold text-gray-800">In band</th>
@@ -95,7 +95,7 @@ export default function StampDutyCalculator() {
               </thead>
               <tbody>
                 {result.breakdown.map((row) => (
-                  <tr key={row.label} className="bg-white/60 odd:bg-white/30">
+                  <tr key={row.label} className="bg-white odd:bg-white/30">
                     <td className="px-5 py-3 text-gray-700">{row.label}</td>
                     <td className="px-5 py-3 text-right text-gray-700 tabular-nums">{fmt(row.ratePercent, 0)}%</td>
                     <td className="px-5 py-3 text-right text-gray-700 tabular-nums">{fmtGbp(row.amountInBand, 2)}</td>

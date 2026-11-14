@@ -8,25 +8,25 @@ export default function GuideCard({ post }: { post: GuidePost }) {
   return (
     <Link
       href={guidePath(post)}
-      className="glass group relative flex h-full min-h-11 flex-col overflow-hidden rounded-[2rem] transition duration-300 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:outline-none active:translate-y-0"
+      className="group relative flex h-full min-h-11 flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition duration-150 hover:border-slate-300 hover:shadow-[0_10px_30px_-14px_rgb(15_23_42/0.18)] focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:outline-none"
     >
       <span
-        className="absolute inset-x-0 top-0 z-10 h-1 origin-left scale-x-0 bg-gradient-to-r from-brand-500 to-amber-400 transition-transform duration-300 group-hover:scale-x-100"
+        className="absolute inset-x-0 top-0 z-10 h-0.5 origin-left scale-x-0 bg-brand-600 transition-transform duration-200 group-hover:scale-x-100"
         aria-hidden="true"
       />
       <GuideBanner category={post.category} variant="card" className="block aspect-[800/120] w-full shrink-0" />
-      <span className="flex flex-1 flex-col p-6 sm:p-7 sm:pt-5">
+      <span className="flex flex-1 flex-col p-5">
       <div className="flex items-center justify-between gap-3">
-        <span className="glass-chip rounded-full px-3 py-1 text-[11px] font-semibold tracking-wide text-gray-700 uppercase">
+        <span className="rounded-full border border-slate-200 bg-white px-2.5 py-1 font-mono text-[11px] font-medium tracking-[0.1em] text-slate-600 uppercase">
           {post.category}
         </span>
-        <span className="text-xs font-medium text-gray-500">{guideReadingTime(post)} min read</span>
+        <span className="text-xs text-slate-400">{guideReadingTime(post)} min read</span>
       </div>
-      <h3 className="mt-4 text-base leading-snug font-semibold text-gray-900 transition-colors group-hover:text-brand-800">
+      <h3 className="mt-3.5 text-[15px] leading-snug font-semibold tracking-tight text-slate-900 transition-colors group-hover:text-brand-700">
         {post.title}
       </h3>
-      <p className="mt-1.5 line-clamp-3 text-sm leading-relaxed text-gray-600">{post.excerpt}</p>
-      <span className="mt-auto flex items-center gap-2 pt-4 text-sm font-semibold text-brand-700">
+      <p className="mt-1.5 line-clamp-3 text-sm leading-relaxed text-slate-500">{post.excerpt}</p>
+      <span className="mt-auto flex items-center gap-1.5 pt-4 text-sm font-medium text-slate-900">
         Read the guide
         <svg
           viewBox="0 0 24 24"

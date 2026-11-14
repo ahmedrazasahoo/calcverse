@@ -46,10 +46,10 @@ export default function FileDrop({ accept, multiple = false, onFiles, label, hin
         setDragging(false);
         handleFiles(event.dataTransfer.files);
       }}
-      className={`min-h-44 cursor-pointer rounded-[2rem] border-2 border-dashed px-6 py-10 text-center backdrop-blur transition duration-200 focus-visible:ring-4 focus-visible:ring-brand-500/20 focus-visible:outline-none ${
+      className={`min-h-44 cursor-pointer rounded-2xl border border-dashed px-6 py-10 text-center transition duration-150 focus-visible:ring-4 focus-visible:ring-brand-500/20 focus-visible:outline-none ${
         dragging
-          ? "scale-[1.01] border-brand-400 bg-brand-50/70 shadow-[0_22px_44px_-18px_rgb(112_56_224/0.35)]"
-          : "border-white/80 bg-white/40 shadow-[inset_0_1px_0_rgb(255_255_255/0.8),0_16px_32px_-20px_rgb(68_33_127/0.25)] hover:border-brand-300 hover:bg-white/60"
+          ? "border-brand-500 bg-brand-50"
+          : "border-slate-300 bg-slate-50/60 hover:border-slate-400 hover:bg-slate-50"
       }`}
     >
       <input
@@ -64,7 +64,7 @@ export default function FileDrop({ accept, multiple = false, onFiles, label, hin
         }}
       />
       <span
-        className="glass-chip mx-auto flex h-14 w-14 items-center justify-center rounded-full text-brand-700"
+        className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500"
         aria-hidden="true"
       >
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-7 w-7">
@@ -77,7 +77,7 @@ export default function FileDrop({ accept, multiple = false, onFiles, label, hin
       <p className="mx-auto mt-1.5 max-w-md text-sm leading-relaxed text-gray-500">
         {hint ?? "Drop files here or click to browse. Files never leave your device."}
       </p>
-      <p className="mt-5 inline-flex min-h-11 items-center rounded-full bg-gradient-to-b from-white to-brand-50 px-6 py-2.5 text-sm font-semibold text-brand-950 shadow-[0_12px_24px_-10px_rgb(68_33_127/0.35),inset_0_1px_0_rgb(255_255_255/0.9)] ring-1 ring-white/80">
+      <p className="mt-5 inline-flex min-h-10 items-center rounded-lg bg-slate-900 px-5 py-2 text-sm font-medium text-white shadow-sm">
         Choose a file
       </p>
     </div>

@@ -3,9 +3,10 @@ import type { GuideCategory } from "@/lib/guides";
 import type { ToolGroup } from "@/lib/tools";
 
 /**
- * Category emblems: a gradient tile carrying a small hand drawn SVG motif.
- * Pure inline SVG, so an emblem costs zero network requests, renders at any
- * pixel density and can never cause layout shift.
+ * Category emblems: a white hairline tile carrying a small hand drawn SVG
+ * motif in the category accent color. Pure inline SVG, so an emblem costs
+ * zero network requests, renders at any pixel density and can never cause
+ * layout shift.
  */
 
 export type MotifName =
@@ -24,21 +25,21 @@ export type MotifName =
   | "home"
   | "book";
 
-const MOTIF_GRADIENT: Record<MotifName, string> = {
-  calculator: "from-brand-500 to-violet-700",
-  finance: "from-emerald-400 to-teal-600",
-  health: "from-rose-400 to-pink-600",
-  school: "from-sky-400 to-blue-600",
-  everyday: "from-amber-400 to-orange-500",
-  tax: "from-slate-400 to-slate-600",
-  pdf: "from-violet-400 to-purple-700",
-  image: "from-fuchsia-400 to-violet-600",
-  converters: "from-cyan-400 to-sky-600",
-  text: "from-teal-400 to-cyan-600",
-  generators: "from-fuchsia-400 to-purple-600",
-  tests: "from-indigo-400 to-violet-600",
-  home: "from-orange-400 to-amber-600",
-  book: "from-brand-500 to-violet-700",
+const MOTIF_COLOR: Record<MotifName, string> = {
+  calculator: "text-brand-600",
+  finance: "text-emerald-600",
+  health: "text-rose-600",
+  school: "text-sky-600",
+  everyday: "text-amber-600",
+  tax: "text-slate-600",
+  pdf: "text-red-600",
+  image: "text-violet-600",
+  converters: "text-cyan-600",
+  text: "text-teal-600",
+  generators: "text-fuchsia-600",
+  tests: "text-indigo-600",
+  home: "text-orange-600",
+  book: "text-brand-600",
 };
 
 /** Line art for each motif, drawn on a 48 by 48 grid, stroke based. */
@@ -148,6 +149,32 @@ const MOTIF_ART: Record<MotifName, ReactNode> = {
   ),
 };
 
+/**
+ * The motif paths as a bare SVG group (drawn in a 48 by 48 box), for
+ * embedding inside another SVG under a transform, where a nested svg
+ * element would not land where the transform puts it. Stroke follows
+ * currentColor, so set color on the wrapping group.
+ */
+export function MotifGroup({
+  name,
+  strokeWidth = 2.6,
+}: {
+  name: MotifName;
+  strokeWidth?: number;
+}) {
+  return (
+    <g
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      {MOTIF_ART[name]}
+    </g>
+  );
+}
+
 export function MotifArt({
   name,
   className = "h-full w-full",
@@ -160,16 +187,11 @@ export function MotifArt({
   return (
     <svg
       viewBox="0 0 48 48"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={strokeWidth}
-      strokeLinecap="round"
-      strokeLinejoin="round"
       className={className}
       aria-hidden="true"
       focusable="false"
     >
-      {MOTIF_ART[name]}
+      <MotifGroup name={name} strokeWidth={strokeWidth} />
     </svg>
   );
 }
@@ -183,7 +205,7 @@ export default function CategoryEmblem({
 }) {
   return (
     <span
-      className={`inline-flex shrink-0 items-center justify-center bg-gradient-to-br text-white shadow-sm ring-1 ring-white/60 ${MOTIF_GRADIENT[name]} ${className}`}
+      className={`inline-flex shrink-0 items-center justify-center bg-white ring-1 ring-slate-200 ${MOTIF_COLOR[name]} ${className}`}
       aria-hidden="true"
     >
       <MotifArt name={name} />

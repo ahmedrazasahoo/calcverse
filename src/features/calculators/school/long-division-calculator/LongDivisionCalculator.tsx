@@ -86,7 +86,7 @@ export default function LongDivisionCalculator() {
           <h3 className="mt-8 text-lg font-bold tracking-tight text-gray-900">Long division steps</h3>
           <ol className="mt-3 space-y-2.5">
             {integerResult.steps.map((step, i) => (
-              <li key={i} className="glass flex gap-3.5 rounded-[1.75rem] p-4">
+              <li key={i} className="glass flex gap-3.5 rounded-xl p-4">
                 <span className="glass-chip flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold text-brand-800" aria-hidden="true">
                   {i + 1}
                 </span>
@@ -112,7 +112,7 @@ export default function LongDivisionCalculator() {
           <h3 className="mt-8 text-lg font-bold tracking-tight text-gray-900">How the decimal is built</h3>
           <ol className="mt-3 space-y-2.5">
             {decimalResult.steps.map((step, i) => (
-              <li key={i} className="glass flex gap-3.5 rounded-[1.75rem] p-4">
+              <li key={i} className="glass flex gap-3.5 rounded-xl p-4">
                 <span className="glass-chip flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold text-brand-800" aria-hidden="true">
                   {i + 1}
                 </span>

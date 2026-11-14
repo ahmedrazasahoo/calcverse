@@ -97,9 +97,9 @@ function Section({ section }: { section: GuideSection }) {
       {section.steps && (
         <ol className="mt-5 space-y-3">
           {section.steps.map((step, i) => (
-            <li key={i} className="glass flex gap-3.5 rounded-[1.75rem] p-4.5">
+            <li key={i} className="flex gap-3.5 rounded-xl border border-slate-200 bg-white p-4">
               <span
-                className="glass-chip flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold text-brand-800"
+                className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-slate-900 font-mono text-[13px] font-semibold text-white"
                 aria-hidden="true"
               >
                 {i + 1}
@@ -113,10 +113,10 @@ function Section({ section }: { section: GuideSection }) {
       )}
       {section.table && (
         <figure className="mt-6">
-          <div className="glass overflow-x-auto rounded-[1.75rem]">
+          <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white">
             <table className="w-full min-w-135 border-collapse text-left text-sm">
               <thead>
-                <tr className="border-b border-white/70">
+                <tr className="border-b border-slate-200 bg-slate-50">
                   {section.table.headers.map((h, i) => (
                     <th key={i} scope="col" className="px-5 py-3.5 font-semibold whitespace-nowrap text-gray-900">
                       {h}
@@ -124,7 +124,7 @@ function Section({ section }: { section: GuideSection }) {
                   ))}
                 </tr>
               </thead>
-              <tbody className="divide-y divide-white/50">
+              <tbody className="divide-y divide-slate-100">
                 {section.table.rows.map((row, i) => (
                   <tr key={i}>
                     {row.map((cell, j) => (
@@ -196,10 +196,10 @@ export default function GuideArticle({ post }: { post: GuidePost }) {
 
       <div className="max-w-3xl pt-2">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="rounded-full bg-brand-50 px-3 py-1 text-[11px] font-semibold tracking-wide text-brand-800 uppercase ring-1 ring-brand-100">
+          <span className="rounded-full border border-slate-200 bg-white px-2.5 py-1 font-mono text-[11px] font-medium tracking-[0.12em] text-slate-600 uppercase">
             {post.category}
           </span>
-          <span className="glass-chip flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-semibold text-gray-700">
+          <span className="flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-medium text-slate-600">
             Guide
           </span>
         </div>
@@ -222,15 +222,15 @@ export default function GuideArticle({ post }: { post: GuidePost }) {
         ))}
       </div>
 
-      <div className="mt-8 overflow-hidden rounded-[2rem] shadow-[0_22px_44px_-18px_rgb(68_33_127/0.3)] ring-1 ring-white/60">
+      <div className="mt-8 overflow-hidden rounded-2xl border border-slate-200">
         <GuideBanner category={post.category} variant="article" className="block aspect-[800/250] w-full" />
       </div>
 
       <div className="mt-10 grid gap-12 lg:grid-cols-3 lg:gap-10">
         <div className="min-w-0 lg:col-span-2">
-          <section aria-labelledby="key-points" className="glass rounded-[2rem] p-6 sm:p-8">
+          <section aria-labelledby="key-points" className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-7">
             <h2 id="key-points" className="flex items-center gap-2.5 text-xl font-bold tracking-tight text-gray-900">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-100 text-amber-600 ring-1 ring-amber-200/70">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-900 text-white">
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
@@ -279,10 +279,10 @@ export default function GuideArticle({ post }: { post: GuidePost }) {
             <h2 id="guide-faq" className="text-2xl font-bold tracking-tight text-gray-900">
               Frequently asked questions
             </h2>
-            <div className="glass mt-5 divide-y divide-white/60 overflow-hidden rounded-[2rem]">
+            <div className="mt-5 divide-y divide-slate-200 overflow-hidden rounded-2xl border border-slate-200 bg-white">
               {post.faqs.map((faq, i) => (
                 <details key={i} className="group">
-                  <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 px-6 py-4 font-semibold text-gray-900 transition duration-200 marker:hidden hover:bg-white/50 focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-inset focus-visible:outline-none">
+                  <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 px-5 py-4 font-medium text-slate-900 transition duration-150 marker:hidden hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-inset focus-visible:outline-none">
                     <span>{faq.q}</span>
                     <svg
                       viewBox="0 0 24 24"
@@ -297,7 +297,7 @@ export default function GuideArticle({ post }: { post: GuidePost }) {
                       <path d="m6 9 6 6 6-6" />
                     </svg>
                   </summary>
-                  <p className="px-6 pb-5 leading-relaxed text-gray-600">
+                  <p className="px-5 pb-5 leading-relaxed text-slate-600">
                     <RichText text={faq.a} />
                   </p>
                 </details>
@@ -308,9 +308,9 @@ export default function GuideArticle({ post }: { post: GuidePost }) {
 
         <aside aria-label="Tool and related guides" className="min-w-0 lg:col-span-1">
           <div className="lg:sticky lg:top-24">
-            <section className="glass anim-border relative overflow-hidden rounded-[2rem] p-6 sm:p-7">
+            <section className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6">
               <span
-                className="absolute inset-x-10 top-0 h-1 rounded-full bg-gradient-to-r from-brand-500 to-amber-400 opacity-70"
+                className="absolute inset-x-0 top-0 h-0.5 bg-brand-600"
                 aria-hidden="true"
               />
               <h2 className="text-xl font-bold tracking-tight text-gray-900">Skip the maths, use the tool</h2>
@@ -345,9 +345,9 @@ export default function GuideArticle({ post }: { post: GuidePost }) {
         </aside>
       </div>
 
-      <section className="glass anim-border relative mt-14 overflow-hidden rounded-[2.5rem] p-6 sm:p-9" aria-label="Try the tool">
+      <section className="relative mt-14 overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 sm:p-8" aria-label="Try the tool">
         <span
-          className="absolute inset-x-10 top-0 h-1 rounded-full bg-gradient-to-r from-brand-500 to-amber-400 opacity-70"
+          className="absolute inset-x-0 top-0 h-0.5 bg-brand-600"
           aria-hidden="true"
         />
         <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:justify-between">

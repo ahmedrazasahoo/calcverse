@@ -151,7 +151,7 @@ export default function UsernameGenerator() {
             <button
               type="button"
               onClick={() => copy(name)}
-              className="min-h-11 shrink-0 rounded-full bg-white/70 px-4 py-2 text-sm font-semibold text-gray-800 shadow-sm ring-1 ring-gray-900/5 backdrop-blur transition duration-200 hover:bg-white focus:ring-4 focus:ring-brand-500/20 focus:outline-none active:scale-[0.99]"
+              className="min-h-11 shrink-0 rounded-full bg-white px-4 py-2 text-sm font-semibold text-gray-800 shadow-sm ring-1 ring-gray-900/5 transition duration-200 hover:bg-white focus:ring-4 focus:ring-brand-500/20 focus:outline-none active:scale-[0.99]"
             >
               {copiedName === name ? "Copied" : "Copy"}
             </button>
@@ -159,7 +159,7 @@ export default function UsernameGenerator() {
         ))}
       </ul>
 
-      <p className="rounded-3xl bg-amber-50/70 px-5 py-3.5 text-sm leading-relaxed font-medium text-amber-900 ring-1 ring-amber-200/80 backdrop-blur">
+      <p className="rounded-3xl bg-amber-50/70 px-5 py-3.5 text-sm leading-relaxed font-medium text-amber-900 ring-1 ring-amber-200/80">
         Please note: this generator does not check whether a name is available on Instagram, TikTok, YouTube, Xbox or
         any other platform. A suggestion here can already be taken elsewhere. Always check the name inside the app or
         site where you plan to use it before you commit to it.

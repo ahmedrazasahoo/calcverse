@@ -14,7 +14,7 @@ export default function GuidesHubPage() {
   return (
     <main className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl pt-10">
-        <span className="rounded-full bg-brand-50 px-3 py-1 text-[11px] font-semibold tracking-wide text-brand-800 uppercase ring-1 ring-brand-100">
+        <span className="rounded-full border border-slate-200 bg-white px-2.5 py-1 font-mono text-[11px] font-medium tracking-[0.12em] text-slate-600 uppercase">
           CalcVerse Guides
         </span>
         <h1 className="mt-3 text-3xl font-bold tracking-tight text-balance text-gray-900 sm:text-4xl">
@@ -39,7 +39,7 @@ export default function GuidesHubPage() {
           <section key={category} aria-labelledby={`guides-${category}`} className="mt-14">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <h2 id={`guides-${category}`} className="flex items-center gap-3 text-2xl font-bold tracking-tight text-gray-900">
-                <CategoryEmblem name={guideCategoryMotif(category)} className="h-10 w-10 rounded-xl p-2" />
+                <CategoryEmblem name={guideCategoryMotif(category)} className="h-9 w-9 rounded-lg p-2" />
                 {category}
               </h2>
               <span className="text-sm text-gray-500">

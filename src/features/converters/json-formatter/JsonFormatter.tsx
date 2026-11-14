@@ -5,7 +5,7 @@ import { ErrorNote, Field, primaryButtonClass, secondaryButtonClass, Select, sel
 import { formatJson, jsonToCsv, jsonToXml, minifyJson, validateJson, type JsonIndent } from "./json";
 
 const textareaClass =
-  "w-full rounded-3xl border border-white/80 bg-white/70 px-5 py-4 font-mono text-sm leading-relaxed text-gray-900 shadow-sm backdrop-blur outline-none transition duration-200 placeholder:text-gray-400 hover:bg-white/90 focus:border-brand-300 focus:bg-white focus:ring-4 focus:ring-brand-500/15";
+  "w-full rounded-3xl border border-slate-200 bg-white px-5 py-4 font-mono text-sm leading-relaxed text-gray-900 shadow-sm outline-none transition duration-200 placeholder:text-gray-400 hover:bg-white/90 focus:border-brand-300 focus:bg-white focus:ring-4 focus:ring-brand-500/15";
 
 type Mode = "format" | "minify" | "csv" | "xml";
 
@@ -124,7 +124,7 @@ export default function JsonFormatter() {
 
       {error && <ErrorNote>{error}</ErrorNote>}
       {notice && (
-        <p className="rounded-3xl bg-emerald-50/70 px-5 py-3.5 text-sm leading-relaxed font-medium text-emerald-800 ring-1 ring-emerald-200/80 backdrop-blur">
+        <p className="rounded-3xl bg-emerald-50/70 px-5 py-3.5 text-sm leading-relaxed font-medium text-emerald-800 ring-1 ring-emerald-200/80">
           {notice}
         </p>
       )}

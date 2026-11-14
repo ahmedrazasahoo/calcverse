@@ -139,11 +139,11 @@ export default function TaxRefundCalculator() {
           </div>
 
           <h3 className="mt-8 text-lg font-bold tracking-tight text-gray-900">How the estimate is built</h3>
-          <div className="mt-3 overflow-hidden rounded-[1.75rem] ring-1 ring-gray-900/5">
+          <div className="mt-3 overflow-hidden rounded-xl ring-1 ring-gray-900/5">
             <table className="w-full text-sm">
               <tbody>
                 {rows.map((row) => (
-                  <tr key={row.label} className="bg-white/60 odd:bg-white/30">
+                  <tr key={row.label} className="bg-white odd:bg-white/30">
                     <td className="px-5 py-3 text-gray-700">{row.label}</td>
                     <td className="px-5 py-3 text-right font-semibold text-gray-900 tabular-nums">{row.value}</td>
                   </tr>

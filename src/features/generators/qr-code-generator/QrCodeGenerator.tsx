@@ -67,10 +67,10 @@ export default function QrCodeGenerator() {
             key={option.value}
             type="button"
             onClick={() => setTab(option.value)}
-            className={`min-h-11 rounded-full border px-5 py-2 text-sm font-semibold backdrop-blur transition ${
+            className={`min-h-11 rounded-full border px-5 py-2 text-sm font-semibold transition ${
               tab === option.value
                 ? "border-brand-950/60 bg-brand-950/85 text-white shadow-sm"
-                : "border-white/80 bg-white/60 text-gray-700 hover:bg-white/90 hover:text-brand-900"
+                : "border-slate-200 bg-white text-gray-700 hover:bg-white/90 hover:text-brand-900"
             }`}
           >
             {option.label}
@@ -172,7 +172,7 @@ export default function QrCodeGenerator() {
             <a
               href={dataUrl}
               download="qr-code.png"
-              className="min-h-12 rounded-full bg-gradient-to-b from-white to-brand-50 px-7 py-3 font-semibold text-brand-950 shadow-[0_14px_30px_-12px_rgb(68_33_127/0.35)] ring-1 ring-white/80 backdrop-blur transition duration-200 hover:-translate-y-0.5 active:translate-y-0"
+              className="min-h-11 rounded-lg bg-slate-900 px-6 py-2.5 font-medium text-white shadow-sm transition duration-150 hover:bg-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 active:scale-[0.99]"
             >
               Download PNG
             </a>

@@ -4,9 +4,9 @@ import LogoMark from "@/components/LogoMark";
 import { GROUP_PATHS, getTool, toolPath, type Tool } from "@/lib/tools";
 
 const linkClass =
-  "flex min-h-11 items-center rounded-full px-2 text-sm text-white/65 transition hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
+  "flex min-h-11 items-center rounded-lg px-2 text-sm text-slate-400 transition hover:bg-white/5 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
 
-const headingClass = "px-2 text-xs font-semibold tracking-widest text-white/45 uppercase";
+const headingClass = "px-2 font-mono text-[11px] font-medium tracking-[0.18em] text-slate-500 uppercase";
 
 function toolLinks(slugs: string[]): { href: string; label: string }[] {
   return slugs
@@ -74,7 +74,7 @@ function LinkColumn({
       <ul className="mt-3 space-y-0.5">
         {hubHref && hubLabel && (
           <li>
-            <Link href={hubHref} className={`${linkClass} font-medium text-white/85`}>
+            <Link href={hubHref} className={`${linkClass} font-medium text-slate-200`}>
               {hubLabel}
             </Link>
           </li>
@@ -92,43 +92,31 @@ function LinkColumn({
 }
 
 /**
- * Site footer: a deep violet glass anchor under the light theme, with five
+ * Site footer: a solid near-black anchor under the light theme, with five
  * evenly distributed columns (brand, calculators, file tools, converters and
  * generators, company and legal) that stack cleanly on smaller screens.
  */
 export default function Footer() {
   return (
-    <footer className="relative mt-20 overflow-hidden bg-gradient-to-b from-brand-900 to-brand-950 text-white">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-24 left-1/4 h-64 w-64 rounded-full bg-brand-500/20 blur-3xl"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-16 -bottom-32 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl"
-      />
-      <div className="absolute inset-x-0 top-0 h-px bg-white/50" aria-hidden="true" />
+    <footer className="relative mt-20 overflow-hidden bg-slate-950 text-slate-300">
       <div className="relative mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.1fr_1fr]">
           <div className="max-w-sm">
             <Link
               href="/"
-              className="group inline-flex min-h-11 items-center gap-2.5 rounded-full pr-3"
+              className="group inline-flex min-h-11 items-center gap-2.5 rounded-lg pr-3"
               aria-label="CalcVerse home"
             >
-              <LogoMark className="h-10 w-10 shadow-lg shadow-brand-950/40 ring-1 ring-white/40 transition duration-200 group-hover:shadow-xl" />
-              <span className="text-xl font-bold tracking-tight whitespace-nowrap">
-                Calc
-                <span className="bg-gradient-to-r from-brand-300 to-sky-300 bg-clip-text text-transparent">
-                  Verse
-                </span>
+              <LogoMark className="h-9 w-9" />
+              <span className="text-lg font-semibold tracking-tight whitespace-nowrap text-white">
+                Calc<span className="text-brand-400">Verse</span>
               </span>
             </Link>
-            <p className="mt-4 px-1 text-sm leading-relaxed text-white/65">
+            <p className="mt-4 px-1 text-sm leading-relaxed text-slate-400">
               Free calculators and file tools that run entirely in your browser. No signup, no uploads, and
               every answer shows its working so you can check it yourself.
             </p>
-            <p className="mt-4 px-1 text-xs text-white/45">Your files and numbers never leave your device.</p>
+            <p className="mt-4 px-1 font-mono text-[11px] tracking-wide text-slate-500 uppercase">Your files and numbers never leave your device.</p>
           </div>
 
           <LinkColumn
@@ -147,7 +135,7 @@ export default function Footer() {
           <LinkColumn heading="Company" links={COMPANY_LINKS} />
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
           <p>Copyright 2026 CalcVerse. Every tool is free to use, with no signup.</p>
           <p>Results are calculated locally in your browser and are provided for guidance only.</p>
         </div>
