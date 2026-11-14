@@ -61,6 +61,37 @@ import { content as c51 } from "@/features/tools/pdf-to-jpg/content";
 import { content as c52 } from "@/features/tools/rotate-pdf/content";
 import { content as c53 } from "@/features/tools/split-pdf/content";
 import { content as c54 } from "@/features/tools/webp-to-png/content";
+import { content as c55 } from "@/features/calculators/finance/simple-interest-calculator/content";
+import { content as c56 } from "@/features/calculators/finance/rd-calculator/content";
+import { content as c57 } from "@/features/calculators/finance/ppf-calculator/content";
+import { content as c58 } from "@/features/calculators/finance/nps-calculator/content";
+import { content as c59 } from "@/features/calculators/finance/retirement-calculator/content";
+import { content as c60 } from "@/features/calculators/finance/gratuity-calculator/content";
+import { content as c61 } from "@/features/calculators/health/pregnancy-calculator/content";
+import { content as c62 } from "@/features/calculators/health/conception-calculator/content";
+import { content as c63 } from "@/features/calculators/school/fraction-calculator/content";
+import { content as c64 } from "@/features/calculators/school/square-root-calculator/content";
+import { content as c65 } from "@/features/calculators/school/ratio-calculator/content";
+import { content as c66 } from "@/features/calculators/school/average-calculator/content";
+import { content as c67 } from "@/features/calculators/everyday/percentage-increase-calculator/content";
+import { content as c68 } from "@/features/calculators/everyday/percentage-decrease-calculator/content";
+import { content as c69 } from "@/features/calculators/everyday/time-calculator/content";
+import { content as c70 } from "@/features/calculators/everyday/love-calculator/content";
+import { content as c71 } from "@/features/calculators/everyday/fuel-cost-calculator/content";
+import { content as c72 } from "@/features/calculators/everyday/electricity-bill-calculator/content";
+import { content as c73 } from "@/features/calculators/tax/income-tax-calculator/content";
+import { content as c74 } from "@/features/calculators/tax/salary-calculator/content";
+import { content as c75 } from "@/features/calculators/tax/vat-calculator/content";
+import { content as c76 } from "@/features/calculators/tax/hra-calculator/content";
+import { content as c77 } from "@/features/tools/compress-pdf-to-300kb/content";
+import { content as c78 } from "@/features/tools/compress-pdf-to-500kb/content";
+import { content as c79 } from "@/features/tools/compress-image-to-30kb/content";
+import { content as c80 } from "@/features/tools/avif-to-jpg/content";
+import { content as c81 } from "@/features/tools/pdf-to-word/content";
+import { content as c82 } from "@/features/tools/resize-image/content";
+import { content as c83 } from "@/features/tools/remove-pdf-pages/content";
+import { content as c84 } from "@/features/converters/character-counter/content";
+import { content as c85 } from "@/features/converters/case-converter/content";
 
 const modules: { route: string; content: {
   howTo: string[];
@@ -123,11 +154,42 @@ const modules: { route: string; content: {
   { route: "/tools/rotate-pdf", content: c52 },
   { route: "/tools/split-pdf", content: c53 },
   { route: "/tools/webp-to-png", content: c54 },
+  { route: "/calculators/simple-interest-calculator", content: c55 },
+  { route: "/calculators/rd-calculator", content: c56 },
+  { route: "/calculators/ppf-calculator", content: c57 },
+  { route: "/calculators/nps-calculator", content: c58 },
+  { route: "/calculators/retirement-calculator", content: c59 },
+  { route: "/calculators/gratuity-calculator", content: c60 },
+  { route: "/calculators/pregnancy-calculator", content: c61 },
+  { route: "/calculators/conception-calculator", content: c62 },
+  { route: "/calculators/fraction-calculator", content: c63 },
+  { route: "/calculators/square-root-calculator", content: c64 },
+  { route: "/calculators/ratio-calculator", content: c65 },
+  { route: "/calculators/average-calculator", content: c66 },
+  { route: "/calculators/percentage-increase-calculator", content: c67 },
+  { route: "/calculators/percentage-decrease-calculator", content: c68 },
+  { route: "/calculators/time-calculator", content: c69 },
+  { route: "/calculators/love-calculator", content: c70 },
+  { route: "/calculators/fuel-cost-calculator", content: c71 },
+  { route: "/calculators/electricity-bill-calculator", content: c72 },
+  { route: "/calculators/income-tax-calculator", content: c73 },
+  { route: "/calculators/salary-calculator", content: c74 },
+  { route: "/calculators/vat-calculator", content: c75 },
+  { route: "/calculators/hra-calculator", content: c76 },
+  { route: "/tools/compress-pdf-to-300kb", content: c77 },
+  { route: "/tools/compress-pdf-to-500kb", content: c78 },
+  { route: "/tools/compress-image-to-30kb", content: c79 },
+  { route: "/tools/avif-to-jpg", content: c80 },
+  { route: "/tools/pdf-to-word", content: c81 },
+  { route: "/tools/resize-image", content: c82 },
+  { route: "/tools/remove-pdf-pages", content: c83 },
+  { route: "/converters/character-counter", content: c84 },
+  { route: "/converters/case-converter", content: c85 },
 ];
 
 describe("live tool content completeness", () => {
-  it("covers all 55 live tools", () => {
-    expect(modules.length).toBe(55);
+  it("covers all 86 live tools", () => {
+    expect(modules.length).toBe(86);
   });
 
   it.each(modules)("$route has steps, an explainer and at least 3 FAQs", ({ content }) => {

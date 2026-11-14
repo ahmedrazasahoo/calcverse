@@ -2,15 +2,13 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ComingSoon from "@/components/ComingSoon";
 import { toolMetadata } from "@/lib/seo";
-import { getToolInGroup, toolsInGroup } from "@/lib/tools";
+import { getToolInGroup } from "@/lib/tools";
 
 const GROUP = "calculators" as const;
 
-export function generateStaticParams() {
-  return toolsInGroup(GROUP)
-    .filter((tool) => tool.status === "soon")
-    .map((tool) => ({ slug: tool.slug }));
-}
+// These catch-all pages are fully driven by the slug param, so they opt
+// out of instant prerendering and render on demand.
+export const instant = false;
 
 type Props = { params: Promise<{ slug: string }> };
 

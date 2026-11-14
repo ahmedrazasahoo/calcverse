@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { guidePath, guides } from "@/lib/guides";
 import { SITE_URL } from "@/lib/site";
 import { GROUP_PATHS, toolPath, tools, type ToolGroup } from "@/lib/tools";
 
@@ -25,6 +26,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: tool.status === "live" ? 0.9 : 0.4,
+    })),
+    {
+      url: `${SITE_URL}/guides`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
+    ...guides.map((post) => ({
+      url: `${SITE_URL}${guidePath(post)}`,
+      lastModified: new Date(`${post.updatedAt}T00:00:00Z`),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
     })),
   ];
 }
